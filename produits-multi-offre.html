@@ -154,8 +154,8 @@
   --c-white:#ffffff; --c-green-soft:#bbf7d0;
 }
 html.dark{
-  --c-bg:#0d1117; --c-card:#141a24; --c-card-2:#1a212e; --c-elev:#333d4f;
-  --c-line:#222b3a; --c-line-2:#2a3444;
+  --c-bg:#0d1117; --c-card:#141a24; --c-card-2:#1b2331; --c-elev:#1f2836;
+  --c-line:transparent; --c-line-2:transparent;
   --c-text:#e8ebf3; --c-text-2:#9aa4b8;
   --c-ink:#e8ebf3; --c-bg-alt:#0d1117; --c-bg-3:#11161f;
   --c-grey-btn:#2b3346; --c-grey-2:rgba(255,255,255,.06);
@@ -186,14 +186,14 @@ html.dark [class~="bg-[#f2f3ff]"], html.dark [class~="bg-[#E2EFFE]"],
 html.dark [class~="bg-[#e2effe]"], html.dark [class~="bg-[#dbeafe]"]{background-color:var(--c-card-2);}
 html.dark [class~="bg-[#d0e1fb]"], html.dark [class~="bg-[#d3e4fe]/30"]{background-color:rgba(124,140,255,.16);}
 html.dark [class~="bg-[#ffedd5]"]{background-color:rgba(251,146,60,.18);}
-html.dark [class~="bg-[#d2d9f4]"]{background-color:var(--c-line-2);}
+html.dark [class~="bg-[#d2d9f4]"]{background-color:#1f2836;}
 /* --- tokens du design system --- */
 html.dark [class~="bg-surface"], html.dark [class~="bg-background"]{background-color:var(--c-bg);}
-html.dark [class~="bg-surface-container-lowest"]{background-color:#11161f;}
+html.dark [class~="bg-surface-container-lowest"]{background-color:#10161e;}
 html.dark [class~="bg-surface-container-low"]{background-color:var(--c-card);}
-html.dark [class~="bg-surface-container-high"]{background-color:var(--c-card-2);}
-html.dark [class~="bg-surface-container-highest"]{background-color:var(--c-line-2);}
-html.dark [class~="bg-surface-container"]{background-color:#171d28;}
+html.dark [class~="bg-surface-container-high"]{background-color:#1b2331;}
+html.dark [class~="bg-surface-container-highest"]{background-color:#1f2836;}
+html.dark [class~="bg-surface-container"]{background-color:#171e2a;}
 html.dark [class~="bg-surface-container-low/80"]{background-color:rgba(20,26,36,.8);}
 html.dark [class~="bg-surface-container-high/80"]{background-color:rgba(26,33,46,.8);}
 html.dark [class~="bg-secondary-container"]{background-color:rgba(124,140,255,.18);}
@@ -204,6 +204,9 @@ html.dark [class~="bg-brand-pill-count"]{background-color:#7c8cff;color:#0d1117;
 html.dark [class~="bg-on-surface"]{background-color:#080b11;}
 html.dark [class~="bg-on-surface-variant/70"]{background-color:rgba(154,164,184,.45);}
 html.dark [class~="bg-brand-bg"]{background-color:var(--c-bg);}
+/* le noir pur tranche trop sur le fond : il rejoint la palette (boutons, cadres) */
+html.dark [class~="bg-black"]{background-color:#1b2331;}
+html.dark [class~="bg-[#000000]"]{background-color:#05070b;}
 /* --- textes foncés --- */
 html.dark [class~="text-black"], html.dark [class~="text-[#000000]"],
 html.dark [class~="text-[#131b2e]"], html.dark [class~="text-[#1a1a1a]"],
@@ -221,25 +224,29 @@ html.dark [class~="text-on-secondary-fixed-variant"]{color:#c3cbe6;}
 html.dark [class~="text-on-secondary-fixed"]{color:var(--c-text);}
 html.dark [class~="text-surface"]{color:var(--c-text);}
 html.dark [class~="placeholder-on-surface-variant/70"]::placeholder{color:rgba(154,164,184,.8);}
-/* --- bordures --- */
-html.dark [class~="border-surface-container-high"]{border-color:var(--c-line);}
-html.dark [class~="border-surface-container-highest"]{border-color:var(--c-line-2);}
-html.dark [class~="border-surface-container-low"]{border-color:#1a222f;}
-html.dark [class~="border-[#e2e7ff]"], html.dark [class~="border-[#dae2fd]"]{border-color:var(--c-line);}
-html.dark [class~="border-gray-100"], html.dark [class~="border-gray-200"]{border-color:#232a38;}
-html.dark [class~="border-black"]{border-color:var(--c-line-2);}
-/* les bordures blanches sont invisibles en clair (blanc sur blanc) mais
-   apparaissent comme des liserés clairs en sombre : on les adapte au fond */
-html.dark [class~="border-white"]{border-color:rgba(255,255,255,.13);}
-html.dark [class~="border-white/50"]{border-color:rgba(255,255,255,.14);}
-html.dark [class~="border-white/30"]{border-color:rgba(255,255,255,.12);}
-html.dark [class~="border-white/20"]{border-color:rgba(255,255,255,.10);}
-html.dark [class~="border-white/15"]{border-color:rgba(255,255,255,.09);}
-html.dark [class~="border-white/10"]{border-color:rgba(255,255,255,.07);}
-html.dark [class~="border-white/5"]{border-color:rgba(255,255,255,.05);}
-html.dark [class~="border-outline-variant"]{border-color:#3a4457;}
+/* --- bordures : AUCUN contour clair ni gris en mode sombre ---
+   Les bordures du design clair (blanches, gris-bleu) créaient des liserés et un
+   effet de bloc. Elles deviennent transparentes : la hiérarchie se lit par les
+   surfaces. Les séparateurs d'un seul côté reçoivent un creux sombre, invisible
+   sur le fond mais qui détache deux surfaces voisines. */
+html.dark [class~="border"], html.dark [class~="border-2"],
+html.dark [class~="border-surface-container-high"],
+html.dark [class~="border-surface-container-highest"],
+html.dark [class~="border-surface-container-low"],
+html.dark [class~="border-[#e2e7ff]"], html.dark [class~="border-[#dae2fd]"],
+html.dark [class~="border-gray-100"], html.dark [class~="border-gray-200"],
+html.dark [class~="border-black"], html.dark [class~="border-outline-variant"],
+html.dark [class~="border-white"], html.dark [class~="border-white/50"],
+html.dark [class~="border-white/30"], html.dark [class~="border-white/20"],
+html.dark [class~="border-white/15"], html.dark [class~="border-white/10"],
+html.dark [class~="border-white/5"]{border-color:transparent;}
+/* séparateurs : creux sombre (plus sombre que les deux surfaces) */
+html.dark [class~="border-b"], html.dark [class~="border-t"],
+html.dark [class~="border-l"], html.dark [class~="border-r"]{border-color:#0a0e14;}
+/* états porteurs de sens : on garde un accent indigo, jamais du gris */
 html.dark [class~="border-brand-pill/30"]{border-color:rgba(124,140,255,.45);}
-html.dark [class~="ring-primary"]{--tw-ring-color:#9aa7ff;}
+html.dark [class~="border-[#1a237e]"]{border-color:#5b6bf0;}
+html.dark [class~="border-error"], html.dark [class~="focus:border-error"]{border-color:#e5484d;}
 /* fonds gris et opaques restants */
 html.dark [class~="bg-white/80"]{background-color:rgba(20,26,36,.85);}
 html.dark [class~="bg-white/95"]{background-color:rgba(20,26,36,.95);}
@@ -259,7 +266,7 @@ html.dark .leaflet-container{background-color:#0d1117!important;}
 html.dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.95) contrast(.9);}
 html.dark .leaflet-control-attribution{background:rgba(20,26,36,.85)!important;color:#9aa4b8!important;}
 html.dark .leaflet-control-attribution a{color:#9aa7ff!important;}
-html.dark .leaflet-bar a{background-color:#141a24!important;color:#e8ebf3!important;border-color:#222b3a!important;}
+html.dark .leaflet-bar a{background-color:#141a24!important;color:#e8ebf3!important;border-color:transparent!important;}
 html.dark .leaflet-bar a:hover{background-color:#1a212e!important;}
 /* accents colorés : on garde la teinte, en version translucide, avec du texte clair */
 html.dark [style*="rgb(255, 158, 158)"]{background-color:rgba(255,158,158,.20)!important;}
@@ -279,7 +286,7 @@ html.dark [class~="bg-[#7f9f5a]"]{background-color:rgba(127,159,90,.25);}
 html.dark [class~="bg-[#d97b84]"]{background-color:rgba(217,123,132,.28);}
 /* champs de saisie : le blanc est le fond par défaut du navigateur */
 html.dark input, html.dark textarea, html.dark select{
-  background-color:var(--c-card); color:var(--c-text); border-color:var(--c-line);
+  background-color:var(--c-card); color:var(--c-text); border-color:transparent;
 }
 html.dark input::placeholder, html.dark textarea::placeholder{color:rgba(154,164,184,.8);}
 /* logo : éclairci pour rester lisible sur fond sombre */
@@ -290,8 +297,8 @@ html.dark img[alt="C1EURO Logo"], html.dark img[alt="C1EURO Icon"]{filter:bright
 .theme-switch .theme-track{border-radius:9999px!important;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.02));}
 .theme-knob{border-radius:9999px!important;transition:transform .55s cubic-bezier(.34,1.56,.64,1), background-color .45s ease, color .45s ease;}
 html.dark .theme-knob{transform:translateX(42px);background:#0d1117;color:#e8ebf3;}
-html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba(124,140,255,.16);
-  box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
+html.dark .theme-switch{border-color:rgba(124,140,255,.40);background-color:rgba(124,140,255,.14);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 10px 30px -14px rgba(124,140,255,.7);}
 html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </style>
 </head>
