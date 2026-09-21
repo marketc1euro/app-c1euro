@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head><script id="c1euro-theme-boot">(function(){try{var t=localStorage.getItem('theme');var r=document.documentElement;if(t==='dark'){r.classList.add('dark');}else{r.classList.remove('dark');}}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>C1EURO - Search</title>
@@ -80,7 +81,7 @@
     /* Prevent scrolling on the body */
     body {
       overflow: hidden;
-      /* background-color: #fcf8ff; Match image background */
+      /* background-color: var(--c-bg-alt, #fcf8ff); Match image background */
     }
 
     /* Initial states */
@@ -145,7 +146,153 @@
 <style class="">#scrollable-service-list::-webkit-scrollbar { width: 6px; display: block; } #scrollable-service-list::-webkit-scrollbar-track { background: transparent; margin-left: 4px; } #scrollable-service-list::-webkit-scrollbar-thumb { background-color: #dae2fd; border-radius: 20px; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-</style></head>
+</style><style id="c1euro-theme">
+:root{
+  --c-bg:#faf8ff; --c-card:#ffffff; --c-card-2:#f2f3ff; --c-elev:#e2e7ff;
+  --c-line:#dae2fd; --c-line-2:#e2e7ff;
+  --c-text:#131b2e; --c-text-2:#444748;
+  /* variables dédiées aux couleurs écrites en style inline : la valeur par défaut
+     est la couleur d'origine, au pixel près, pour que le mode clair ne bouge pas */
+  --c-ink:rgb(0,0,0); --c-bg-alt:#fcf8ff; --c-bg-3:#f5f6fa;
+  --c-grey-btn:rgb(206,214,224); --c-grey-2:rgb(241,242,246);
+  --c-chip:rgb(226,239,254); --c-chip-2:rgba(211,228,254,.3); --c-chip-3:rgb(224,242,254);
+  --c-overlay:rgba(255,255,255,.87); --c-overlay-2:rgba(255,255,255,.82);
+  --c-white:#ffffff; --c-green-soft:#bbf7d0;
+}
+html.dark{
+  --c-bg:#0d1117; --c-card:#141a24; --c-card-2:#1a212e; --c-elev:#333d4f;
+  --c-line:#28303f; --c-line-2:#333d4f;
+  --c-text:#e8ebf3; --c-text-2:#9aa4b8;
+  --c-ink:#e8ebf3; --c-bg-alt:#0d1117; --c-bg-3:#11161f;
+  --c-grey-btn:#2b3346; --c-grey-2:rgba(255,255,255,.06);
+  --c-chip:rgba(255,255,255,.06); --c-chip-2:rgba(255,255,255,.05); --c-chip-3:rgba(255,255,255,.06);
+  --c-overlay:rgba(16,21,30,.92); --c-overlay-2:rgba(16,21,30,.86);
+  --c-white:#141a24; --c-green-soft:rgba(52,211,153,.18);
+}
+
+html.theme-switching, html.theme-switching *{
+  transition:background-color .35s ease, color .35s ease, border-color .35s ease,
+             box-shadow .35s ease !important;
+}
+
+html.dark, html.dark body{background-color:var(--c-bg);}
+html.dark body{color:var(--c-text);}
+/* --- surfaces claires --- */
+html.dark [class~="bg-white"]{background-color:var(--c-card);}
+html.dark [class~="bg-white/90"]{background-color:rgba(20,26,36,.92);}
+html.dark [class~="bg-white/70"]{background-color:rgba(20,26,36,.78);}
+html.dark [class~="bg-white/50"]{background-color:rgba(20,26,36,.55);}
+html.dark [class~="bg-white/20"]{background-color:rgba(255,255,255,.10);}
+html.dark [class~="bg-white/10"]{background-color:rgba(255,255,255,.07);}
+html.dark [class~="bg-white/5"]{background-color:rgba(255,255,255,.04);}
+html.dark [class~="bg-[#fcf8ff]"], html.dark [class~="bg-[#faf8ff]"],
+html.dark [class~="bg-[#f5f6fa]"], html.dark [class~="bg-[#f3f4f6]"],
+html.dark [class~="bg-[#f1f2f6]"]{background-color:var(--c-bg);}
+html.dark [class~="bg-[#f2f3ff]"], html.dark [class~="bg-[#E2EFFE]"],
+html.dark [class~="bg-[#e2effe]"], html.dark [class~="bg-[#dbeafe]"]{background-color:var(--c-card-2);}
+html.dark [class~="bg-[#d0e1fb]"], html.dark [class~="bg-[#d3e4fe]/30"]{background-color:rgba(124,140,255,.16);}
+html.dark [class~="bg-[#ffedd5]"]{background-color:rgba(251,146,60,.18);}
+html.dark [class~="bg-[#d2d9f4]"]{background-color:var(--c-line-2);}
+/* --- tokens du design system --- */
+html.dark [class~="bg-surface"], html.dark [class~="bg-background"]{background-color:var(--c-bg);}
+html.dark [class~="bg-surface-container-lowest"]{background-color:#11161f;}
+html.dark [class~="bg-surface-container-low"]{background-color:var(--c-card);}
+html.dark [class~="bg-surface-container-high"]{background-color:var(--c-card-2);}
+html.dark [class~="bg-surface-container-highest"]{background-color:var(--c-line-2);}
+html.dark [class~="bg-surface-container"]{background-color:#171d28;}
+html.dark [class~="bg-surface-container-low/80"]{background-color:rgba(20,26,36,.8);}
+html.dark [class~="bg-surface-container-high/80"]{background-color:rgba(26,33,46,.8);}
+html.dark [class~="bg-secondary-container"]{background-color:rgba(124,140,255,.18);}
+html.dark [class~="bg-secondary-container/20"]{background-color:rgba(124,140,255,.10);}
+html.dark [class~="bg-primary"]{background-color:#3546c9;}
+html.dark [class~="bg-brand-pill"]{background-color:#5b6bf0;}
+html.dark [class~="bg-brand-pill-count"]{background-color:#7c8cff;color:#0d1117;}
+html.dark [class~="bg-on-surface"]{background-color:#080b11;}
+html.dark [class~="bg-on-surface-variant/70"]{background-color:rgba(154,164,184,.45);}
+html.dark [class~="bg-brand-bg"]{background-color:var(--c-bg);}
+/* --- textes foncés --- */
+html.dark [class~="text-black"], html.dark [class~="text-[#000000]"],
+html.dark [class~="text-[#131b2e]"], html.dark [class~="text-[#1a1a1a]"],
+html.dark [class~="text-gray-900"], html.dark [class~="text-gray-800"]{color:var(--c-text);}
+html.dark [class~="text-[#444748]"], html.dark [class~="text-gray-700"],
+html.dark [class~="text-gray-600"], html.dark [class~="text-gray-500"]{color:var(--c-text-2);}
+html.dark [class~="text-on-surface"]{color:var(--c-text);}
+html.dark [class~="text-on-surface-variant"]{color:var(--c-text-2);}
+html.dark [class~="text-on-surface-variant/70"]{color:rgba(154,164,184,.78);}
+html.dark [class~="text-brand-text"]{color:var(--c-text);}
+html.dark [class~="text-primary"]{color:#9aa7ff;}
+html.dark [class~="text-brand-pill"]{color:#a3aeff;}
+html.dark [class~="text-on-secondary-container"]{color:#cfd7ff;}
+html.dark [class~="text-on-secondary-fixed-variant"]{color:#c3cbe6;}
+html.dark [class~="text-on-secondary-fixed"]{color:var(--c-text);}
+html.dark [class~="text-surface"]{color:var(--c-text);}
+html.dark [class~="placeholder-on-surface-variant/70"]::placeholder{color:rgba(154,164,184,.8);}
+/* --- bordures --- */
+html.dark [class~="border-surface-container-high"]{border-color:var(--c-line);}
+html.dark [class~="border-surface-container-highest"]{border-color:var(--c-line-2);}
+html.dark [class~="border-surface-container-low"]{border-color:#1d2432;}
+html.dark [class~="border-[#e2e7ff]"], html.dark [class~="border-[#dae2fd]"]{border-color:var(--c-line);}
+html.dark [class~="border-gray-100"], html.dark [class~="border-gray-200"]{border-color:#232a38;}
+html.dark [class~="border-black"]{border-color:var(--c-line-2);}
+html.dark [class~="border-outline-variant"]{border-color:#3a4457;}
+html.dark [class~="border-brand-pill/30"]{border-color:rgba(124,140,255,.45);}
+html.dark [class~="ring-primary"]{--tw-ring-color:#9aa7ff;}
+/* fonds gris et opaques restants */
+html.dark [class~="bg-white/80"]{background-color:rgba(20,26,36,.85);}
+html.dark [class~="bg-white/95"]{background-color:rgba(20,26,36,.95);}
+html.dark [class~="bg-gray-100"]{background-color:#1a212e;}
+html.dark [class~="bg-gray-200"]{background-color:#222939;}
+html.dark [class~="bg-gray-300"]{background-color:#2b3346;}
+html.dark [class~="text-gray-400"]{color:#7d8798;}
+/* styles écrits dans les pages elles-mêmes (galerie, panneaux de la carte) */
+html.dark .gallery-item{background-color:var(--c-card);}
+html.dark #bottom-panel.youtube-active, html.dark #bottom-panel.campaign-active,
+html.dark #bottom-panel.product-active{background-color:var(--c-card);}
+html.dark .play-button-overlay{background-color:rgba(20,26,36,.72);}
+html.dark .play-button-overlay:hover{background-color:rgba(20,26,36,.9);}
+html.dark .play-icon{border-left-color:#e8ebf3;}
+/* carte : fond sombre lisible (les tuiles claires sont inversées), contrôles assortis */
+html.dark .leaflet-container{background-color:#0d1117!important;}
+html.dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.95) contrast(.9);}
+html.dark .leaflet-control-attribution{background:rgba(20,26,36,.85)!important;color:#9aa4b8!important;}
+html.dark .leaflet-control-attribution a{color:#9aa7ff!important;}
+html.dark .leaflet-bar a{background-color:#141a24!important;color:#e8ebf3!important;border-color:#28303f!important;}
+html.dark .leaflet-bar a:hover{background-color:#1a212e!important;}
+/* accents colorés : on garde la teinte, en version translucide, avec du texte clair */
+html.dark [style*="rgb(255, 158, 158)"]{background-color:rgba(255,158,158,.20)!important;}
+html.dark [style*="rgb(243, 156, 18)"]{background-color:rgba(243,156,18,.22)!important;}
+html.dark [style*="rgb(255, 250, 101)"]{background-color:rgba(255,250,101,.20)!important;}
+html.dark [style*="rgb(231, 127, 103)"]{background-color:rgba(231,127,103,.22)!important;}
+html.dark [style*="rgb(64, 64, 122)"]{background-color:rgba(120,130,255,.22)!important;}
+html.dark [style*="rgb(59, 130, 246)"]{background-color:rgba(59,130,246,.25)!important;}
+html.dark [style*="rgb(139, 92, 246)"]{background-color:rgba(139,92,246,.25)!important;}
+html.dark [style*="rgb(236, 72, 153)"]{background-color:rgba(236,72,153,.25)!important;}
+html.dark [style*="rgb(239, 68, 68)"]{background-color:rgba(239,68,68,.25)!important;}
+html.dark [class~="bg-[#D4AF37]"]{background-color:rgba(212,175,55,.24);}
+html.dark [class~="bg-[#B2FF59]"]{background-color:rgba(178,255,89,.20);}
+html.dark [class~="bg-[#00a8e8]"]{background-color:rgba(0,168,232,.25);}
+html.dark [class~="bg-[#ff6b6b]"]{background-color:rgba(255,107,107,.25);}
+html.dark [class~="bg-[#7f9f5a]"]{background-color:rgba(127,159,90,.25);}
+html.dark [class~="bg-[#d97b84]"]{background-color:rgba(217,123,132,.28);}
+/* champs de saisie : le blanc est le fond par défaut du navigateur */
+html.dark input, html.dark textarea, html.dark select{
+  background-color:var(--c-card); color:var(--c-text); border-color:var(--c-line);
+}
+html.dark input::placeholder, html.dark textarea::placeholder{color:rgba(154,164,184,.8);}
+/* logo : éclairci pour rester lisible sur fond sombre */
+html.dark img[alt="C1EURO Logo"], html.dark img[alt="C1EURO Icon"]{filter:brightness(1.55) saturate(1.05);}
+
+/* --- nouvel interrupteur de thème (pied de page) --- */
+.theme-switch{border-radius:9999px!important;}
+.theme-switch .theme-track{border-radius:9999px!important;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.02));}
+.theme-knob{border-radius:9999px!important;transition:transform .55s cubic-bezier(.34,1.56,.64,1), background-color .45s ease, color .45s ease;}
+html.dark .theme-knob{transform:translateX(42px);background:#0d1117;color:#e8ebf3;}
+html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba(124,140,255,.16);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
+html.dark .theme-hint{color:rgba(255,255,255,.75);}
+html.dark #theme-label{color:rgba(232,235,243,.75);}
+</style>
+</head>
 <body class="font-sans text-brand-text w-screen flex flex-col relative overflow-hidden h-screen fixed" data-mode="connect">
 <!-- Map Background -->
 <div class="fixed inset-0 w-full h-full -z-10 pointer-events-none">
@@ -192,7 +339,7 @@
 <!-- Dynamic Container: Shifts content based on state -->
 <div class="w-full flex flex-col items-center relative" id="search-container" style="width: 100%; height: 100%;"><div class="relative w-full max-w-[737px] mx-auto mb-6 overflow-hidden rounded-[30px] bg-[#fcf8ff] mt-0 h-[168px]" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAP0kY9xU5cKVB3_rZZrLQ4O9R6oDZY2ktZtNYVIjZsG2yAlRjwUMDoGAo6mrwp1R_S1MYezzRqYbnVj58aY7EBSJMguLNFhWOmvjYlEevBc_tk6sUunrLxZA9-Il8ThW8z-VnYM1YUL0SuzcbTJRtlU4_Iq78ZoPaEgq00J-a2YW3vay6r_BLBXL_zE-ZEjDoikiK4wX7Q9ku6lpTjUeLpkeVbi6pJU16vVEewU80CO3RMHfKmnn_2WGHJOyYlIyQP3fjSva-xPgf2tPE&quot;); background-size: cover; background-position: center center;"><div class="absolute top-4 left-4 right-4 flex justify-between z-30"><button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);" data-nav="retour" onclick="(document.referrer&&document.referrer.indexOf(location.origin)===0)?history.back():location.href='index.html'"><span class="material-symbols-outlined text-white text-xl">arrow_back</span></button><button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">close</span></button></div><div class="absolute inset-0 flex items-center justify-center gap-6 z-10"><div class="relative flex items-center justify-center w-full h-full"><div class="absolute top-6 left-1/2 -translate-x-1/2 w-[80px] h-[80px] bg-white rounded-full border-4 border-white flex items-center justify-center overflow-hidden"><img alt="Company Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdTHq7kIC3HVLp3KegLjRKf922nwSlu1ho5GJb8sa1eTG_iYuFIC8FhqvsCaprmgqztbnWglO5UygWcA-NLkEHQY2hXlduugo0YaYcV6xsvCCmJoskm_2RM6WkYpGiWLAy9PPynvc3EtO0IcVwbuQRZ1JJVWavSLsLvReXYXUCtliHcbyZrIDaTYLoN8YPMFsS5QZrqTc2HkiQC7mt2lDfjD0OQ7w4SYYbx8rqDN5xK4OiDM7OF0_UF1LBUotqld903UPOPs5lyO89MhQ"></div></div></div><div class="absolute bottom-0 left-0 right-0 p-4 flex flex-col gap-1 z-20 items-center bg-white/80 backdrop-blur-md"><h3 class="text-black font-bold text-[16px] text-center w-full">Livraison en scooter</h3><p class="text-black text-[16px] opacity-90 leading-tight text-center w-full">Livraison scooter sur Marseille, centre-ville.</p></div></div>
 <div class="w-full mx-auto mb-6 mt-2 px-4 max-w-xl">
-<div class="rounded-[20px] px-8 flex items-center gap-4 min-w-[220px] mx-auto w-full py-6 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]" style="margin-top: -18px; padding-top: 20px; padding-bottom: 20px;"><img alt="Directions" class="w-[30px] h-[30px] object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF1w8p4JdWj2EHlcfXvJDZAJuhyKlJT04DKgEoBmZaMiPEdSSSn0XS-i3F59AQNLpYTwBcqMPyyenQ2elkP85GKA4h3Ed26Br9K3-GgEUcXC_djubrH-gG61ercJLDbucmu_NknAyXJa3_OHrm15CcNuGaNeHUnZhL3e6a48jSIw4w5hVlG59QkmYJhPc5nKlzb5rVWbN6jiToTMm1YYiXo56RJkYRQlVe7ZJwxC_VWlu4CNfZ1SnZoADSiFRBqYy5wfnw3FbLWYg6_0E" style="width: 28px; height: 28px;"><input class="border border-surface-container-high rounded-full py-3.5 px-6 text-sm focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant/70 text-on-surface shadow-sm flex-1 h-[44px]" placeholder="Indiquer votre itinéraire " style="background-color: #f5f6fa;" type="text"></div>
+<div class="rounded-[20px] px-8 flex items-center gap-4 min-w-[220px] mx-auto w-full py-6 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]" style="margin-top: -18px; padding-top: 20px; padding-bottom: 20px;"><img alt="Directions" class="w-[30px] h-[30px] object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF1w8p4JdWj2EHlcfXvJDZAJuhyKlJT04DKgEoBmZaMiPEdSSSn0XS-i3F59AQNLpYTwBcqMPyyenQ2elkP85GKA4h3Ed26Br9K3-GgEUcXC_djubrH-gG61ercJLDbucmu_NknAyXJa3_OHrm15CcNuGaNeHUnZhL3e6a48jSIw4w5hVlG59QkmYJhPc5nKlzb5rVWbN6jiToTMm1YYiXo56RJkYRQlVe7ZJwxC_VWlu4CNfZ1SnZoADSiFRBqYy5wfnw3FbLWYg6_0E" style="width: 28px; height: 28px;"><input class="border border-surface-container-high rounded-full py-3.5 px-6 text-sm focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant/70 text-on-surface shadow-sm flex-1 h-[44px]" placeholder="Indiquer votre itinéraire " style="background-color: var(--c-bg-3, #f5f6fa);" type="text"></div>
 </div><div class="w-screen -mx-[calc((100vw-100%)/2)] mb-2 overflow-hidden mt-4 -mt-1.5" style="bottom: 212px; left: 50%; transform: translateX(-50%); margin-bottom: 0px;">
 </div>
 <div class="fixed bottom-[16px] left-1/2 -translate-x-1/2 w-full max-w-[737px] h-[90px] rounded-[30px] bg-white z-30 flex items-center justify-between shadow-lg px-[20px] py-[24px]" id="bottom-panel">

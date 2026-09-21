@@ -1,4 +1,5 @@
-<!DOCTYPE html><html class="" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!DOCTYPE html><html class="" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head><script id="c1euro-theme-boot">(function(){try{var t=localStorage.getItem('theme');var r=document.documentElement;if(t==='dark'){r.classList.add('dark');}else{r.classList.remove('dark');}}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>C1EURO - Search</title>
@@ -174,11 +175,11 @@
     }
     #bottom-panel.youtube-active, #bottom-panel.campaign-active {
       height: 220px;
-      background-color: white;
+      background-color: var(--c-white, white);
     }
     #bottom-panel.product-active {
       height: 260px;
-      background-color: white;
+      background-color: var(--c-white, white);
     }
     #categories-carousel {
       transition: opacity 0.3s ease-in-out;
@@ -303,7 +304,153 @@
 <style class="">#scrollable-service-list::-webkit-scrollbar { width: 6px; display: block; } #scrollable-service-list::-webkit-scrollbar-track { background: transparent; margin-left: 4px; } #scrollable-service-list::-webkit-scrollbar-thumb { background-color: #dae2fd; border-radius: 20px; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-</style><style>@keyframes pulse-orange { 0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(243, 156, 18, 0); } 100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); } }</style></head>
+</style><style>@keyframes pulse-orange { 0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(243, 156, 18, 0); } 100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); } }</style><style id="c1euro-theme">
+:root{
+  --c-bg:#faf8ff; --c-card:#ffffff; --c-card-2:#f2f3ff; --c-elev:#e2e7ff;
+  --c-line:#dae2fd; --c-line-2:#e2e7ff;
+  --c-text:#131b2e; --c-text-2:#444748;
+  /* variables dédiées aux couleurs écrites en style inline : la valeur par défaut
+     est la couleur d'origine, au pixel près, pour que le mode clair ne bouge pas */
+  --c-ink:rgb(0,0,0); --c-bg-alt:#fcf8ff; --c-bg-3:#f5f6fa;
+  --c-grey-btn:rgb(206,214,224); --c-grey-2:rgb(241,242,246);
+  --c-chip:rgb(226,239,254); --c-chip-2:rgba(211,228,254,.3); --c-chip-3:rgb(224,242,254);
+  --c-overlay:rgba(255,255,255,.87); --c-overlay-2:rgba(255,255,255,.82);
+  --c-white:#ffffff; --c-green-soft:#bbf7d0;
+}
+html.dark{
+  --c-bg:#0d1117; --c-card:#141a24; --c-card-2:#1a212e; --c-elev:#333d4f;
+  --c-line:#28303f; --c-line-2:#333d4f;
+  --c-text:#e8ebf3; --c-text-2:#9aa4b8;
+  --c-ink:#e8ebf3; --c-bg-alt:#0d1117; --c-bg-3:#11161f;
+  --c-grey-btn:#2b3346; --c-grey-2:rgba(255,255,255,.06);
+  --c-chip:rgba(255,255,255,.06); --c-chip-2:rgba(255,255,255,.05); --c-chip-3:rgba(255,255,255,.06);
+  --c-overlay:rgba(16,21,30,.92); --c-overlay-2:rgba(16,21,30,.86);
+  --c-white:#141a24; --c-green-soft:rgba(52,211,153,.18);
+}
+
+html.theme-switching, html.theme-switching *{
+  transition:background-color .35s ease, color .35s ease, border-color .35s ease,
+             box-shadow .35s ease !important;
+}
+
+html.dark, html.dark body{background-color:var(--c-bg);}
+html.dark body{color:var(--c-text);}
+/* --- surfaces claires --- */
+html.dark [class~="bg-white"]{background-color:var(--c-card);}
+html.dark [class~="bg-white/90"]{background-color:rgba(20,26,36,.92);}
+html.dark [class~="bg-white/70"]{background-color:rgba(20,26,36,.78);}
+html.dark [class~="bg-white/50"]{background-color:rgba(20,26,36,.55);}
+html.dark [class~="bg-white/20"]{background-color:rgba(255,255,255,.10);}
+html.dark [class~="bg-white/10"]{background-color:rgba(255,255,255,.07);}
+html.dark [class~="bg-white/5"]{background-color:rgba(255,255,255,.04);}
+html.dark [class~="bg-[#fcf8ff]"], html.dark [class~="bg-[#faf8ff]"],
+html.dark [class~="bg-[#f5f6fa]"], html.dark [class~="bg-[#f3f4f6]"],
+html.dark [class~="bg-[#f1f2f6]"]{background-color:var(--c-bg);}
+html.dark [class~="bg-[#f2f3ff]"], html.dark [class~="bg-[#E2EFFE]"],
+html.dark [class~="bg-[#e2effe]"], html.dark [class~="bg-[#dbeafe]"]{background-color:var(--c-card-2);}
+html.dark [class~="bg-[#d0e1fb]"], html.dark [class~="bg-[#d3e4fe]/30"]{background-color:rgba(124,140,255,.16);}
+html.dark [class~="bg-[#ffedd5]"]{background-color:rgba(251,146,60,.18);}
+html.dark [class~="bg-[#d2d9f4]"]{background-color:var(--c-line-2);}
+/* --- tokens du design system --- */
+html.dark [class~="bg-surface"], html.dark [class~="bg-background"]{background-color:var(--c-bg);}
+html.dark [class~="bg-surface-container-lowest"]{background-color:#11161f;}
+html.dark [class~="bg-surface-container-low"]{background-color:var(--c-card);}
+html.dark [class~="bg-surface-container-high"]{background-color:var(--c-card-2);}
+html.dark [class~="bg-surface-container-highest"]{background-color:var(--c-line-2);}
+html.dark [class~="bg-surface-container"]{background-color:#171d28;}
+html.dark [class~="bg-surface-container-low/80"]{background-color:rgba(20,26,36,.8);}
+html.dark [class~="bg-surface-container-high/80"]{background-color:rgba(26,33,46,.8);}
+html.dark [class~="bg-secondary-container"]{background-color:rgba(124,140,255,.18);}
+html.dark [class~="bg-secondary-container/20"]{background-color:rgba(124,140,255,.10);}
+html.dark [class~="bg-primary"]{background-color:#3546c9;}
+html.dark [class~="bg-brand-pill"]{background-color:#5b6bf0;}
+html.dark [class~="bg-brand-pill-count"]{background-color:#7c8cff;color:#0d1117;}
+html.dark [class~="bg-on-surface"]{background-color:#080b11;}
+html.dark [class~="bg-on-surface-variant/70"]{background-color:rgba(154,164,184,.45);}
+html.dark [class~="bg-brand-bg"]{background-color:var(--c-bg);}
+/* --- textes foncés --- */
+html.dark [class~="text-black"], html.dark [class~="text-[#000000]"],
+html.dark [class~="text-[#131b2e]"], html.dark [class~="text-[#1a1a1a]"],
+html.dark [class~="text-gray-900"], html.dark [class~="text-gray-800"]{color:var(--c-text);}
+html.dark [class~="text-[#444748]"], html.dark [class~="text-gray-700"],
+html.dark [class~="text-gray-600"], html.dark [class~="text-gray-500"]{color:var(--c-text-2);}
+html.dark [class~="text-on-surface"]{color:var(--c-text);}
+html.dark [class~="text-on-surface-variant"]{color:var(--c-text-2);}
+html.dark [class~="text-on-surface-variant/70"]{color:rgba(154,164,184,.78);}
+html.dark [class~="text-brand-text"]{color:var(--c-text);}
+html.dark [class~="text-primary"]{color:#9aa7ff;}
+html.dark [class~="text-brand-pill"]{color:#a3aeff;}
+html.dark [class~="text-on-secondary-container"]{color:#cfd7ff;}
+html.dark [class~="text-on-secondary-fixed-variant"]{color:#c3cbe6;}
+html.dark [class~="text-on-secondary-fixed"]{color:var(--c-text);}
+html.dark [class~="text-surface"]{color:var(--c-text);}
+html.dark [class~="placeholder-on-surface-variant/70"]::placeholder{color:rgba(154,164,184,.8);}
+/* --- bordures --- */
+html.dark [class~="border-surface-container-high"]{border-color:var(--c-line);}
+html.dark [class~="border-surface-container-highest"]{border-color:var(--c-line-2);}
+html.dark [class~="border-surface-container-low"]{border-color:#1d2432;}
+html.dark [class~="border-[#e2e7ff]"], html.dark [class~="border-[#dae2fd]"]{border-color:var(--c-line);}
+html.dark [class~="border-gray-100"], html.dark [class~="border-gray-200"]{border-color:#232a38;}
+html.dark [class~="border-black"]{border-color:var(--c-line-2);}
+html.dark [class~="border-outline-variant"]{border-color:#3a4457;}
+html.dark [class~="border-brand-pill/30"]{border-color:rgba(124,140,255,.45);}
+html.dark [class~="ring-primary"]{--tw-ring-color:#9aa7ff;}
+/* fonds gris et opaques restants */
+html.dark [class~="bg-white/80"]{background-color:rgba(20,26,36,.85);}
+html.dark [class~="bg-white/95"]{background-color:rgba(20,26,36,.95);}
+html.dark [class~="bg-gray-100"]{background-color:#1a212e;}
+html.dark [class~="bg-gray-200"]{background-color:#222939;}
+html.dark [class~="bg-gray-300"]{background-color:#2b3346;}
+html.dark [class~="text-gray-400"]{color:#7d8798;}
+/* styles écrits dans les pages elles-mêmes (galerie, panneaux de la carte) */
+html.dark .gallery-item{background-color:var(--c-card);}
+html.dark #bottom-panel.youtube-active, html.dark #bottom-panel.campaign-active,
+html.dark #bottom-panel.product-active{background-color:var(--c-card);}
+html.dark .play-button-overlay{background-color:rgba(20,26,36,.72);}
+html.dark .play-button-overlay:hover{background-color:rgba(20,26,36,.9);}
+html.dark .play-icon{border-left-color:#e8ebf3;}
+/* carte : fond sombre lisible (les tuiles claires sont inversées), contrôles assortis */
+html.dark .leaflet-container{background-color:#0d1117!important;}
+html.dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.95) contrast(.9);}
+html.dark .leaflet-control-attribution{background:rgba(20,26,36,.85)!important;color:#9aa4b8!important;}
+html.dark .leaflet-control-attribution a{color:#9aa7ff!important;}
+html.dark .leaflet-bar a{background-color:#141a24!important;color:#e8ebf3!important;border-color:#28303f!important;}
+html.dark .leaflet-bar a:hover{background-color:#1a212e!important;}
+/* accents colorés : on garde la teinte, en version translucide, avec du texte clair */
+html.dark [style*="rgb(255, 158, 158)"]{background-color:rgba(255,158,158,.20)!important;}
+html.dark [style*="rgb(243, 156, 18)"]{background-color:rgba(243,156,18,.22)!important;}
+html.dark [style*="rgb(255, 250, 101)"]{background-color:rgba(255,250,101,.20)!important;}
+html.dark [style*="rgb(231, 127, 103)"]{background-color:rgba(231,127,103,.22)!important;}
+html.dark [style*="rgb(64, 64, 122)"]{background-color:rgba(120,130,255,.22)!important;}
+html.dark [style*="rgb(59, 130, 246)"]{background-color:rgba(59,130,246,.25)!important;}
+html.dark [style*="rgb(139, 92, 246)"]{background-color:rgba(139,92,246,.25)!important;}
+html.dark [style*="rgb(236, 72, 153)"]{background-color:rgba(236,72,153,.25)!important;}
+html.dark [style*="rgb(239, 68, 68)"]{background-color:rgba(239,68,68,.25)!important;}
+html.dark [class~="bg-[#D4AF37]"]{background-color:rgba(212,175,55,.24);}
+html.dark [class~="bg-[#B2FF59]"]{background-color:rgba(178,255,89,.20);}
+html.dark [class~="bg-[#00a8e8]"]{background-color:rgba(0,168,232,.25);}
+html.dark [class~="bg-[#ff6b6b]"]{background-color:rgba(255,107,107,.25);}
+html.dark [class~="bg-[#7f9f5a]"]{background-color:rgba(127,159,90,.25);}
+html.dark [class~="bg-[#d97b84]"]{background-color:rgba(217,123,132,.28);}
+/* champs de saisie : le blanc est le fond par défaut du navigateur */
+html.dark input, html.dark textarea, html.dark select{
+  background-color:var(--c-card); color:var(--c-text); border-color:var(--c-line);
+}
+html.dark input::placeholder, html.dark textarea::placeholder{color:rgba(154,164,184,.8);}
+/* logo : éclairci pour rester lisible sur fond sombre */
+html.dark img[alt="C1EURO Logo"], html.dark img[alt="C1EURO Icon"]{filter:brightness(1.55) saturate(1.05);}
+
+/* --- nouvel interrupteur de thème (pied de page) --- */
+.theme-switch{border-radius:9999px!important;}
+.theme-switch .theme-track{border-radius:9999px!important;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.02));}
+.theme-knob{border-radius:9999px!important;transition:transform .55s cubic-bezier(.34,1.56,.64,1), background-color .45s ease, color .45s ease;}
+html.dark .theme-knob{transform:translateX(42px);background:#0d1117;color:#e8ebf3;}
+html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba(124,140,255,.16);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
+html.dark .theme-hint{color:rgba(255,255,255,.75);}
+html.dark #theme-label{color:rgba(232,235,243,.75);}
+</style>
+</head>
 <body class="font-sans text-brand-text w-screen flex flex-col relative overflow-hidden h-screen fixed" data-mode="connect">
 <!-- Story Overlay -->
 <div class="fixed inset-0 z-[1000] bg-[#000000] flex items-center justify-center font-sans" id="story-overlay">
@@ -331,7 +478,7 @@
 </div>
 </div>
 <!-- Map Background -->
-<div class="fixed inset-0 w-full h-full z-0 leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="outline-style: none;" tabindex="0"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8435/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 276px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8436/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 276px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8435/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 20px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8436/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 20px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8435/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 532px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8436/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 532px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8434/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 276px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8437/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 276px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8434/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 20px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8437/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 20px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8434/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 532px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8437/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 532px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8435/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, -236px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8436/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, -236px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8435/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 788px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8436/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 788px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8434/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, -236px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8437/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, -236px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8433/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 276px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8438/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 276px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8434/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 788px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8437/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 788px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8433/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 20px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8438/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 20px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8433/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 532px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8438/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 532px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8433/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, -236px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8438/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, -236px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8433/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 788px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8438/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 788px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane leaflet-zoom-hide"></div><div class="leaflet-pane leaflet-marker-pane leaflet-zoom-hide"><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(718px, 503px, 0px); z-index: 503; outline-style: none;"><div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer active-pill" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: white; color: black; font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, '14€')">14€</div></div><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(602px, 455px, 0px); z-index: 455;"><div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: white; color: black; font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, '20€')">20€</div></div><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(683px, 407px, 0px); z-index: 407;"><div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: white; color: black; font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, '3€')">3€</div></div><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(637px, 519px, 0px); z-index: 519;">
+<div class="fixed inset-0 w-full h-full z-0 leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="outline-style: none;" tabindex="0"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8435/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 276px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8436/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 276px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8435/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 20px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8436/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 20px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8435/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 532px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8436/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 532px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8434/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 276px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8437/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 276px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8434/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 20px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8437/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 20px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8434/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 532px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8437/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 532px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8435/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, -236px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8436/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, -236px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8435/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(303px, 788px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8436/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(559px, 788px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8434/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, -236px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8437/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, -236px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8433/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 276px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8438/6001.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 276px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8434/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(47px, 788px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8437/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(815px, 788px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8433/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 20px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8438/6000.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 20px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8433/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 532px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8438/6002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 532px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8433/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, -236px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/14/8438/5999.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, -236px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/14/8433/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-209px, 788px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/14/8438/6003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1071px, 788px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane leaflet-zoom-hide"></div><div class="leaflet-pane leaflet-marker-pane leaflet-zoom-hide"><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(718px, 503px, 0px); z-index: 503; outline-style: none;"><div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer active-pill" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: var(--c-white, white); color: var(--c-ink, black); font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, '14€')">14€</div></div><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(602px, 455px, 0px); z-index: 455;"><div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: var(--c-white, white); color: var(--c-ink, black); font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, '20€')">20€</div></div><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(683px, 407px, 0px); z-index: 407;"><div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: var(--c-white, white); color: var(--c-ink, black); font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, '3€')">3€</div></div><div class="leaflet-marker-icon custom-div-icon cursor-pointer leaflet-zoom-hide leaflet-interactive" tabindex="0" role="button" style="margin-left: 0px; margin-top: 0px; width: 0px; height: 0px; transform: translate3d(637px, 519px, 0px); z-index: 519;">
           <div class="absolute -translate-x-1/2 -translate-y-full flex flex-col items-center group cursor-pointer z-10">
             <div class="relative w-[58px] h-[58px] aspect-square bg-white rounded-full border-[2px] border-black shadow-lg flex items-center justify-center transition-transform group-hover:scale-110">
               <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuApU3KqNy9AyOALE1rlsmhmuvRdvM0e4rrz-h2q3tPyREJ92Ux57sDMGFUV1o0A__NkR7F4LNyRbxF4lBtjJzRHZTIAVYyoaeJccyTNGZuhbC-WZ2ZgDySsAWr3OESSER6uuIrYkt-ValbP1DCJcqRsQ0hELaJlGaoFMd0HHtQEomXJmJVBgSzuD7BdBgaD1GE2FRqJ8Wd2fTeqnburXNGHI54UlS9YgHi0SRqRkxXrj9_FoYi15xNuzK7G5vFb-yxIgeg" class="w-full h-full rounded-full object-cover" alt="Product">
@@ -395,12 +542,12 @@
 <!-- BEGIN: Main Content Area -->
 <main class="flex-1 w-full flex flex-col items-center px-4 relative justify-center h-full min-h-screen h-screen overflow-y-auto pointer-events-none" style="display: block; padding-top: 100px; overflow: hidden;">
 <!-- Dynamic Container: Shifts content based on state -->
-<div class="w-full flex flex-col items-center relative" id="search-container" style="width: 100%; height: 100%;"><div class="relative w-full max-w-[737px] mx-auto mb-6 overflow-hidden rounded-[30px] mt-4 h-[100px] pointer-events-auto" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBQaZ6D_yrV2G52Xf5frNnCvaRQ2ob6tWqjobH_McZzZpzqoEGYsDnDaRIpiwfBOnP9JtdKy-BCnr7dGXjooePMtHKp5ulFwMCbJ6FnpwDuT4q3RyJP-J1IpJvJesBMmS5gX1Gf4qcivcyT_jYVPsBc33FALmq4LBVERcQtjBx9CWc8Ui5ulHQEqeI6YNB8MkmP2NfKo-RokUiTTuz_L3UE1GMUrANF48OZovxkyEMcb29RBg4t7dTpsWUsbJVsnHubqLaO1ZibbJ5ryrM&quot;); background-size: cover; background-position: center center; background-color: rgba(255, 255, 255, 0.87); backdrop-filter: none;"><div class="absolute top-4 left-4 right-4 flex justify-between z-30"><button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);" data-nav="retour" onclick="(document.referrer&&document.referrer.indexOf(location.origin)===0)?history.back():location.href='index.html'"><span class="material-symbols-outlined text-white text-xl">map</span></button><div class="bg-white px-6 py-2 rounded-full shadow-sm border border-white/50 flex items-center justify-center"><span class="text-[#131b2e] font-medium text-sm tracking-wide">Bienvenue à Marseille</span></div><button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">format_list_bulleted</span></button></div><div class="absolute inset-0 flex items-center justify-center gap-6 z-10"><div class="relative flex items-center justify-center w-full h-full"></div></div></div>
+<div class="w-full flex flex-col items-center relative" id="search-container" style="width: 100%; height: 100%;"><div class="relative w-full max-w-[737px] mx-auto mb-6 overflow-hidden rounded-[30px] mt-4 h-[100px] pointer-events-auto" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBQaZ6D_yrV2G52Xf5frNnCvaRQ2ob6tWqjobH_McZzZpzqoEGYsDnDaRIpiwfBOnP9JtdKy-BCnr7dGXjooePMtHKp5ulFwMCbJ6FnpwDuT4q3RyJP-J1IpJvJesBMmS5gX1Gf4qcivcyT_jYVPsBc33FALmq4LBVERcQtjBx9CWc8Ui5ulHQEqeI6YNB8MkmP2NfKo-RokUiTTuz_L3UE1GMUrANF48OZovxkyEMcb29RBg4t7dTpsWUsbJVsnHubqLaO1ZibbJ5ryrM&quot;); background-size: cover; background-position: center center; background-color: var(--c-overlay, rgba(255, 255, 255, 0.87)); backdrop-filter: none;"><div class="absolute top-4 left-4 right-4 flex justify-between z-30"><button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);" data-nav="retour" onclick="(document.referrer&&document.referrer.indexOf(location.origin)===0)?history.back():location.href='index.html'"><span class="material-symbols-outlined text-white text-xl">map</span></button><div class="bg-white px-6 py-2 rounded-full shadow-sm border border-white/50 flex items-center justify-center"><span class="text-[#131b2e] font-medium text-sm tracking-wide">Bienvenue à Marseille</span></div><button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">format_list_bulleted</span></button></div><div class="absolute inset-0 flex items-center justify-center gap-6 z-10"><div class="relative flex items-center justify-center w-full h-full"></div></div></div>
 <div class="w-full mx-auto mb-6 mt-2 px-4 max-w-xl">
 </div><div class="w-screen -mx-[calc((100vw-100%)/2)] mb-2 overflow-hidden mt-4 -mt-1.5" style="bottom: 212px; left: 50%; transform: translateX(-50%); margin-bottom: 0px;">
 </div>
 <!-- Expanding Bottom Panel -->
-<div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-[737px] rounded-[30px] z-30 flex flex-col justify-end shadow-lg border border-white/50 expanded pointer-events-auto product-active" id="bottom-panel" style="background-color: rgba(255, 255, 255, 0.87) !important; backdrop-filter: none !important;"><!-- Original Content Wrapper -->
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-[737px] rounded-[30px] z-30 flex flex-col justify-end shadow-lg border border-white/50 expanded pointer-events-auto product-active" id="bottom-panel" style="background-color: var(--c-overlay, rgba(255, 255, 255, 0.87)) !important; backdrop-filter: none !important;"><!-- Original Content Wrapper -->
 <div class="content-fade flex items-center justify-between px-8 shrink-0 w-full h-[80px] content-hidden" id="original-bottom-content">
 <div class="flex items-center gap-4">
 <button class="w-[42px] h-[42px] bg-surface-container-low text-on-surface rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm"><span class="material-symbols-outlined text-xl text-on-surface" style="font-variation-settings: &quot;wght&quot; 300;">my_location</span></button>
@@ -459,12 +606,12 @@
 </div>
 </div>
 <!-- Product Summary Card -->
-<div class="content-fade flex flex-col w-full h-full absolute inset-0 rounded-[30px]" id="product-summary-content" style="background-color: rgba(255, 255, 255, 0.82); backdrop-filter: none; padding-left: 120px; padding-right: 120px;"><div class="w-full flex justify-center mb-2"><div class="w-12 h-1.5 bg-gray-300 rounded-full mt-4"></div></div><div class="flex gap-6 py-4 items-start w-full">
+<div class="content-fade flex flex-col w-full h-full absolute inset-0 rounded-[30px]" id="product-summary-content" style="background-color: var(--c-overlay-2, rgba(255, 255, 255, 0.82)); backdrop-filter: none; padding-left: 120px; padding-right: 120px;"><div class="w-full flex justify-center mb-2"><div class="w-12 h-1.5 bg-gray-300 rounded-full mt-4"></div></div><div class="flex gap-6 py-4 items-start w-full">
 <div class="w-32 h-32 shrink-0">
 <img alt="Product Image" class="w-full h-full rounded-xl object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAudIeX02N-m5vZZaO_qixzVUeJL6paGkPPooLg2OiJ_ilSh3r9f_uJDhj75Ue56SPfoUOiW0FpsKQ8IRs86bPS5XqRLaBSRwkKyZbxpv1bZo7t3od4QeN53nVdzjIHvjq2Y1ck3AH42hr7Rrw6qJP-HaKReFBU4GaXWD2zqqEVZaHLavBB7Cix5Jt5FeRBjXttEQd4a4O9Hajhjiq743MCxhwdpMkVx8FGUQXxv3q9GeXB7yL6V56HvikaoZvkQPfmmK0bsYUXAGullvA">
 </div>
 <div class="flex flex-col flex-1 gap-1">
-<div class="bg-secondary-container text-on-secondary-fixed font-bold rounded-full px-4 flex items-center justify-center mb-1 text-base w-[140px] h-[38px]" id="product-card-price" style="background-color: rgb(224, 242, 254);">Prix: 14€</div>
+<div class="bg-secondary-container text-on-secondary-fixed font-bold rounded-full px-4 flex items-center justify-center mb-1 text-base w-[140px] h-[38px]" id="product-card-price" style="background-color: var(--c-chip-3, rgb(224, 242, 254));">Prix: 14€</div>
 <h2 class="text-sm font-bold text-gray-900 leading-tight mt-2.5">BASKET NIKE TN</h2>
 <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed">
       Basket de sport nike parfeit pour le sport découvert du model bule d'air parfair lors dun footing ...</p>
@@ -474,7 +621,7 @@
 <button class="w-[68px] h-[42px] rounded-full bg-[#ff6b6b] text-white flex items-center justify-center shadow-sm transition-colors hover:bg-[#e55a5a]" id="close-product-card">
 <span class="material-symbols-outlined text-xl">close</span>
 </button>
-<button class="w-[42px] h-[42px] rounded-full bg-[#f3f4f6] text-gray-600 flex items-center justify-center shadow-sm transition-colors hover:bg-gray-200" style="background-color: rgb(241, 242, 246);">
+<button class="w-[42px] h-[42px] rounded-full bg-[#f3f4f6] text-gray-600 flex items-center justify-center shadow-sm transition-colors hover:bg-gray-200" style="background-color: var(--c-grey-2, rgb(241, 242, 246));">
 <span class="material-symbols-outlined text-xl">favorite</span>
 </button>
 </div>
@@ -891,7 +1038,7 @@ document.addEventListener('DOMContentLoaded', () => {
     L.marker(pill.coords, {
       icon: L.divIcon({
         className: 'custom-div-icon cursor-pointer',
-        html: '<div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: white; color: black; font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, \'' + pill.text + '\')">' + pill.text + '</div>',
+        html: '<div class="absolute -translate-x-1/2 -translate-y-1/2 shadow-md price-pill-standalone cursor-pointer" style="width: 60px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: var(--c-white, white); color: var(--c-ink, black); font-weight: bold; font-size: 14px; box-sizing: border-box; padding: 0;" onclick="window.handlePillClick(this, \'' + pill.text + '\')">' + pill.text + '</div>',
         iconSize: [0, 0],
         iconAnchor: [0, 0]
       })
