@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="en" style="width: 100%; height: 100%; overflow: hidden; position: relative;"><head><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>C1EURO - Search</title>
+<!-- Include Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Quicksand -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Font Awesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            'brand-bg': '#fcf8ff',
+            'brand-pill': '#7c7cff',
+            'brand-pill-count': '#9e9eff',
+            'brand-text': '#1f2937',
+            'brand-red': '#ff9a9a',
+            "on-secondary-fixed-variant": "#38485d",
+            "outline": "#747878",
+            "surface-bright": "#faf8ff",
+            "primary": "#000000",
+            "primary-fixed": "#e5e2e1",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#444748",
+            "secondary-container": "#d0e1fb",
+            "on-tertiary-container": "#818486",
+            "surface-dim": "#d2d9f4",
+            "outline-variant": "#c4c7c7",
+            "secondary": "#505f76",
+            "on-primary-fixed": "#1c1b1b",
+            "error": "#ba1a1a",
+            "on-surface": "#131b2e",
+            "surface-container-highest": "#dae2fd",
+            "tertiary-fixed": "#e0e3e5",
+            "inverse-on-surface": "#eef0ff",
+            "tertiary-fixed-dim": "#c4c7c9",
+            "on-primary-fixed-variant": "#474746",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-secondary-container": "#54647a",
+            "on-tertiary": "#ffffff",
+            "background": "#faf8ff",
+            "secondary-fixed-dim": "#b7c8e1",
+            "surface": "#faf8ff",
+            "on-primary-container": "#858383",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#d3e4fe",
+            "tertiary": "#000000",
+            "on-secondary-fixed": "#0b1c30",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#c8c6c5",
+            "surface-variant": "#dae2fd",
+            "inverse-surface": "#283044",
+            "on-background": "#131b2e",
+            "surface-tint": "#5f5e5e",
+            "on-tertiary-fixed-variant": "#444749",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container": "#eaedff",
+            "on-tertiary-fixed": "#191c1e",
+            "surface-container-low": "#f2f3ff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e7ff",
+            "primary-container": "#1c1b1b",
+            "tertiary-container": "#191c1e"
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    /* Prevent scrolling on the body */
+    body {
+      overflow: hidden;
+      background-color: #fcf8ff; /* Match image background */
+    }
+
+    /* Initial states */
+    #search-results-state {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.3s ease-out;
+      display: none; /* Hidden initially */
+    }
+
+    #search-results-state.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      display: flex;
+    }
+
+    #initial-empty-state {
+      transition: all 0.3s ease-out;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    #initial-empty-state.hidden-state {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      position: absolute; /* Take out of flow when hidden to prevent layout shift */
+      visibility: hidden;
+    }
+    
+    #search-container {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes icon-pulse-ripple {
+      0% { box-shadow: 0 0 0 0 rgba(124, 124, 255, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(124, 124, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(124, 124, 255, 0); }
+    }
+    
+    .animate-pulse-ripple {
+      animation: icon-pulse-ripple 2s infinite;
+    }
+  </style>
+</head>
+<body class="font-sans text-brand-text w-screen flex flex-col relative h-screen overflow-y-auto overflow-x-hidden" data-mode="connect" style="font-family: Quicksand, sans-serif; width: 100vw; height: 100vh; margin: 0px; padding: 0px;">
+<!-- BEGIN: Header -->
+<header class="bg-white shadow-sm fixed top-0 w-full z-50 py-5 px-8 md:px-16 lg:px-32 xl:px-48 flex items-center justify-between gap-8 border-b border-surface-container-low" data-purpose="main-header">
+<!-- Logo area -->
+<div class="flex items-center gap-4"><img alt="C1EURO Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD686S0bEYgeUb9wx66Y4EJUEiSGXj37DTBVcQmNLwwpEKC_FQNUBBwbzOdG8-dclQP6IZUMdD5jahvckQKbwW1V__wUt9YuZyURKdSgqgSmWVXDTe5CpXB4MMqDdq7oH--XV5Se8HpN5KxM_XH3p_v6cXL8hj_cKbV6l-zVHNMV8CZcjK0yfg28iX5fmeN0Wr9smhXJFWTqqGqc7Z60pA0OJYM5V7x0NwsqcgN_qwrmQLW7rPq8NS2cm7EX2OWLTsE5TM"></div>
+<!-- Search Bar -->
+<div class="flex-grow max-w-3xl hidden md:block">
+<div class="relative w-full">
+<input class="w-full bg-surface-container-low border border-surface-container-high rounded-[15px] py-3.5 px-6 pl-12 text-sm focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant/70 text-on-surface" id="search-input" placeholder="Recherche, mot clés" type="text">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer">
+<svg class="h-5 w-5 text-on-surface-variant/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+</div>
+</div>
+</div>
+<!-- Right Icons -->
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-brand-pill rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-brand-pill/30 animate-pulse-ripple"><span class="material-symbols-outlined text-xl text-on-surface">location_on</span></button>
+<div class="h-6 w-px bg-surface-container-highest mx-2"></div>
+<button class="w-10 h-10 bg-primary text-white rounded-[15px] flex items-center justify-center relative hover:bg-primary/90 transition-colors shadow-sm" style="background-color: rgb(26, 35, 126);">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold rounded-[15px] h-5 w-5 flex items-center justify-center shadow-sm">1</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-surface-container-highest hover:border-primary transition-colors cursor-pointer shadow-sm"><img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA"></div>
+</div>
+</header>
+<!-- END: Header -->
+<div class="fixed top-[120px] left-1/2 -translate-x-1/2 w-full max-w-xl px-4 flex items-center z-40 pointer-events-none justify-between mx-auto">
+<button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);"><span class="material-symbols-outlined text-white text-xl">arrow_back</span></button>
+<button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close"><span class="material-symbols-outlined text-black text-xl">close</span></button>
+</div>
+<!-- END: Top Navigation -->
+<!-- BEGIN: Main Content Area -->
+<main class="w-full flex items-center justify-center relative overflow-visible pt-[100px] pb-[120px]" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+<!-- Title that stays visible -->
+<!-- Dynamic Container: Shifts content based on state -->
+<div class="w-full flex flex-col items-center relative max-w-[800px] mx-auto" id="search-container"><div class="flex flex-col md:flex-row justify-center gap-8 md:gap-12 w-full mx-auto p-4 md:p-6 items-center md:items-start" style="font-family: Outfit, sans-serif;">
+<!-- Left Column: Product Image & Quick Actions -->
+<div class="flex flex-col items-center gap-6">
+<div class="w-[250px] md:w-[280px] lg:w-[300px] aspect-square bg-white overflow-hidden flex items-center justify-center shadow-sm border border-surface-container-high" style="border-radius: 18px; aspect-ratio: 1 / 1;"><img alt="Minimalist Sneaker" class="w-full h-full object-contain transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k"></div>
+<button class="mt-2 flex items-center gap-2 py-2 rounded-full border border-transparent bg-yellow-500 text-black text-sm font-medium hover:opacity-90 transition-colors shadow-sm hover:bg-yellow-400 justify-center px-6" style="background-color: rgb(255, 250, 101); font-weight: 500;">
+<span class=""><span class="" style="font-family: inherit; font-size: 0.875rem; letter-spacing: inherit;">Sélectionner</span></span>
+<span class="flex items-center justify-center w-5 h-5 rounded-full bg-black text-white">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+</button>
+</div>
+<!-- Right Column: Product Details -->
+<div class="flex flex-col flex-1 max-w-xl">
+<div class="mb-6">
+<h1 class="text-3xl font-bold text-gray-900 mb-2" style="font-weight: 600;">Basket Nike</h1>
+<div class="flex items-center gap-3 mb-4">
+  <div class="text-on-surface py-1.5 rounded-full font-bold px-8 bg-[#dbeafe]">
+    <span class="text-lg">129,99 €</span>
+  </div>
+  <div class="text-on-surface px-4 py-1.5 rounded-full flex items-center gap-1 font-medium bg-[#ffedd5]">
+    <span class="material-symbols-outlined text-sm fill-1">star</span>
+    <span class="text-sm">3,2/5</span>
+  </div>
+</div>
+<div class="mb-6">
+<h3 class="font-bold text-gray-900 mb-2 text-base" style="font-weight: 600;" data-stitch-orig-opacity="1">Description :</h3>
+<div class="relative max-w-md">
+<p class="text-gray-500 leading-relaxed overflow-hidden text-base" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; font-weight: 400;">Cette basket Nike offre un amorti exceptionnel et un maintien parfait pour vos entraénements quotidiens. Son design épuré s'adapte à toutes vos tenues, alli...&nbsp;&nbsp;<a class="text-primary underline cursor-pointer" href="#">Voir plus</a></p>
+</div>
+</div>
+</div>
+<!-- Thumbnail Gallery -->
+<div class="flex gap-4 mb-6 justify-start mt-[-28px]">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;"><span class="material-symbols-outlined text-xl text-yellow-500">star</span></button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;"><span class="material-symbols-outlined text-xl text-black">visibility</span></button>
+</div><div class="flex gap-3 mb-8">
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-uQoZYjRYeswMrkj0_LtqVoQvHvVBTUwr2Nid-0zAm2Y3aqKGxKFj88RM9p58PuQAol3kAr53fSTO1ajAWb0cJwutgRq92Z1TqxfRiD-d_D2EVAjLf9RdGf6xEfBs1HxGOtA9tzaShVaZ3QSnaOzXn7xSRPrkkuFlK9KqgGQq6upj_d4rZMJyXE8eMRK6fgRZsoWY560D7bbl-IgE-lacAmLi8tW9ByxDWqieEER0YJridec10132wdo33KIK3DeX7TU"></div>
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyok8jmasEcQjAq29ohwkeuRpULmh2P3ZGRyqpW15Jv3vJL2jim8GxkvB-nUVeU10fYcbS0KDup9yIHbGe5XMcCaGY7L42vbca14g-iKTaLQDe_-h4QzqzMYankksMfNChWNAaL1jYr0E7bsMOGfSQ5v4Ev0DnYyvVWU4AzDlHcQQZZkdN3RIPbRB6kWMdBPvJJ2hoTPNFUlj0ShGBzuVUWSJbwyejDwfaV0Xw85u0P8nKAtK_NKaZV6KUhdT1Q7yooTE"></div>
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" style="border-radius: 18px; font-weight: 500;">+3</div>
+</div>
+</div>
+</div></div>
+<div class="fixed bottom-[16px] left-1/2 -translate-x-1/2 w-full max-w-[737px] rounded-[30px] overflow-hidden bg-white z-30 flex items-center justify-between shadow-lg px-[20px] py-[24px]">
+<button class="h-[42px] bg-surface-container-low flex items-center justify-center hover:bg-surface-dim transition-all border border-surface-container-highest rounded-full text-on-surface" style="width: 100px;"><span class="material-symbols-outlined" style="font-size: 18px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;">error</span></button>
+<button class="h-[42px] font-medium flex items-center justify-center transition-opacity border border-surface-container-highest hover:opacity-90 rounded-full" style="background-color: rgb(39, 60, 117); color: white; width: 280px; border-color: rgb(43, 61, 114);">Ajouter</button>
+</div>
+</main>
+<!-- END: Main Content Area -->
+<script data-purpose="interaction-logic">
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const initialState = document.getElementById('initial-empty-state');
+      const resultsState = document.getElementById('search-results-state');
+      const viewAllLink = document.getElementById('view-all-link');
+      const btnBack = document.getElementById('btn-back');
+      const btnClose = document.getElementById('btn-close');
+
+      // Function to switch to 'results' view
+      const activateSearch = () => {
+        if(initialState) initialState.classList.add('hidden-state');
+        if(resultsState) resultsState.classList.add('active');
+      };
+
+      // Function to reset to 'initial' view
+      const resetSearch = () => {
+        if(searchInput) searchInput.value = ''; // Clear input
+        if(resultsState) resultsState.classList.remove('active');
+        
+        // Wait slightly for results to fade before showing initial state
+        setTimeout(() => {
+          if(initialState) initialState.classList.remove('hidden-state');
+        }, 150);
+      };
+
+      // Event Listeners
+      if(searchInput) searchInput.addEventListener('focus', activateSearch);
+      if(btnBack) btnBack.addEventListener('click', resetSearch);
+      if(btnClose) btnClose.addEventListener('click', resetSearch);
+    });
+  </script>
+
+
+
+
+
+
+
+
+</body></html>

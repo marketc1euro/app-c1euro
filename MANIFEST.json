@@ -1,0 +1,96 @@
+{
+  "project": "c1euro-web",
+  "accountId": "cedf93c539f6cf17227362d845a05fca",
+  "projectId": "36e16e1b-3702-421f-ad8e-abe36ee5491c",
+  "deploymentId": "24151172-22d0-4874-8524-4920505df71d",
+  "shortId": "24151172",
+  "environment": "production",
+  "deployedOn": "2026-08-26T20:46:05.218309Z",
+  "exportedOn": "2026-09-21T00:02:53.456Z",
+  "servingUrl": "https://c1euro-web.pages.dev",
+  "hashFormula": "blake3(base64(content) + extension_without_dot).hex[0:32]",
+  "fileCount": 16,
+  "verifiedAgainstCloudflareManifest": true,
+  "files": {
+    "avis.html": {
+      "size": 31759,
+      "hash": "11c0cb8fc6f942c619296b897f738540",
+      "manifestHash": "11c0cb8fc6f942c619296b897f738540"
+    },
+    "c1euro-mobile.html": {
+      "size": 65571,
+      "hash": "b786aa77608a8c63486c4a29d54d634b",
+      "manifestHash": "b786aa77608a8c63486c4a29d54d634b"
+    },
+    "conditions.html": {
+      "size": 16010,
+      "hash": "cca6f83d88418132a449579da08d1079",
+      "manifestHash": "cca6f83d88418132a449579da08d1079"
+    },
+    "connexion.html": {
+      "size": 17004,
+      "hash": "e0fbfe18db7a861aac898545ac5f697d",
+      "manifestHash": "e0fbfe18db7a861aac898545ac5f697d"
+    },
+    "favoris.html": {
+      "size": 35306,
+      "hash": "ad88d3b9e7b41dac84e2d0961e0719be",
+      "manifestHash": "ad88d3b9e7b41dac84e2d0961e0719be"
+    },
+    "galerie.html": {
+      "size": 19265,
+      "hash": "f710b259511cea886e164e9040702311",
+      "manifestHash": "f710b259511cea886e164e9040702311"
+    },
+    "index.html": {
+      "size": 117835,
+      "hash": "a218b5efd8d35a60fe43977a0ca07f6b",
+      "manifestHash": "a218b5efd8d35a60fe43977a0ca07f6b"
+    },
+    "inscription.html": {
+      "size": 16120,
+      "hash": "f8f4f11c41280d151a377e5f1275fd2c",
+      "manifestHash": "f8f4f11c41280d151a377e5f1275fd2c"
+    },
+    "liste-menu.html": {
+      "size": 48036,
+      "hash": "f1028941622fe7a2b5197baefefa55ed",
+      "manifestHash": "f1028941622fe7a2b5197baefefa55ed"
+    },
+    "livraison.html": {
+      "size": 20208,
+      "hash": "a537a39a4131576deebd1234b6ff3392",
+      "manifestHash": "a537a39a4131576deebd1234b6ff3392"
+    },
+    "mapvideo.html": {
+      "size": 65835,
+      "hash": "7e03c4cc40b3fbde9aa78b7f2068e2b7",
+      "manifestHash": "7e03c4cc40b3fbde9aa78b7f2068e2b7"
+    },
+    "mapvoirfiche.html": {
+      "size": 68219,
+      "hash": "45ba7f8f11f90e1f996963d33afed3df",
+      "manifestHash": "45ba7f8f11f90e1f996963d33afed3df"
+    },
+    "produit-simple.html": {
+      "size": 18155,
+      "hash": "4821f2e26035bfa374b686cc2382a140",
+      "manifestHash": "4821f2e26035bfa374b686cc2382a140"
+    },
+    "produits-multi-offre.html": {
+      "size": 26353,
+      "hash": "4280e9d5bbd1949c38342c678fe59e2d",
+      "manifestHash": "4280e9d5bbd1949c38342c678fe59e2d"
+    },
+    "recherche.html": {
+      "size": 16494,
+      "hash": "e23ad0aac35533916cc844605f805d46",
+      "manifestHash": "e23ad0aac35533916cc844605f805d46"
+    },
+    "selection.html": {
+      "size": 14557,
+      "hash": "d54359b85e80625e659231ae1e620a87",
+      "manifestHash": "d54359b85e80625e659231ae1e620a87"
+    }
+  }
+}

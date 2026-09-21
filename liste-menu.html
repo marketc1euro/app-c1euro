@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="en" style=""><head><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>C1EURO - Search</title>
+<!-- Include Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Quicksand -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Font Awesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            'brand-bg': '#fcf8ff',
+            'brand-pill': '#7c7cff',
+            'brand-pill-count': '#9e9eff',
+            'brand-text': '#1f2937',
+            'brand-red': '#ff9a9a',
+            "on-secondary-fixed-variant": "#38485d",
+            "outline": "#747878",
+            "surface-bright": "#faf8ff",
+            "primary": "#000000",
+            "primary-fixed": "#e5e2e1",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#444748",
+            "secondary-container": "#d0e1fb",
+            "on-tertiary-container": "#818486",
+            "surface-dim": "#d2d9f4",
+            "outline-variant": "#c4c7c7",
+            "secondary": "#505f76",
+            "on-primary-fixed": "#1c1b1b",
+            "error": "#ba1a1a",
+            "on-surface": "#131b2e",
+            "surface-container-highest": "#dae2fd",
+            "tertiary-fixed": "#e0e3e5",
+            "inverse-on-surface": "#eef0ff",
+            "tertiary-fixed-dim": "#c4c7c9",
+            "on-primary-fixed-variant": "#474746",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-secondary-container": "#54647a",
+            "on-tertiary": "#ffffff",
+            "background": "#faf8ff",
+            "secondary-fixed-dim": "#b7c8e1",
+            "surface": "#faf8ff",
+            "on-primary-container": "#858383",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#d3e4fe",
+            "tertiary": "#000000",
+            "on-secondary-fixed": "#0b1c30",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#c8c6c5",
+            "surface-variant": "#dae2fd",
+            "inverse-surface": "#283044",
+            "on-background": "#131b2e",
+            "surface-tint": "#5f5e5e",
+            "on-tertiary-fixed-variant": "#444749",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container": "#eaedff",
+            "on-tertiary-fixed": "#191c1e",
+            "surface-container-low": "#f2f3ff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e7ff",
+            "primary-container": "#1c1b1b",
+            "tertiary-container": "#191c1e"
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    /* Prevent scrolling on the body */
+    body {
+      overflow: hidden;
+      background-color: #fcf8ff; /* Match image background */
+    }
+
+    /* Initial states */
+    #search-results-state {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.3s ease-out;
+      display: none; /* Hidden initially */
+    }
+
+    #search-results-state.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      display: flex;
+    }
+
+    #initial-empty-state {
+      transition: all 0.3s ease-out;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    #initial-empty-state.hidden-state {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      position: absolute; /* Take out of flow when hidden to prevent layout shift */
+      visibility: hidden;
+    }
+    
+    #search-container {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes icon-pulse-ripple {
+      0% { box-shadow: 0 0 0 0 rgba(124, 124, 255, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(124, 124, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(124, 124, 255, 0); }
+    }
+    
+    .animate-pulse-ripple {
+      animation: icon-pulse-ripple 2s infinite;
+    }
+
+    .scroll-indicator-bar {
+      transition: all 0.3s ease;
+    }
+    .scroll-indicator-bar.active {
+      background-color: #000000;
+      opacity: 1;
+      transform: scaleY(1.2);
+    }
+    
+    /* Smooth scrolling for carousels */
+    .carousel-container {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+<style class="">#scrollable-service-list::-webkit-scrollbar { width: 6px; display: block; } #scrollable-service-list::-webkit-scrollbar-track { background: transparent; margin-left: 4px; } #scrollable-service-list::-webkit-scrollbar-thumb { background-color: #dae2fd; border-radius: 20px; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style></head>
+<body class="font-sans text-brand-text w-screen flex flex-col relative overflow-hidden h-screen fixed" data-mode="connect">
+<!-- BEGIN: Header -->
+<header class="bg-white shadow-sm fixed top-0 w-full z-50 py-5 px-8 md:px-16 lg:px-32 xl:px-48 flex items-center justify-between gap-8 border-b border-surface-container-low" data-purpose="main-header">
+<!-- Logo area -->
+<div class="flex items-center gap-4"><img alt="C1EURO Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD686S0bEYgeUb9wx66Y4EJUEiSGXj37DTBVcQmNLwwpEKC_FQNUBBwbzOdG8-dclQP6IZUMdD5jahvckQKbwW1V__wUt9YuZyURKdSgqgSmWVXDTe5CpXB4MMqDdq7oH--XV5Se8HpN5KxM_XH3p_v6cXL8hj_cKbV6l-zVHNMV8CZcjK0yfg28iX5fmeN0Wr9smhXJFWTqqGqc7Z60pA0OJYM5V7x0NwsqcgN_qwrmQLW7rPq8NS2cm7EX2OWLTsE5TM"></div>
+<!-- Search Bar -->
+<div class="flex-grow max-w-3xl hidden md:block">
+<div class="relative w-full">
+<input class="w-full bg-surface-container-low border border-surface-container-high rounded-[15px] py-3.5 px-6 pl-12 text-sm focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant/70 text-on-surface" id="search-input" placeholder="Recherche, mot clés" type="text">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer">
+<svg class="h-5 w-5 text-on-surface-variant/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+</div>
+</div>
+</div>
+<!-- Right Icons -->
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-brand-pill rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-brand-pill/30 animate-pulse-ripple"><span class="material-symbols-outlined text-xl text-on-surface">location_on</span></button>
+<div class="h-6 w-px bg-surface-container-highest mx-2"></div>
+<button class="w-10 h-10 bg-primary text-white rounded-[15px] flex items-center justify-center relative hover:bg-primary/90 transition-colors shadow-sm" style="background-color: rgb(26, 35, 126);">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold rounded-[15px] h-5 w-5 flex items-center justify-center shadow-sm">1</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-surface-container-highest hover:border-primary transition-colors cursor-pointer shadow-sm"><img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA"></div>
+</div>
+</header>
+<!-- END: Header -->
+<div class="fixed top-[120px] left-1/2 -translate-x-1/2 w-full max-w-xl px-4 flex items-center z-40 pointer-events-none justify-between mx-auto">
+<button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);"><span class="material-symbols-outlined text-white text-xl">arrow_back</span></button>
+<button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close"><span class="material-symbols-outlined text-black text-xl">close</span></button>
+</div>
+<!-- END: Top Navigation -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 w-full flex flex-col items-center px-4 relative justify-center h-full min-h-screen h-screen overflow-y-auto" style="display: flex; align-items: center; justify-content: center; padding-top: 0px; overflow: hidden;">
+<!-- Dynamic Container: Shifts content based on state -->
+<div class="w-full flex flex-col items-center relative" id="search-container" style="transform: scale(0.88); transform-origin: center center; width: 100%; margin-top: -120px;"><div class="relative w-full max-w-[737px] h-[180px] mx-auto mb-6 -mt-5 overflow-hidden rounded-[30px] -z-10 mt-[14px] -mt-1.5 -mt-[48px] -mt-[12px]"><img alt="Marketing Illustration" class="absolute inset-0 w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFiZEQD_rxF8ez9K93-UePE_TSjRJXwH3r2XZ_Sf3Y4uN4EmY21m70KD4PvwmYNyOtD7mymgNubyhZf-XLlu7cvWZFWPfrY-2O-YxophWsE4dsvVBmiaK0KnEqfDiu9HlysE7D0NCl8XvYvluhoUm8MoUnM5xm19ZsBtujiQ4P88XPzzSP2ItAUEOiFDwc0Q75K14oM5Vb4NWH_2XIC7ftazzfgdjGbmyDySu0JuYWfCkxhNa71qeQz-h7Q4YZHq4pr5muJxNMfudj-2E"><div class="absolute inset-0 flex items-center justify-center gap-6 z-10"><div class="bg-white rounded-full px-4 py-1.5 flex items-center gap-1.5 shadow-sm border border-surface-container-low"><span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: &quot;FILL&quot; 1;">star</span><span class="text-sm font-bold text-on-surface">5.0/5</span></div><div class="w-[100px] h-[100px] bg-white rounded-full p-1 shadow-sm border border-surface-container-low flex items-center justify-center overflow-hidden"><img alt="Logo Restaurant" class="w-full h-full object-contain rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcfsTgmauqH-0W2qcWN3x5MbJeNFsTwHWJwNrCfILntI5FrcUCeis6qF9lTKj7ioddZjNt9veBG2pJpfflZP1FXHoLxF4Ppr5NSTA3p7VNK3CKgoj6wR1piDq9YaPjwztKqHz7uAxH9xFDKvfOmo0CV6Z_qlqY0JGjlGn7VTcHLgykKoHqziz-SJnlfFPLkyUEKcKtCDFYxFmACr2JvM8RgAuXNNeKjN8sVyGjtNpWd-k08Hf83H073T_u6IfFzJSujzvnjDtFlq9_K8U"></div><div class="bg-white rounded-full px-4 py-1.5 flex items-center gap-1.5 shadow-sm border border-surface-container-low"><span class="material-symbols-outlined text-sm text-on-surface">shopping_bag</span><span class="text-sm font-bold text-on-surface">124€</span></div></div></div>
+<div class="w-full text-center mb-2"><p class="text-[12px] text-on-surface-variant/70 font-medium"></p><p class="text-[14px] font-medium" style="color: rgb(255, 107, 107);">Faites défiler (scrollez) horizontalement pour découvrir tout le catalogue.</p><p class=""></p></div><div class="w-screen -mx-[calc((100vw-100%)/2)] mb-2 overflow-hidden mt-4 -mt-1.5">
+<div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar px-8 w-full justify-center snap-x snap-mandatory carousel-container" style="scrollbar-width: none; cursor: grab;"><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Pizza</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Sandwich</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Fromage</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Boissons</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Desserts</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Salades</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Pâtes</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Burger</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Glaces</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Sushis</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Snacks</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Petit-Déjeuner</button><button class="flex-none py-2.5 bg-surface-container-low text-on-surface font-medium rounded-full border border-surface-container-high hover:bg-surface-container-high transition-colors whitespace-nowrap text-center snap-start px-2" style="font-size: 14px; width: calc(25% - 12px); flex-shrink: 0;">Fruits &amp; Légumes</button></div>
+</div><div class="w-full max-w-[1100px] mx-auto -mt-1.5 mt-2 -mt-[10px]"><div class="relative group">
+<button class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-surface-container-low hover:bg-gray-50 transition-all pointer-events-auto hidden -left-10" onclick="this.nextElementSibling.scrollBy({left: -300, behavior: 'smooth'})" style="left: -40px; display: flex;">
+<span class="material-symbols-outlined text-black">chevron_left</span>
+</button>
+<div class="flex overflow-x-auto gap-4 pb-6 px-4 no-scrollbar snap-x w-full carousel-container snap-mandatory" style="scrollbar-width: none; cursor: grab; scroll-behavior: smooth;">
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;">
+<div class="w-full h-[140px] flex items-center justify-center">
+<img alt="Bouteille Coca 2L" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD31CBGYnjn-aItcd2TqVeuEpM4KeT4giC-Ly21M7JKNl3LaBt1_1HTQimQ4ebvxOKqbzCIihQtHFiP7eBdsi3IsHk958kPYBaRsV71OdewDHltZ5PgIPSQKSGfy3hrWXZLNDydik94pIYQ8Ec1dqRFCRVEBaM4fNLAIdkB5AD3fNL0Zx68Sl9FKU47q-k1VJFIJ3uvOH1DyTLehm9X_BPNyuNygM-HNOECrkmYUqm1pquYILZszXcWu58Jkb9PLtEyiMj_sptZz7_SVvc">
+</div>
+<div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Bouteille de Coca-Cola Original 2L, boisson rafraîchissante aux extraits végétaux.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">2.50€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 items-center justify-between px-4 qty-selector rounded-b-[20px] z-20 hidden bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">1</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center"><img alt="Pizza Margherita" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP3eXeoTA6M9MBwshUkErx7quVf3QI0xF_6WnMgKPKxnRFeidSSx3IuIoofThGrMAP7lN0F--GDQH3jyhYPUJ2IdNu0c2P-b_bs_b1L_j3B4PaMD9GTDVB-r6AK7yXvi3mzE7Z3iLg45ujzdSx4vh6wj8yBA1qO07DwMYgvB2_Oye0-P6mwIi9dQie_DIaz4W7wzihdV2zoGesLtb4XBl_183rZIXU8WfRIk_xaAELNqqEvgkxWCIL5zsKBN3wgoQj36hCtSpJgN-XDTY"></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Pizza Margherita artisanale, pâte fine croustillante et mozzarella fondante.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">12.50€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center"><img alt="Sandwich Baguette" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_yLJdG5BrfsB0g9TlJrHlvYq6zdAJn0chI_Oqe5F-qQHQmWde7dxZ-M3LdGrYLL3oSaAFAYQkELvq22TvJIrVBBwCCj8pdi1O7xZ8YnPYBHre6n-J6MHQMn79JXcNotXEPQTFKu5H3qlCoL7Wf1HUDEsY_1WowVMm9KwSM-FmKfCCmzozC8hZ8XB-XDx0_thhmv_NkG9YEZ3-WuYMnfKm9mF5u7wdl7gb-6Qb0Gl_vO6i29NDdG5JLtLgwarkVM5hT-ZfEDO9ITEJZGo"></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Sandwich baguette tradition, jambon cru de pays et beurre demi-sel.</p><div class="flex items-center justify-between w-full price-zone hidden absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">6.90€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">5</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center"><img alt="Salade Quinoa" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Dq_Rp6ky5-lO4CMwvlP3H3YzSzMIMBeapXt7zVkYSCyILF68EjLB_QCLYMoLCjFxJ9if6QPKH21kc6cpb4nz4BbS_rHHuBmPfGeFhe231qyKfomKk242gOoNYjsLr_rNW6kzsus86KZ1pdYdoEgN_zEEuAo0B6o8fpqvu9c8DYuRrZ8mcGtYcGKpksLf8K2aI08G3KTGzGDV5aoxUt1tBx7xoH-0tqvk5QEgAvbLILwKrH3UtEocl5lK9wp2ovTpOgnFyOrCb0LgdNA"></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Salade de quinoa aux légumes frais de saison, féta et vinaigrette citronnée.</p><div class="flex items-center justify-between w-full price-zone hidden absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">9.50€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">1</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center"><img alt="Burger Gourmet" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzK_PV9hcE3cBOo59MkjlBqq0CMl-MV_O8ZWhvDOFQX7i7jCA-n-J1Jyu2c0WqcJ5QIbg4RpL58ApBFg-bUF4KdIPyiwFrkfGE7TWbPP6aGcFAbYcXUD4OWqeO1SSU7XeRQeSiCFUydsp-kg69ZrKz-YRJ0hblAnJcxFriRqCOMgCpgTmzKxbpP2HS7wTp1nFgVgs_IvwDVWi5WJc53C2de8sX73w1OmpXgtaAVPZdYMY1ZWken6IwA-v8bPGkVDUVI8IuE2nSQViRUeo"></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Burger Gourmet au bœuf charolais, cheddar affiné et oignons caramélisés.</p><div class="flex items-center justify-between w-full price-zone hidden absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">14.00€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 items-center justify-between px-4 qty-selector rounded-b-[20px] z-20 flex bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">1</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">icecream</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Glace Vanille artisanale, gousse de Madagascar et éclats de caramel.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10 hidden"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">4.50€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 items-center justify-between px-4 qty-selector rounded-b-[20px] z-20 flex bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">3</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">sushi</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Plateau de Sushi assorti, saumon, thon et maki californien (12 pièces).</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">18.90€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">local_drink</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Smoothie Fraise banane, fruits frais mixés et pointe de miel.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">5.50€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">local_pizza</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Pizza Quatre Fromages, mozzarella, gorgonzola, parmesan et chèvre.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">14.50€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">restaurant</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Pâtes Carbonara authentiques, guanciale, pecorino et œuf frais.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">13.00€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">cake</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Tiramisu au café, mascarpone onctueux et cacao amer saupoudré.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">6.00€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="flex-none bg-white rounded-[20px] p-0 border border-surface-container-low shadow-sm flex flex-col items-center snap-start overflow-hidden product-card relative" style="width: calc(13.5% - 12px); flex-shrink: 0;"><div class="w-full h-[140px] flex items-center justify-center bg-gray-100 text-gray-400"><span class="material-symbols-outlined text-4xl">local_cafe</span></div><div class="p-4 w-full flex flex-col items-center relative z-10 bg-white pb-12"><p class="text-sm font-bold text-on-surface mb-1 line-clamp-3 flex-grow">Café Espresso italien, corsé et riche en arômes torréfiés.</p><div class="flex items-center justify-between w-full price-zone absolute bottom-0 left-0 h-12 px-4 bg-white rounded-b-[20px] z-10"><p class="text-brand-pill font-bold" style="color: rgb(0, 0, 0);">2.00€</p><button class="w-8 h-8 bg-[#d0e1fb] text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity add-btn"><span class="material-symbols-outlined text-xl">add</span></button></div></div>
+<div class="absolute bottom-0 left-0 w-full h-12 flex items-center justify-between px-4 hidden qty-selector rounded-b-[20px] z-20 bg-[#d0e1fb]">
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors minus-btn text-black">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="font-bold qty-display text-black">0</span>
+<button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors plus-btn text-black">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<button class="absolute top-1/2 translate-x-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-surface-container-low hover:bg-gray-50 transition-all pointer-events-auto -right-1" onclick="this.previousElementSibling.scrollBy({left: 300, behavior: 'smooth'})" style="right: -40px;">
+<span class="material-symbols-outlined text-black">chevron_right</span>
+</button>
+</div></div>
+</div>
+</main>
+<!-- END: Main Content Area -->
+<script data-purpose="interaction-logic">
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const initialState = document.getElementById('initial-empty-state');
+      const resultsState = document.getElementById('search-results-state');
+      const viewAllLink = document.getElementById('view-all-link');
+      const btnBack = document.getElementById('btn-back');
+      const btnClose = document.getElementById('btn-close');
+
+      // Scroll logic for indicators
+      const scrollableList = document.getElementById('scrollable-service-list');
+      const indicatorBars = document.querySelectorAll('.scroll-indicator-bar');
+      
+      if(scrollableList && indicatorBars.length > 0) {
+        scrollableList.addEventListener('scroll', () => {
+          const scrollPercent = scrollableList.scrollTop / (scrollableList.scrollHeight - scrollableList.clientHeight);
+          const activeIndex = Math.min(
+            indicatorBars.length - 1, 
+            Math.max(0, Math.floor(scrollPercent * indicatorBars.length))
+          );
+          
+          indicatorBars.forEach((bar, index) => {
+            if(index === activeIndex) {
+              bar.classList.add('active', 'opacity-100');
+              bar.classList.remove('opacity-40');
+            } else {
+              bar.classList.remove('active', 'opacity-100');
+              bar.classList.add('opacity-40');
+            }
+          });
+        });
+      }
+
+      // Function to switch to 'results' view
+      const activateSearch = () => {
+        if(initialState) initialState.classList.add('hidden-state');
+        if(resultsState) resultsState.classList.add('active');
+      };
+
+      // Function to reset to 'initial' view
+      const resetSearch = () => {
+        if(searchInput) searchInput.value = ''; // Clear input
+        if(resultsState) resultsState.classList.remove('active');
+        
+        // Wait slightly for results to fade before showing initial state
+        setTimeout(() => {
+          if(initialState) initialState.classList.remove('hidden-state');
+        }, 150);
+      };
+
+      // Event Listeners
+      if(searchInput) searchInput.addEventListener('focus', activateSearch);
+      if(btnBack) btnBack.addEventListener('click', resetSearch);
+      if(btnClose) btnClose.addEventListener('click', resetSearch);
+    });
+  </script>
+<script class="">
+(function() {
+  const container = document.querySelector('div.relative.group > div.flex.overflow-x-auto');
+  const leftBtn = document.querySelector('div.relative.group > button:nth-child(1)');
+  if (container && leftBtn) {
+    leftBtn.style.display = 'none';
+    container.addEventListener('scroll', () => {
+      if (container.scrollLeft > 0) {
+        leftBtn.style.display = 'flex';
+      } else {
+        leftBtn.style.display = 'none';
+      }
+    });
+  }
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const carousels = document.querySelectorAll('.overflow-x-auto.snap-x');
+
+  carousels.forEach(carousel => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let isScrolling;
+
+    // Use native smooth scrolling and snapping by default for better performance
+    // The following JS is to allow mouse dragging which is not natively supported
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      // Temporarily disable smooth scroll and snap for immediate drag response
+      carousel.style.scrollBehavior = 'auto';
+      carousel.classList.remove('snap-mandatory'); 
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      carousel.style.cursor = 'grabbing';
+      carousel.style.userSelect = 'none';
+    });
+
+    const endDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      carousel.style.cursor = 'grab';
+      carousel.style.userSelect = '';
+      
+      // Re-enable smooth scroll and snapping after a short delay
+      // to let the momentum settle if any, then snap to nearest
+      setTimeout(() => {
+        carousel.style.scrollBehavior = 'smooth';
+        carousel.classList.add('snap-mandatory');
+      }, 50);
+    };
+
+    carousel.addEventListener('mouseleave', endDrag);
+    carousel.addEventListener('mouseup', endDrag);
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      // Adjust drag speed here if needed
+      const walk = (x - startX) * 1.5; 
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // We can rely on native wheel scrolling, but if we want horizontal scrolling with vertical wheel:
+    carousel.addEventListener('wheel', (e) => {
+      // Only hijack vertical scrolls to translate to horizontal if needed,
+      // but native touchpads usually handle horizontal well.
+      // If we do hijack, ensure smooth behavior.
+      if (e.deltaY !== 0 && e.deltaX === 0) {
+        e.preventDefault();
+        carousel.scrollBy({
+          left: e.deltaY < 0 ? -300 : 300, // Adjusted scroll amount
+          behavior: 'smooth'
+        });
+      }
+    }, { passive: false });
+
+    // Initial cursor style
+    carousel.style.cursor = 'grab';
+  });
+});
+</script>
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-[737px] rounded-[30px] overflow-hidden bg-white/80 backdrop-blur-sm z-30 flex flex-col justify-end shadow-lg border border-white/50" id="bottom-panel"><div class="flex items-center p-6 justify-between px-[20px]"><button class="w-[100px] h-[50px] flex items-center justify-center bg-[#f2f3ff] border border-[#dae2fd] shadow-sm rounded-full transition-all duration-200 hover:bg-[#d2d9f4] group" style="height: 42px;"><span class="material-symbols-outlined" style="font-size: 18px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;">error</span></button><button class="h-[50px] bg-[#f2f3ff] text-[#131b2e] font-medium flex items-center justify-center transition-colors border border-[#dae2fd] shadow-sm hover:opacity-90 rounded-full" style="background-color: rgb(39, 60, 117); color: white; width: 280px; height: 42px; border-color: rgb(39, 60, 117);">Ajouter</button></div></div>
+<script>
+document.querySelectorAll('.product-card').forEach(card => {
+    const priceZone = card.querySelector('.price-zone');
+    const addBtn = card.querySelector('.add-btn');
+    const qtySelector = card.querySelector('.qty-selector');
+    const minusBtn = card.querySelector('.minus-btn');
+    const plusBtn = card.querySelector('.plus-btn');
+    const qtyDisplay = card.querySelector('.qty-display');
+    let quantity = 0;
+    addBtn.addEventListener('click', () => {
+        quantity = 1;
+        priceZone.classList.add('hidden');
+        qtySelector.classList.remove('hidden');
+        qtySelector.classList.add('flex');
+        qtyDisplay.textContent = quantity;
+    });
+    plusBtn.addEventListener('click', () => {
+        quantity++;
+        qtyDisplay.textContent = quantity;
+    });
+    minusBtn.addEventListener('click', () => {
+        quantity--;
+        if (quantity <= 0) {
+            qtySelector.classList.add('hidden');
+            qtySelector.classList.remove('flex');
+            priceZone.classList.remove('hidden');
+            quantity = 0;
+        } else {
+            qtyDisplay.textContent = quantity;
+        }
+    });
+});
+</script>
+
+
+
+</body></html>
