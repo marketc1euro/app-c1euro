@@ -1088,4 +1088,96 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+
+<script data-purpose="carte-etat-ouverture">
+  (function () {
+    function auChargement() {
+      /* 1) on ouvre sur la carte, jamais sur la video */
+      var overlay = document.getElementById('story-overlay');
+      if (overlay) overlay.classList.remove('active');
+      var iframe = document.getElementById('iframe-view');
+      if (iframe) iframe.innerHTML = '';
+      var vignette = document.getElementById('thumbnail-view');
+      if (vignette) vignette.classList.remove('hidden');
+
+      /* 2) barre du bas : etat d'origine, celui qui montre la recherche */
+      var panneau = document.getElementById('bottom-panel');
+      var capsule = document.getElementById('control-capsule');
+      var original = document.getElementById('original-bottom-content');
+      var youtube = document.getElementById('youtube-deposit-content');
+      var campagne = document.getElementById('campaign-content');
+      var fiche = document.getElementById('product-summary-content');
+      [panneau, capsule].forEach(function (e) {
+        if (e) e.classList.remove('product-active', 'campaign-active', 'youtube-active');
+      });
+      if (original) original.classList.remove('content-hidden');
+      [youtube, campagne, fiche].forEach(function (e) { if (e) e.classList.add('content-hidden'); });
+    }
+
+    /* 3) clic sur un rond produit : la story prend l'image du produit clique.
+       L'ouverture elle-meme est deja geree par la page (ajout de la classe
+       « active » sur la story). */
+    document.addEventListener('click', function (e) {
+      /* on remonte les parents jusqu'a trouver une vignette ronde de produit :
+         peu importe la structure du marqueur, l'ouverture marchera pareil */
+      var noeud = e.target, image = null;
+      while (noeud && noeud !== document.body) {
+        if (noeud.querySelector) {
+          var trouve = noeud.querySelector('img.rounded-full');
+          if (trouve) { image = trouve; break; }
+        }
+        noeud = noeud.parentElement;
+      }
+      if (!image) return;                       /* pastille de prix : on ne touche pas */
+      var vignette = document.querySelector('#thumbnail-view img');
+      if (vignette) vignette.src = image.src;
+      /* on ouvre la story nous-memes : tous les ronds n'ont pas de gestionnaire,
+         et l'ouverture doit marcher partout de la meme facon */
+      var overlay = document.getElementById('story-overlay');
+      if (overlay && !overlay.classList.contains('active')) {
+        var iframe = document.getElementById('iframe-view');
+        if (iframe) iframe.innerHTML = '';
+        var vue = document.getElementById('thumbnail-view');
+        if (vue) vue.classList.remove('hidden');
+        overlay.classList.add('active');
+      }
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', auChargement);
+    } else {
+      auChargement();
+    }
+    window.addEventListener('load', auChargement);
+  })();
+</script>
+
+<script data-purpose="carte-etat-ouverture-fiche">
+  (function () {
+    /* 4) « Voir la fiche » ouvre la fiche sur place, sans recharger la page */
+    document.addEventListener('click', function (e) {
+      var bouton = e.target && e.target.closest ? e.target.closest('button') : null;
+      if (!bouton || !bouton.closest('#story-overlay')) return;
+      if (!/Voir la fiche/i.test(bouton.textContent)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var overlay = document.getElementById('story-overlay');
+      var panneau = document.getElementById('bottom-panel');
+      var capsule = document.getElementById('control-capsule');
+      var original = document.getElementById('original-bottom-content');
+      var youtube = document.getElementById('youtube-deposit-content');
+      var campagne = document.getElementById('campaign-content');
+      var fiche = document.getElementById('product-summary-content');
+      if (overlay) overlay.classList.remove('active');
+      [panneau, capsule].forEach(function (el) {
+        if (!el) return;
+        el.classList.remove('youtube-active', 'campaign-active');
+        el.classList.add('product-active');
+      });
+      [original, youtube, campagne].forEach(function (el) { if (el) el.classList.add('content-hidden'); });
+      if (fiche) fiche.classList.remove('content-hidden');
+    });
+  })();
+</script>
+
 </body></html>
