@@ -352,8 +352,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       </p>
       <p id="f2-soustitre" class="text-on-surface-variant/80 text-xs"></p>
     </div>
-    <!-- Liste : une ligne par produit, 3 visibles, defilement interne -->
-    <div>
+    <!-- Liste : une ligne par produit, 3 visibles, defilement crande -->
+    <div class="relative">
       <div id="f2-liste" class="flex flex-col gap-2 overflow-y-auto">
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
   <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
@@ -500,7 +500,12 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
       </div>
-      <!-- pas de container ni de fondu : les lignes sont directement sur la page -->
+      <!-- Indicateur lateral, decolle de la liste : signale qu il y a de quoi defiler -->
+      <div id="f2-indic" class="f2-indic hidden md:flex flex-col items-center gap-1 absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
+        <span class="material-symbols-outlined f2-indic-fleche text-on-surface-variant text-lg">keyboard_arrow_up</span>
+        <div id="f2-points" class="flex flex-col items-center gap-1.5 my-1"></div>
+        <span class="material-symbols-outlined f2-indic-fleche text-on-surface-variant text-lg">keyboard_arrow_down</span>
+      </div>
     </div>
 
     <!-- Écran vide -->
@@ -549,11 +554,40 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       var troisieme = visibles[2];
       liste.style.height = (troisieme.offsetTop + troisieme.offsetHeight) + 'px';
     }
-    function majFondu() {
-      if (!fondu) return;
-      var reste = liste.scrollHeight - liste.clientHeight - liste.scrollTop;
-      fondu.style.opacity = reste > 10 ? '1' : '0';
+    function hauteurCran() {
+      return lignes[0] ? lignes[0].offsetHeight + 8 : 128;
     }
+    function dernierCran() {
+      var max = liste.scrollHeight - liste.clientHeight;
+      return Math.max(0, Math.round(max / hauteurCran()));
+    }
+    /* points de l'indicateur : un par cran de defilement */
+    function construirePoints() {
+      var zone = document.getElementById('f2-points');
+      if (!zone) return;
+      var n = dernierCran() + 1;
+      if (zone.children.length === n) { majPoints(); return; }
+      zone.innerHTML = '';
+      for (var i = 0; i < n; i++) {
+        var d = document.createElement('span');
+        d.className = 'f2-point w-1.5 h-1.5 rounded-full bg-surface-container-highest';
+        d.setAttribute('data-cran', i);
+        zone.appendChild(d);
+      }
+      majPoints();
+    }
+    function majPoints() {
+      var zone = document.getElementById('f2-points');
+      if (!zone) return;
+      var h = hauteurCran();
+      var actif = Math.round(liste.scrollTop / h);
+      [].forEach.call(zone.children, function (d, i) {
+        var on = i === actif;
+        d.className = 'f2-point w-1.5 rounded-full ' + (on ? 'f2-point-actif' : 'bg-surface-container-highest h-1.5');
+        d.style.height = on ? '18px' : '6px';
+      });
+    }
+    function majFondu() { majPoints(); }
     function majCompteur() {
       var n = restantes().length;
       if (compteur) compteur.textContent = n;
@@ -563,6 +597,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       if (liste) liste.style.display = n === 0 ? 'none' : '';
       if (boutonTout) boutonTout.style.display = n === 0 ? 'none' : '';
       ajusterHauteur();
+      construirePoints();
       majFondu();
     }
     function bandeauAfficher(texte, action) {
@@ -623,6 +658,33 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       });
     }
 
+    /* defilement crande : une molette = une ligne, jamais deux */
+    var enCours = false;
+    liste.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) < 2) return;
+      e.preventDefault();
+      if (enCours) return;
+      var pas = e.deltaY > 0 ? 1 : -1;
+      var h = hauteurCran();
+      var cible = Math.round(liste.scrollTop / h) + pas;
+      cible = Math.max(0, Math.min(dernierCran(), cible));
+      enCours = true;
+      liste.scrollTo({ top: cible * h, behavior: 'smooth' });
+      setTimeout(function () { enCours = false; }, 430);
+    }, { passive: false });
+
+    liste.addEventListener('keydown', function (e) {
+      var h = hauteurCran();
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        var pas = e.key === 'ArrowDown' ? 1 : -1;
+        var cible = Math.round(liste.scrollTop / h) + pas;
+        cible = Math.max(0, Math.min(dernierCran(), cible));
+        liste.scrollTo({ top: cible * h, behavior: 'smooth' });
+      }
+    });
+    liste.setAttribute('tabindex', '0');
+
     liste.addEventListener('scroll', majFondu);
     window.addEventListener('resize', ajusterHauteur);
     /* la hauteur doit se recalculer quand la mise en page se stabilise :
@@ -646,7 +708,19 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   body { touch-action: pan-y; }
 
   /* la liste defile sur elle-meme : 3 lignes visibles, le reste au doigt */
-  #f2-liste { position: relative; scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-y; }
+  #f2-liste { position: relative; scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-y;
+    scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+  /* defilement crande : on s'arrete sur une ligne entiere */
+  .f2-ligne { scroll-snap-align: start; scroll-snap-stop: always; }
+
+  /* indicateur lateral, decolle de la liste, avec son animation */
+  .f2-indic { animation: f2-indic-apparition .6s ease both; }
+  .f2-indic-fleche { animation: f2-indic-flotte 1.8s ease-in-out infinite; }
+  .f2-indic-fleche:nth-child(3) { animation-delay: .45s; }
+  .f2-point { transition: background-color .3s ease, transform .3s ease, height .3s ease; }
+  .f2-point-actif { background-color: var(--c-text, #131b2e); height: 18px; }
+  @keyframes f2-indic-flotte { 0%,100% { transform: translateY(0); opacity: .45; } 50% { transform: translateY(-5px); opacity: .95; } }
+  @keyframes f2-indic-apparition { from { opacity: 0; transform: translate(6px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
   #f2-liste::-webkit-scrollbar { width: 0; height: 0; }
   .f2-ligne { transition: opacity .3s ease, transform .3s ease, background-color .2s ease; }
   .f2-retire { opacity: 0; transform: translateX(-14px); }
