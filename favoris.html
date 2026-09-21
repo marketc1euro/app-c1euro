@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>C1EURO - Search</title>
+<title>C1EURO - Mes favoris</title>
 <!-- Include Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts: Quicksand -->
@@ -291,7 +291,9 @@ html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba
 html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </style>
 </head>
-<body class="font-sans text-brand-text w-screen flex flex-col relative overflow-hidden h-screen" data-mode="connect">
+
+<body class="font-sans text-brand-text w-screen min-h-screen flex flex-col relative overflow-x-hidden" style="background-color: var(--c-bg-alt, #fcf8ff);">
+
 <!-- BEGIN: Header -->
 <header class="bg-white shadow-sm fixed top-0 w-full z-50 py-5 px-8 md:px-16 lg:px-32 xl:px-48 flex items-center justify-between gap-8 border-b border-surface-container-low" data-purpose="main-header">
 <!-- Logo area -->
@@ -327,214 +329,424 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 </header>
 <!-- END: Header -->
+
+<!-- Retour / fermer : même positionnement que sur les autres pages -->
 <div class="fixed top-[120px] left-1/2 -translate-x-1/2 w-full max-w-xl px-4 flex items-center z-40 pointer-events-none justify-between mx-auto">
 <button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);" data-nav="retour" onclick="(document.referrer&&document.referrer.indexOf(location.origin)===0)?history.back():location.href='index.html'"><span class="material-symbols-outlined text-white text-xl">arrow_back</span></button>
 <button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">close</span></button>
 </div>
-<!-- END: Top Navigation -->
+
 <!-- BEGIN: Main Content Area -->
-<main class="flex-1 w-full flex flex-col items-center px-4 relative justify-center h-full">
-<!-- Title that stays visible -->
-<!-- Dynamic Container: Shifts content based on state -->
-<div class="w-full flex flex-col items-center relative max-w-full px-8 md:px-16 lg:px-32 xl:px-48" id="search-container"><div class="flex flex-col gap-4 w-full max-w-[1064px] mx-auto" id="initial-empty-state"><div class="flex flex-col items-center text-center gap-4 mb-8"><div class="w-20 h-20 rounded-full flex items-center justify-center overflow-hidden shadow-sm bg-white">
-<img alt="Favoris" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfhXfF4kuCqDrd7RDPrKTzYVr8i0uVnHb2wEFuJImKXMKN1XZ0NVh_PTuPXAsqvzHqlNxDldogSignngIJkvls3SN_vq1l7D1Rbiq6NNhTRr4lpxrojdOjc9DS_dU-Wpy3cuF3kviA3K1psgBKS8TrSnrUdXns_7LjrzRFbG5gc9EZjqbJ10CMKI-8ohY1JxV4-pxJxQd5ciesxU0BQfxB1cowMCtSmMNWKgcN_EXKFojo0f6gESBOJOZC3aox2dZYnC7Fa4qmaLGpNf8" style="width: 80px; height: 80px;">
-</div><div class="space-y-1"><h1 class="text-[24px] font-[700] text-brand-text">Mes favoris</h1><p class="text-gray-600 text-[14px] font-[500]">Liste des favoris</p></div></div>
-<div class="relative w-full max-w-[1280px] mx-auto group">
-<button class="absolute left-[-64px] top-[calc(50%-40px)] -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md z-10 transition-all duration-300 hover:bg-gray-50 border border-gray-100 opacity-0 scale-95 pointer-events-none" id="btn-scroll-left">
-<span class="material-symbols-outlined text-black">chevron_left</span>
-</button>
-<div class="flex overflow-x-auto gap-[43px] w-full pb-8 px-4 no-scrollbar cursor-grab snap-x snap-proximity" id="favorites-carousel" style="scrollbar-width: none;"><style>.line-clamp-1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}</style><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div><div class="flex-shrink-0 w-[calc(25%-33px)] snap-center" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'"><div class="flex flex-col bg-[#faf8ff] rounded-[15px] group cursor-pointer pointer-events-none"><div class="relative aspect-square md:aspect-square aspect-[4/3] w-full rounded-[15px] overflow-hidden mb-4 pointer-events-auto group/image"><img alt="Product" class="object-cover w-full h-full scale-105 transition-transform duration-500 group-hover/image:scale-110" draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q"><button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-[15px] flex items-center justify-center shadow-sm transition-colors hover:bg-[#e2e7ff] group/heart"><span class="material-symbols-outlined text-xl text-[#444748] group-hover/heart:text-[#ba1a1a]">delete</span></button></div><div class="flex flex-col px-1 pointer-events-auto"><h4 class="font-[600] text-[18px] text-[#131b2e] truncate" style="font-family: Quicksand, sans-serif;">Product Title</h4><p class="text-[14px] font-[400] text-[#444748] mt-1 h-[40px] line-clamp-2" style="font-family: Quicksand, sans-serif;">Product description goes here, limited to two lines with ellipsis for consistency.</p><div class="flex justify-between items-center mt-3"><div class="h-10 px-[21px] bg-[#E2EFFE] rounded-full flex items-center justify-center w-fit"><span class="font-[600] text-[18px] text-[#000000]" style="font-family: Quicksand, sans-serif;">1 299 €</span></div><button class="w-10 h-10 bg-[#d3e4fe]/30 border border-[#e2e7ff] rounded-[15px] flex items-center justify-center transition-all duration-300 hover:bg-[#d0e1fb] hover:scale-110"><span class="material-symbols-outlined text-black">add</span></button></div></div></div></div></div>
-<button class="absolute right-[-64px] top-[calc(50%-40px)] -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md z-10 transition-all duration-300 opacity-100 scale-100 hover:bg-gray-50 border border-gray-100" id="btn-scroll-right">
-<span class="material-symbols-outlined text-black">chevron_right</span>
-</button>
-</div>
-<div class="flex justify-center gap-2 mt-4 pb-4">
-<div class="h-1.5 w-8 bg-primary rounded-full transition-all duration-300"></div>
-<div class="h-1.5 w-4 bg-surface-container-highest rounded-full transition-all duration-300"></div>
-<div class="h-1.5 w-4 bg-surface-container-highest rounded-full transition-all duration-300"></div>
-</div></div></div>
+<main class="w-full flex items-center justify-center px-4 md:px-8 pt-[118px] pb-10" style="min-height: 100vh;">
+  <div class="w-full max-w-[720px] mx-auto">
+
+    <!-- Titre, centré -->
+    <div class="flex flex-col items-center text-center gap-2">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center bg-surface-container shadow-sm">
+        <span class="material-symbols-outlined text-2xl text-on-surface" style="font-variation-settings: 'FILL' 1;">favorite</span>
+      </div>
+      <h1 class="font-heading font-bold text-on-surface text-2xl md:text-[28px] mt-1">Mes favoris</h1>
+      <p class="text-on-surface-variant text-sm">
+        <span id="f2-compteur" class="font-semibold text-on-surface">0</span>
+        <span id="f2-mot">articles enregistrés</span>
+      </p>
+      <p id="f2-soustitre" class="text-on-surface-variant/80 text-xs"></p>
+    </div>
+    <!-- Liste : une ligne par produit, 3 visibles, defilement crande -->
+    <div class="relative">
+      <div id="f2-liste" class="flex flex-col gap-2 overflow-y-auto">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Basket Nike" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">Basket Nike</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Chaussures · pointures 38 à 45</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">129,99 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Basket Nike" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Basket Nike des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="MacBook Pro M2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">MacBook Pro M2</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Électronique · produit haute performance</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">1 299 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter MacBook Pro M2" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer MacBook Pro M2 des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="XIAOMI Friteuse à Air" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">XIAOMI Friteuse à Air</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Maison · cuisson sans huile</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">120 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter XIAOMI Friteuse à Air" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer XIAOMI Friteuse à Air des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="BASKET NIKE TN" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">BASKET NIKE TN</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Chaussures · modèle à bulle d'air</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">14 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter BASKET NIKE TN" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer BASKET NIKE TN des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Casque Bluetooth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">Casque Bluetooth</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Audio · réduction de bruit</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">79,99 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Casque Bluetooth" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Casque Bluetooth des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Montre connectée" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">Montre connectée</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Objets connectés · 10 jours d'autonomie</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">149 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Montre connectée" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Montre connectée des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Sac à dos urbain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">Sac à dos urbain</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Bagagerie · compartiment 15 pouces</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">59 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Sac à dos urbain" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Sac à dos urbain des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
+    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Enceinte portable" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">Enceinte portable</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Audio · étanche IPX7</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">89 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Enceinte portable" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Enceinte portable des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
+  </div>
+</article>
+      </div>
+      <!-- Indicateur lateral, decolle de la liste : signale qu il y a de quoi defiler -->
+      <div id="f2-indic" class="f2-indic hidden md:flex flex-col items-center absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
+        <div id="f2-points" class="flex flex-col items-center gap-1.5 my-1"></div>
+      </div>
+    </div>
+
+    <!-- Écran vide -->
+    <div id="f2-vide" class="flex-col items-center justify-center text-center gap-1 py-6">
+      <span class="material-symbols-outlined text-5xl text-on-surface-variant">heart_broken</span>
+      <p class="font-heading font-semibold text-on-surface text-lg mt-3">Aucun favori pour l'instant</p>
+      <p class="text-on-surface-variant text-sm">Ajoutez des articles au cœur depuis la boutique.</p>
+      <a href="index.html" data-nav="index.html" onclick="location.href='index.html'"
+         class="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium shadow-sm"
+         style="background-color: rgb(39, 60, 117);">Découvrir les produits</a>
+    </div>
+
+  </div>
 </main>
 <!-- END: Main Content Area -->
-<script data-purpose="interaction-logic">
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchInput = document.getElementById('search-input');
-      const initialState = document.getElementById('initial-empty-state');
-      const resultsState = document.getElementById('search-results-state');
-      const viewAllLink = document.getElementById('view-all-link');
-      const btnBack = document.getElementById('btn-back');
-      const btnClose = document.getElementById('btn-close');
 
-      // Function to switch to 'results' view
-      const activateSearch = () => {
-        if(initialState) initialState.classList.add('hidden-state');
-        if(resultsState) resultsState.classList.add('active');
-      };
+<!-- Bandeau d'annulation -->
+<div id="f2-annuler" class="f2-bandeau f2-bandeau-cache fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-4 px-5 py-3 rounded-full bg-on-surface text-white shadow-lg">
+  <span id="f2-annuler-texte" class="text-sm">Article retiré</span>
+  <button id="f2-annuler-btn" class="text-sm font-semibold underline hover:opacity-80 transition-opacity">Annuler</button>
+</div>
 
-      // Function to reset to 'initial' view
-      const resetSearch = () => {
-        if(searchInput) searchInput.value = ''; // Clear input
-        if(resultsState) resultsState.classList.remove('active');
-        
-        // Wait slightly for results to fade before showing initial state
-        setTimeout(() => {
-          if(initialState) initialState.classList.remove('hidden-state');
-        }, 150);
-      };
+<script>
+  (function () {
+    var liste = document.getElementById('f2-liste');
+    var vide = document.getElementById('f2-vide');
+    var compteur = document.getElementById('f2-compteur');
+    var motArticle = document.getElementById('f2-mot');
+    var sousTitre = document.getElementById('f2-soustitre');
+    var bandeau = document.getElementById('f2-annuler');
+    var bandeauTexte = document.getElementById('f2-annuler-texte');
+    var boutonTout = document.getElementById('f2-tout');
+    var fondu = document.getElementById('f2-fondu');
+    var minuteur = null;
+    if (!liste) return;
 
-      // Event Listeners
-      if(searchInput) searchInput.addEventListener('focus', activateSearch);
-      if(btnBack) btnBack.addEventListener('click', resetSearch);
-      if(btnClose) btnClose.addEventListener('click', resetSearch);
-      
-      // Carousel drag and scroll logic
-      const slider = document.getElementById('favorites-carousel');
-      const btnLeft = document.getElementById('btn-scroll-left');
-      const btnRight = document.getElementById('btn-scroll-right');
-      
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-      
-      if (slider) {
-        let targetScroll = slider.scrollLeft;
-        let isAnimating = false;
+    var lignes = [].slice.call(liste.querySelectorAll('.f2-ligne'));
 
-        const updateArrows = () => {
-          if (!btnLeft || !btnRight) return;
-          const maxScroll = slider.scrollWidth - slider.clientWidth;
-          
-          if (slider.scrollLeft <= 5) {
-            btnLeft.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-            btnLeft.classList.remove('opacity-100', 'scale-100');
-          } else {
-            btnLeft.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-            btnLeft.classList.add('opacity-100', 'scale-100');
-          }
-          
-          if (slider.scrollLeft >= maxScroll - 5) {
-            btnRight.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-            btnRight.classList.remove('opacity-100', 'scale-100');
-          } else {
-            btnRight.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-            btnRight.classList.add('opacity-100', 'scale-100');
-          }
-        };
+    function restantes() {
+      return lignes.filter(function (l) { return !l.classList.contains('f2-retire'); });
+    }
+    /* exactement 3 lignes visibles : hauteur calculee sur les lignes elles-memes */
+    function ajusterHauteur() {
+      var visibles = restantes();
+      if (visibles.length <= 3) { liste.style.height = ''; return; }
+      var troisieme = visibles[2];
+      liste.style.height = (troisieme.offsetTop + troisieme.offsetHeight) + 'px';
+    }
+    function hauteurCran() {
+      return lignes[0] ? lignes[0].offsetHeight + 8 : 128;
+    }
+    function dernierCran() {
+      var max = liste.scrollHeight - liste.clientHeight;
+      return Math.max(0, Math.round(max / hauteurCran()));
+    }
+    /* points de l'indicateur : un par cran de defilement */
+    function construirePoints() {
+      var zone = document.getElementById('f2-points');
+      if (!zone) return;
+      var n = dernierCran() + 1;
+      if (zone.children.length === n) { majPoints(); return; }
+      zone.innerHTML = '';
+      for (var i = 0; i < n; i++) {
+        var d = document.createElement('span');
+        d.className = 'f2-point w-2 h-2 rounded-full bg-surface-container-highest';
+        d.setAttribute('data-cran', i);
+        zone.appendChild(d);
+      }
+      majPoints();
+    }
+    function majPoints() {
+      var zone = document.getElementById('f2-points');
+      if (!zone) return;
+      var h = hauteurCran();
+      var actif = Math.round(liste.scrollTop / h);
+      [].forEach.call(zone.children, function (d, i) {
+        var on = i === actif;
+        d.className = 'f2-point w-2 rounded-full ' + (on ? 'f2-point-actif' : 'bg-surface-container-highest');
+        d.style.height = on ? '20px' : '8px';
+      });
+    }
+    function majFondu() { majPoints(); }
+    function majCompteur() {
+      var n = restantes().length;
+      if (compteur) compteur.textContent = n;
+      if (motArticle) motArticle.textContent = n === 1 ? 'article enregistré' : 'articles enregistrés';
+      if (sousTitre) sousTitre.textContent = n > 3 ? '3 articles affichés · faites défiler la liste' : '';
+      if (vide) vide.style.display = n === 0 ? 'flex' : 'none';
+      if (liste) liste.style.display = n === 0 ? 'none' : '';
+      if (boutonTout) boutonTout.style.display = n === 0 ? 'none' : '';
+      ajusterHauteur();
+      construirePoints();
+      majFondu();
+    }
+    function bandeauAfficher(texte, action) {
+      if (!bandeau) return;
+      bandeauTexte.textContent = texte;
+      bandeau.dataset.action = action;
+      bandeau.classList.remove('f2-bandeau-cache');
+      clearTimeout(minuteur);
+      minuteur = setTimeout(function () { bandeau.classList.add('f2-bandeau-cache'); }, 6000);
+    }
+    function masquer(ligne, delai) {
+      ligne.classList.add('f2-retire');
+      setTimeout(function () { ligne.style.display = 'none'; }, delai);
+    }
 
-        const smoothScroll = () => {
-          if (Math.abs(targetScroll - slider.scrollLeft) > 0.5) {
-            slider.scrollLeft += (targetScroll - slider.scrollLeft) * 0.15;
-            updateArrows();
-            requestAnimationFrame(smoothScroll);
-          } else {
-            slider.scrollLeft = targetScroll;
-            isAnimating = false;
-            slider.classList.add('snap-x', 'snap-proximity');
-            updateArrows();
-          }
-        };
+    lignes.forEach(function (ligne) {
+      var titre = ligne.querySelector('h3');
+      ligne.dataset.nom = titre ? titre.textContent.trim() : 'Article';
 
-        slider.addEventListener('wheel', (evt) => {
-          if (Math.abs(evt.deltaX) > Math.abs(evt.deltaY)) {
-            // Horizontal scroll
-            targetScroll = slider.scrollLeft + evt.deltaX;
-            updateArrows();
-            return;
-          }
-          evt.preventDefault();
-          
-          // Disable snap during animation
-          slider.classList.remove('snap-x', 'snap-proximity');
-          
-          targetScroll += evt.deltaY;
-          // Clamp target
-          targetScroll = Math.max(0, Math.min(targetScroll, slider.scrollWidth - slider.clientWidth));
-          
-          if (!isAnimating) {
-            isAnimating = true;
-            requestAnimationFrame(smoothScroll);
-          }
-        }, { passive: false });
-        
-        // Throttle scroll event slightly
-        let scrollTimeout;
-        slider.addEventListener('scroll', () => {
-          if (!scrollTimeout) {
-            scrollTimeout = setTimeout(() => {
-              if (!isAnimating) {
-                targetScroll = slider.scrollLeft;
-              }
-              updateArrows();
-              scrollTimeout = null;
-            }, 50);
-          }
-        }, { passive: true });
-
-        const getCardWidth = () => slider.querySelector('.flex-shrink-0')?.offsetWidth || 300;
-        const gap = 43; // based on gap-[43px]
-
-        if (btnLeft) {
-          btnLeft.addEventListener('click', () => {
-            slider.classList.remove('snap-x', 'snap-proximity');
-            targetScroll = Math.max(0, slider.scrollLeft - (getCardWidth() + gap));
-            if (!isAnimating) {
-              isAnimating = true;
-              requestAnimationFrame(smoothScroll);
-            }
-          });
-        }
-
-        if (btnRight) {
-          btnRight.addEventListener('click', () => {
-            slider.classList.remove('snap-x', 'snap-proximity');
-            const maxScroll = slider.scrollWidth - slider.clientWidth;
-            targetScroll = Math.min(maxScroll, slider.scrollLeft + (getCardWidth() + gap));
-            if (!isAnimating) {
-              isAnimating = true;
-              requestAnimationFrame(smoothScroll);
-            }
-          });
-        }
-        
-        // Initial arrow state
-        updateArrows();
-
-        // Drag to scroll
-        slider.addEventListener('mousedown', (e) => {
-          isDown = true;
-          slider.classList.add('cursor-grabbing');
-          // Disable snap while dragging for smoother feel
-          slider.classList.remove('snap-proximity');
-          slider.classList.remove('snap-x');
-          startX = e.pageX - slider.offsetLeft;
-          scrollLeft = slider.scrollLeft;
-        });
-        
-        slider.addEventListener('mouseleave', () => {
-          isDown = false;
-          slider.classList.remove('cursor-grabbing');
-          slider.classList.add('snap-x');
-          slider.classList.add('snap-proximity');
-        });
-        
-        slider.addEventListener('mouseup', () => {
-          isDown = false;
-          slider.classList.remove('cursor-grabbing');
-          slider.classList.add('snap-x');
-          slider.classList.add('snap-proximity');
-          targetScroll = slider.scrollLeft;
-          updateArrows();
-        });
-        
-        slider.addEventListener('mousemove', (e) => {
-          if (!isDown) return;
+      var corbeille = ligne.querySelector('.f2-corbeille');
+      if (corbeille) {
+        corbeille.addEventListener('click', function (e) {
           e.preventDefault();
-          const x = e.pageX - slider.offsetLeft;
-          const walk = (x - startX) * 2; // scroll speed multiplier
-          slider.scrollLeft = scrollLeft - walk;
+          e.stopPropagation();          /* sinon la fiche produit s'ouvre */
+          masquer(ligne, 300);
+          majCompteur();
+          bandeauAfficher('« ' + ligne.dataset.nom + ' » retiré des favoris', 'une');
         });
       }
+      var ajout = ligne.querySelector('.f2-ajout');
+      if (ajout) ajout.addEventListener('click', function (e) { e.stopPropagation(); });
     });
-  </script>
 
+    if (boutonTout) {
+      boutonTout.addEventListener('click', function () {
+        var aRetirer = restantes();
+        if (!aRetirer.length) return;
+        aRetirer.forEach(function (l) { masquer(l, 300); });
+        majCompteur();
+        bandeauAfficher(aRetirer.length + ' article' + (aRetirer.length > 1 ? 's' : '') +
+          ' retiré' + (aRetirer.length > 1 ? 's' : '') + ' des favoris', 'toutes');
+      });
+    }
+
+    var boutonAnnuler = document.getElementById('f2-annuler-btn');
+    if (boutonAnnuler && bandeau) {
+      boutonAnnuler.addEventListener('click', function () {
+        var action = bandeau.dataset.action;
+        lignes.forEach(function (l) {
+          if (action === 'toutes' || l.classList.contains('f2-retire')) {
+            l.style.display = '';
+            void l.offsetWidth;
+            l.classList.remove('f2-retire');
+          }
+        });
+        bandeau.classList.add('f2-bandeau-cache');
+        majCompteur();
+      });
+    }
+
+    /* defilement crande : une molette = une ligne, jamais deux */
+    var enCours = false;
+    var dernierGeste = 0;
+    function avancer(pas) {
+      var h = hauteurCran();
+      var cible = Math.round(liste.scrollTop / h) + pas;
+      cible = Math.max(0, Math.min(dernierCran(), cible));
+      var haut = cible * h;
+      enCours = true;
+      liste.scrollTo({ top: haut, behavior: 'smooth' });
+      /* on ne debloque que lorsque le defilement est arrive ET que le geste est fini :
+         sinon un seul coup de molette faisait avancer de deux lignes. */
+      var essais = 0;
+      var veille = setInterval(function () {
+        essais++;
+        if (Math.abs(liste.scrollTop - haut) < 2 || essais > 40) {
+          clearInterval(veille);
+          setTimeout(function () { enCours = false; }, 120);
+        }
+      }, 25);
+    }
+    liste.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) < 2) return;
+      e.preventDefault();
+      var maintenant = Date.now();
+      var memeGeste = maintenant - dernierGeste < 160;
+      dernierGeste = maintenant;
+      if (enCours || memeGeste) return;      /* un seul cran par geste */
+      avancer(e.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+
+    liste.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (enCours) return;
+        avancer(e.key === 'ArrowDown' ? 1 : -1);
+      }
+    });
+    liste.setAttribute('tabindex', '0');
+
+    liste.addEventListener('scroll', majFondu);
+    window.addEventListener('resize', ajusterHauteur);
+    /* la hauteur doit se recalculer quand la mise en page se stabilise :
+       Tailwind applique ses classes apres le chargement, et les images arrivent
+       ensuite — sans ca, la hauteur restait figee sur un etat intermediaire. */
+    window.addEventListener('load', ajusterHauteur);
+    if (window.ResizeObserver) {
+      var observateur = new ResizeObserver(function () { ajusterHauteur(); });
+      observateur.observe(lignes[0]);
+    }
+    setTimeout(ajusterHauteur, 300);
+    setTimeout(ajusterHauteur, 1200);
+    majCompteur();
+  })();
+</script>
+
+
+
+<style data-purpose="favoris">
+  html, body { overflow-y: auto; height: auto; }
+  body { touch-action: pan-y; }
+
+  /* la liste defile sur elle-meme : 3 lignes visibles, le reste au doigt */
+  #f2-liste { position: relative; scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-y;
+    scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+  /* defilement crande : on s'arrete sur une ligne entiere */
+  .f2-ligne { scroll-snap-align: start; scroll-snap-stop: always; }
+
+  /* indicateur lateral, decolle de la liste, avec son animation */
+  .f2-indic { animation: f2-indic-apparition .6s ease both; }
+  .f2-point { transition: background-color .3s ease, transform .3s ease, height .3s ease; }
+  .f2-point-actif { background-color: var(--c-text, #131b2e); height: 18px; }
+  @keyframes f2-indic-apparition { from { opacity: 0; transform: translate(6px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
+  #f2-liste::-webkit-scrollbar { width: 0; height: 0; }
+  .f2-ligne { transition: opacity .3s ease, transform .3s ease, background-color .2s ease; }
+  .f2-retire { opacity: 0; transform: translateX(-14px); }
+  /* survols : gris un peu plus fonce en clair, surface foncee en sombre */
+  .f2-ligne:hover { background-color: #e7eaf1; }
+  html.dark .f2-ligne:hover { background-color: #1b2331; }
+  .f2-ajout:hover { background-color: #cfe0fb; }
+  html.dark .f2-ajout:hover { background-color: rgba(124, 140, 255, .22); }
+  .f2-corbeille:hover { background-color: #e7eaf1; }
+  html.dark .f2-corbeille:hover { background-color: #2a3444; }
+  .f2-ajout, .f2-corbeille { transition: transform .2s ease, background-color .25s ease; }
+  .f2-ajout:hover, .f2-corbeille:hover { transform: scale(1.08); }
+  .f2-bandeau { transition: opacity .3s ease, transform .3s ease; }
+  .f2-bandeau-cache { opacity: 0; transform: translate(-50%, 12px); pointer-events: none; }
+  .f2-fondu { transition: opacity .3s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .f2-ligne, .f2-ajout, .f2-corbeille, .f2-bandeau { transition: none !important; transform: none !important; }
+  }
+</style>
 
 </body></html>
