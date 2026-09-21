@@ -332,31 +332,110 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div><h1 data-purpose="c1euro-titre-recherche" class="text-base font-bold text-gray-800 text-center w-full mb-3">Recherche avec précision</h1>
 <div class="relative w-full max-w-md shadow-sm rounded-xl bg-white flex items-center z-20 mb-2" id="search-bar-wrapper"><input autocomplete="off" class="w-full py-3 pl-5 pr-10 rounded-xl border-none focus:ring-2 focus:ring-brand-pill text-base text-gray-700 bg-transparent placeholder-gray-400" id="search-input" placeholder="Recherche" type="text"/><button aria-label="Submit search" class="absolute right-3 text-gray-800 hover:text-brand-pill transition-colors p-1.5"><i class="fa-solid fa-magnifying-glass text-lg"></i></button></div>
 <a class="text-[#7c7cff] underline font-medium text-sm mt-2 cursor-pointer hover:opacity-80 transition-opacity" data-nav="produits-multi-offre.html" onclick="location.href='produits-multi-offre.html'" href="produits-multi-offre.html" id="view-all-link" style="display: block; text-align: center;">Voir tous les résultats</a>
-<div class="w-full max-w-xl flex-col gap-3 hidden mt-[30px]" id="search-results-state">
-<button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<div class="w-full max-w-xl flex-col hidden mt-[30px]" id="search-results-state" data-purpose="recherche-resultats">
+<div id="search-resultats-zone" class="relative w-full">
+  <div id="recherche-liste">
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
 <span class="font-medium text-base">Tapis pour salon</span>
 <span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">22</span>
 </button>
-<button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
 <span class="font-medium text-base">Logitech</span>
 <span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">27</span>
 </button>
-<button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
 <span class="font-medium text-base">Joggings</span>
 <span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">8</span>
 </button>
-<button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
 <span class="font-medium text-base">Maison connectée</span>
 <span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">8</span>
 </button>
-<button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
 <span class="font-medium text-base">Ciga Design</span>
 <span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">4</span>
 </button>
-<button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
 <span class="font-medium text-base">Drone DJI</span>
 <span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">8</span>
 </button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Basket Nike</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">129</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">MacBook Pro M2</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">46</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">XIAOMI Friteuse à Air</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">31</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Casque Bluetooth</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">74</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Montre connectée</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">58</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Enceinte portable</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">39</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Sac à dos urbain</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">25</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Vélo électrique</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">17</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Chaise de bureau</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">12</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Lampe LED</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">63</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Cafetière à grain</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">21</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Aspirateur robot</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">19</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Smartphone 5G</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">88</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Tablette 10 pouces</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">34</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Clavier mécanique</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">29</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Écran 27 pouces</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">23</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Imprimante laser</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">15</span>
+</button>
+<button class="recherche-item bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
+<span class="font-medium text-base">Robot pâtissier</span>
+<span class="bg-brand-pill-count group-hover:bg-blue-400 text-white text-xs font-medium px-3 py-1 rounded-lg transition-colors">11</span>
+</button>
+  </div>
+  <div id="recherche-indic" class="recherche-indic hidden md:flex flex-col items-center absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
+    <div id="recherche-points" class="flex flex-col items-center gap-1.5"></div>
+  </div>
+</div>
 </div></div>
 </main>
 <!-- END: Main Content Area -->
@@ -410,4 +489,123 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       btnClose.addEventListener('click', resetSearch);
     });
   </script>
+
+<style data-purpose="recherche-resultats-style">
+  /* compteur : blanc, et lisible en sombre (fond indigo plus fonce) */
+  #search-results-state .bg-brand-pill-count { color: #ffffff !important; }
+  html.dark #search-results-state .bg-brand-pill-count { background-color: #4353c9 !important; color: #ffffff !important; }
+
+  /* la liste des resultats : 6 visibles, defilement crande sur elle-meme */
+  #recherche-liste { position: relative; display: flex; flex-direction: column; gap: .75rem;
+    overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-y;
+    scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+  #recherche-liste::-webkit-scrollbar { width: 0; height: 0; }
+  .recherche-item { scroll-snap-align: start; scroll-snap-stop: always; }
+
+  /* indicateur lateral, decolle de la liste */
+  .recherche-indic { animation: recherche-indic-apparition .6s ease both; }
+  .recherche-point { transition: background-color .3s ease, height .3s ease; }
+  .recherche-point-actif { background-color: var(--c-text, #131b2e); }
+  @keyframes recherche-indic-apparition { from { opacity: 0; transform: translate(6px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    #recherche-liste { scroll-behavior: auto; }
+    .recherche-indic, .recherche-point { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<script>
+  (function () {
+    var panneau = document.getElementById('search-resultats-zone');
+    var liste = document.getElementById('recherche-liste');
+    var zone = document.getElementById('recherche-points');
+    if (!liste) return;
+    var items = [].slice.call(liste.querySelectorAll('.recherche-item'));
+
+    function cran() { return items[0] ? items[0].offsetHeight + 12 : 60; }
+    function dernier() {
+      var max = liste.scrollHeight - liste.clientHeight;
+      return Math.max(0, Math.round(max / cran()));
+    }
+    function ajuster() {
+      if (items.length <= 6) { liste.style.height = ''; return; }
+      var sixieme = items[5];
+      liste.style.height = (sixieme.offsetTop + sixieme.offsetHeight) + 'px';
+    }
+    function construire() {
+      if (!zone) return;
+      var n = dernier() + 1;
+      if (zone.children.length !== n) {
+        zone.innerHTML = '';
+        for (var i = 0; i < n; i++) {
+          var d = document.createElement('span');
+          d.className = 'recherche-point w-2 rounded-full bg-surface-container-highest';
+          d.style.height = '8px';
+          zone.appendChild(d);
+        }
+      }
+      maj();
+    }
+    function maj() {
+      if (!zone) return;
+      var actif = Math.round(liste.scrollTop / cran());
+      [].forEach.call(zone.children, function (d, i) {
+        var on = i === actif;
+        d.className = 'recherche-point w-2 rounded-full ' + (on ? 'recherche-point-actif' : 'bg-surface-container-highest');
+        d.style.height = on ? '20px' : '8px';
+      });
+    }
+    var enCours = false, dernierGeste = 0;
+    function avancer(pas) {
+      var h = cran();
+      var cible = Math.round(liste.scrollTop / h) + pas;
+      cible = Math.max(0, Math.min(dernier(), cible));
+      var haut = cible * h;
+      enCours = true;
+      liste.scrollTo({ top: haut, behavior: 'smooth' });
+      var essais = 0;
+      var veille = setInterval(function () {
+        essais++;
+        if (Math.abs(liste.scrollTop - haut) < 2 || essais > 40) {
+          clearInterval(veille);
+          setTimeout(function () { enCours = false; }, 120);
+        }
+      }, 25);
+    }
+    liste.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) < 2) return;
+      e.preventDefault();
+      var maintenant = Date.now();
+      var memeGeste = maintenant - dernierGeste < 160;
+      dernierGeste = maintenant;
+      if (enCours || memeGeste) return;
+      avancer(e.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+    liste.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (enCours) return;
+        avancer(e.key === 'ArrowDown' ? 1 : -1);
+      }
+    });
+    liste.setAttribute('tabindex', '0');
+    liste.addEventListener('scroll', maj);
+    window.addEventListener('resize', function () { ajuster(); construire(); });
+
+    /* le panneau est masque au depart : on calcule des qu'il s'affiche */
+    var cible = document.getElementById('search-results-state');
+    function quandVisible() {
+      ajuster();
+      construire();
+    }
+    if (cible && window.MutationObserver) {
+      new MutationObserver(quandVisible).observe(cible, { attributes: true, attributeFilter: ['class', 'style'] });
+    }
+    if (window.ResizeObserver && items[0]) {
+      new ResizeObserver(function () { ajuster(); construire(); }).observe(items[0]);
+    }
+    setTimeout(quandVisible, 400);
+    window.addEventListener('load', quandVisible);
+  })();
+</script>
+
 </body></html>
