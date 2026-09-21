@@ -329,76 +329,90 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 
 <!-- BEGIN: Main Content Area -->
-<main class="flex-1 w-full flex items-center justify-center px-4 md:px-8 pt-[130px] pb-20">
-  <div class="w-full max-w-[1180px] mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
+<main class="w-full flex items-center justify-center relative px-4 md:px-8 pt-[120px] pb-[150px] p2-zone" style="min-height: 100vh;">
+  <div class="w-full max-w-[1040px] mx-auto">
 
-      <!-- Visuel du produit, centré -->
-      <div class="flex flex-col items-center gap-6">
-        <div class="p2-carte w-full max-w-[420px] aspect-square bg-white rounded-[26px] shadow-sm border border-surface-container-high flex items-center justify-center overflow-hidden">
-          <img alt="Minimalist Sneaker" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k">
+    <div class="grid grid-cols-1 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] gap-10 md:gap-14 items-center justify-items-center md:justify-items-stretch">
+
+      <!-- Visuel + action rapide, centrés dans leur colonne -->
+      <div class="flex flex-col items-center gap-6 w-full max-w-[340px]">
+        <div class="p2-visuel w-full flex items-center justify-center">
+<div class="w-[250px] md:w-[280px] lg:w-[300px] aspect-square bg-white overflow-hidden flex items-center justify-center shadow-sm border border-surface-container-high" style="border-radius: 18px; aspect-ratio: 1 / 1;"><img alt="Minimalist Sneaker" class="w-full h-full object-contain transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k"></div>
         </div>
-        <div class="flex flex-wrap gap-3 justify-center">
-<div class="p2-vignette w-[76px] h-[76px] aspect-square overflow-hidden rounded-[18px] border border-surface-container-high bg-white flex items-center justify-center cursor-pointer" data-nav="galerie.html" onclick="location.href='galerie.html'"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-uQoZYjRYeswMrkj0_LtqVoQvHvVBTUwr2Nid-0zAm2Y3aqKGxKFj88RM9p58PuQAol3kAr53fSTO1ajAWb0cJwutgRq92Z1TqxfRiD-d_D2EVAjLf9RdGf6xEfBs1HxGOtA9tzaShVaZ3QSnaOzXn7xSRPrkkuFlK9KqgGQq6upj_d4rZMJyXE8eMRK6fgRZsoWY560D7bbl-IgE-lacAmLi8tW9ByxDWqieEER0YJridec10132wdo33KIK3DeX7TU" alt="Vue du produit"></div>
-<div class="p2-vignette w-[76px] h-[76px] aspect-square overflow-hidden rounded-[18px] border border-surface-container-high bg-white flex items-center justify-center cursor-pointer" data-nav="galerie.html" onclick="location.href='galerie.html'"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyok8jmasEcQjAq29ohwkeuRpULmh2P3ZGRyqpW15Jv3vJL2jim8GxkvB-nUVeU10fYcbS0KDup9yIHbGe5XMcCaGY7L42vbca14g-iKTaLQDe_-h4QzqzMYankksMfNChWNAaL1jYr0E7bsMOGfSQ5v4Ev0DnYyvVWU4AzDlHcQQZZkdN3RIPbRB6kWMdBPvJJ2hoTPNFUlj0ShGBzuVUWSJbwyejDwfaV0Xw85u0P8nKAtK_NKaZV6KUhdT1Q7yooTE" alt="Vue du produit"></div>
-<div class="p2-vignette w-[76px] h-[76px] rounded-[18px] border border-surface-container-high bg-surface-container-low flex items-center justify-center text-on-surface-variant text-sm font-medium cursor-pointer" data-nav="galerie.html" onclick="location.href='galerie.html'">+3</div>
-        </div>
+<button class="mt-2 flex items-center gap-2 py-2 rounded-full border border-transparent bg-yellow-500 text-black text-sm font-medium hover:opacity-90 transition-colors shadow-sm hover:bg-yellow-400 justify-center px-6" style="background-color: rgb(255, 250, 101); font-weight: 500;">
+<span class=""><span class="" style="font-family: inherit; font-size: 0.875rem; letter-spacing: inherit;">Sélectionner</span></span>
+<span class="flex items-center justify-center w-5 h-5 rounded-full bg-black text-white">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+</button>
       </div>
 
-      <!-- Informations, tout centré -->
-      <div class="flex flex-col items-center text-center">
-        <span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-on-surface-variant">Marketplace C1EURO</span>
-        <h1 class="font-heading font-bold text-on-surface text-3xl md:text-[42px] leading-tight mt-3">Basket Nike</h1>
-        <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
-          <span class="px-6 py-2 rounded-full font-bold text-on-surface bg-[#dbeafe] text-lg whitespace-nowrap">129,99 €</span>
-          <a class="px-4 py-2 rounded-full flex items-center gap-1 font-medium bg-[#ffedd5] text-on-surface cursor-pointer hover:opacity-90 transition-opacity whitespace-nowrap" href="avis.html" data-nav="avis.html" onclick="location.href='avis.html'">
-            <span class="material-symbols-outlined text-sm">star</span>
-            <span class="text-sm">3,2/5</span>
-          </a>
+      <!-- Détails du produit -->
+      <div class="flex flex-col items-start w-full max-w-xl mx-auto md:mx-0">
+<h1 class="text-3xl font-bold text-gray-900 mb-2" style="font-weight: 600;">Basket Nike</h1>
+        <div class="mt-5 w-full">
+<div class="flex items-center gap-3 mb-4">
+  <div class="text-on-surface py-1.5 rounded-full font-bold px-8 bg-[#dbeafe]">
+    <span class="text-lg">129,99 €</span>
+  </div>
+  <div class="text-on-surface px-4 py-1.5 rounded-full flex items-center gap-1 font-medium bg-[#ffedd5]" data-nav="avis.html" onclick="location.href='avis.html'">
+    <span class="material-symbols-outlined text-sm fill-1">star</span>
+    <span class="text-sm">3,2/5</span>
+  </div>
+</div>
         </div>
-        <p class="text-on-surface-variant leading-relaxed mt-7 max-w-xl text-base">Cette basket Nike offre un amorti exceptionnel et un maintien parfait pour vos entraénements quotidiens. Son design épuré s'adapte à toutes vos tenues, alli...</p>
-
-        <div class="flex flex-wrap items-center justify-center gap-3 mt-9">
-          <button class="p2-action flex items-center gap-2 px-6 py-3 rounded-full text-black text-sm font-medium shadow-sm" style="background-color: rgb(255, 250, 101);">
-            <span>Sélectionner</span>
-            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-black text-white">
-              <span class="material-symbols-outlined text-[14px]">check</span>
-            </span>
-          </button>
-          <button class="p2-action px-10 py-3 rounded-full text-white font-medium shadow-sm" style="background-color: rgb(39, 60, 117);">Ajouter</button>
+        <div class="mt-6 w-full">
+<div class="mb-6">
+<h3 class="font-bold text-gray-900 mb-2 text-base" style="font-weight: 600;" data-stitch-orig-opacity="1">Description :</h3>
+<div class="relative max-w-md">
+<p class="text-gray-500 leading-relaxed overflow-hidden text-base" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; font-weight: 400;">Cette basket Nike offre un amorti exceptionnel et un maintien parfait pour vos entraénements quotidiens. Son design épuré s'adapte à toutes vos tenues, alli...&nbsp;&nbsp;<a class="text-primary underline cursor-pointer" href="#">Voir plus</a></p>
+</div>
+</div>
         </div>
-
-        <!-- Accès secondaires : avis, galerie, conditions -->
-        <div class="flex items-center justify-center gap-3 mt-6">
-          <button class="p2-action w-[50px] h-[50px] bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" data-nav="avis.html" onclick="location.href='avis.html'"><span class="material-symbols-outlined text-xl text-yellow-500">star</span></button>
-          <button class="p2-action w-[50px] h-[50px] bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" data-nav="galerie.html" onclick="location.href='galerie.html'"><span class="material-symbols-outlined text-xl text-black">visibility</span></button>
-          <button class="p2-action w-[50px] h-[50px] bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" data-nav="conditions.html" onclick="location.href='conditions.html'"><span class="material-symbols-outlined text-xl">error</span></button>
+        <div class="mt-7 w-full flex items-center gap-3">
+<div class="flex gap-4 mb-6 justify-start mt-[-28px]">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;" data-nav="avis.html" onclick="location.href='avis.html'"><span class="material-symbols-outlined text-xl text-yellow-500">star</span></button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;" data-nav="galerie.html" onclick="location.href='galerie.html'"><span class="material-symbols-outlined text-xl text-black">visibility</span></button>
+</div>
         </div>
-
-        <!-- Les trois points importants, cliquables -->
-        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 text-sm text-on-surface-variant cursor-pointer hover:opacity-90 transition-opacity" data-nav="conditions.html" onclick="location.href='conditions.html'">
-          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-base">local_shipping</span>Livraison colissimo</span>
-          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-base">assignment_turned_in</span>Retour gratuit</span>
-          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-base">verified</span>Produits neufs</span>
+        <div class="mt-6 w-full">
+<div class="flex gap-3 mb-8">
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-uQoZYjRYeswMrkj0_LtqVoQvHvVBTUwr2Nid-0zAm2Y3aqKGxKFj88RM9p58PuQAol3kAr53fSTO1ajAWb0cJwutgRq92Z1TqxfRiD-d_D2EVAjLf9RdGf6xEfBs1HxGOtA9tzaShVaZ3QSnaOzXn7xSRPrkkuFlK9KqgGQq6upj_d4rZMJyXE8eMRK6fgRZsoWY560D7bbl-IgE-lacAmLi8tW9ByxDWqieEER0YJridec10132wdo33KIK3DeX7TU"></div>
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyok8jmasEcQjAq29ohwkeuRpULmh2P3ZGRyqpW15Jv3vJL2jim8GxkvB-nUVeU10fYcbS0KDup9yIHbGe5XMcCaGY7L42vbca14g-iKTaLQDe_-h4QzqzMYankksMfNChWNAaL1jYr0E7bsMOGfSQ5v4Ev0DnYyvVWU4AzDlHcQQZZkdN3RIPbRB6kWMdBPvJJ2hoTPNFUlj0ShGBzuVUWSJbwyejDwfaV0Xw85u0P8nKAtK_NKaZV6KUhdT1Q7yooTE"></div>
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px; font-weight: 500;">+3</div>
+</div>
         </div>
       </div>
 
     </div>
   </div>
+
+  <!-- Barre du bas : inchangée, bouton d'alerte et Ajouter -->
+<div class="fixed bottom-[16px] left-1/2 -translate-x-1/2 w-full max-w-[737px] rounded-[30px] overflow-hidden bg-white z-30 flex items-center justify-between shadow-lg px-[20px] py-[24px]">
+<button class="h-[42px] bg-surface-container-low flex items-center justify-center hover:bg-surface-dim transition-all border border-surface-container-highest rounded-full text-on-surface" style="width: 100px;" data-nav="conditions.html" onclick="location.href='conditions.html'"><span class="material-symbols-outlined" style="font-size: 18px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;">error</span></button>
+<button class="h-[42px] font-medium flex items-center justify-center transition-opacity border border-surface-container-highest hover:opacity-90 rounded-full" style="background-color: rgb(39, 60, 117); color: white; width: 280px; border-color: rgb(43, 61, 114);">Ajouter</button>
+</div>
 </main>
 <!-- END: Main Content Area -->
 
+
 <style data-purpose="produit-2">
+  /* la page d'origine bloquait le defilement du corps : on le retablit */
   html, body { overflow-y: auto; height: auto; }
   body { touch-action: pan-y; }
-  .p2-carte { transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease; }
-  .p2-carte:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(19, 27, 46, .35); }
-  .p2-vignette { transition: transform .35s ease, border-color .35s ease; }
-  .p2-vignette:hover { transform: translateY(-3px); border-color: var(--c-line, #dae2fd); }
-  .p2-action { transition: transform .25s ease, opacity .25s ease; }
+
+  .p2-visuel img { transition: transform .6s cubic-bezier(.22,1,.36,1); }
+  .p2-visuel:hover img { transform: scale(1.05); }
+  .p2-vignette { transition: transform .3s ease, border-color .3s ease; }
+  .p2-vignette:hover { transform: translateY(-3px); border-color: var(--c-text, #131b2e); }
+  .p2-action { transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease; }
   .p2-action:hover { transform: translateY(-2px); }
+  .p2-etiquette { letter-spacing: .2em; }
+  /* rien ne doit passer sous la barre fixe du bas */
+  @media (max-width: 767px) { .p2-zone { padding-bottom: 170px; } }
+
   @media (prefers-reduced-motion: reduce) {
-    .p2-carte, .p2-vignette, .p2-action { transition: none !important; transform: none !important; }
+    .p2-visuel img, .p2-vignette, .p2-action { transition: none !important; transform: none !important; }
   }
 </style>
 
