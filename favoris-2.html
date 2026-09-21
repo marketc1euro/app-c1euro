@@ -501,10 +501,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </article>
       </div>
       <!-- Indicateur lateral, decolle de la liste : signale qu il y a de quoi defiler -->
-      <div id="f2-indic" class="f2-indic hidden md:flex flex-col items-center gap-1 absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
-        <span class="material-symbols-outlined f2-indic-fleche text-on-surface-variant text-lg">keyboard_arrow_up</span>
+      <div id="f2-indic" class="f2-indic hidden md:flex flex-col items-center absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
         <div id="f2-points" class="flex flex-col items-center gap-1.5 my-1"></div>
-        <span class="material-symbols-outlined f2-indic-fleche text-on-surface-variant text-lg">keyboard_arrow_down</span>
       </div>
     </div>
 
@@ -570,7 +568,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       zone.innerHTML = '';
       for (var i = 0; i < n; i++) {
         var d = document.createElement('span');
-        d.className = 'f2-point w-1.5 h-1.5 rounded-full bg-surface-container-highest';
+        d.className = 'f2-point w-2 h-2 rounded-full bg-surface-container-highest';
         d.setAttribute('data-cran', i);
         zone.appendChild(d);
       }
@@ -583,8 +581,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       var actif = Math.round(liste.scrollTop / h);
       [].forEach.call(zone.children, function (d, i) {
         var on = i === actif;
-        d.className = 'f2-point w-1.5 rounded-full ' + (on ? 'f2-point-actif' : 'bg-surface-container-highest h-1.5');
-        d.style.height = on ? '18px' : '6px';
+        d.className = 'f2-point w-2 rounded-full ' + (on ? 'f2-point-actif' : 'bg-surface-container-highest');
+        d.style.height = on ? '20px' : '8px';
       });
     }
     function majFondu() { majPoints(); }
@@ -660,27 +658,40 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
     /* defilement crande : une molette = une ligne, jamais deux */
     var enCours = false;
-    liste.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaY) < 2) return;
-      e.preventDefault();
-      if (enCours) return;
-      var pas = e.deltaY > 0 ? 1 : -1;
+    var dernierGeste = 0;
+    function avancer(pas) {
       var h = hauteurCran();
       var cible = Math.round(liste.scrollTop / h) + pas;
       cible = Math.max(0, Math.min(dernierCran(), cible));
+      var haut = cible * h;
       enCours = true;
-      liste.scrollTo({ top: cible * h, behavior: 'smooth' });
-      setTimeout(function () { enCours = false; }, 430);
+      liste.scrollTo({ top: haut, behavior: 'smooth' });
+      /* on ne debloque que lorsque le defilement est arrive ET que le geste est fini :
+         sinon un seul coup de molette faisait avancer de deux lignes. */
+      var essais = 0;
+      var veille = setInterval(function () {
+        essais++;
+        if (Math.abs(liste.scrollTop - haut) < 2 || essais > 40) {
+          clearInterval(veille);
+          setTimeout(function () { enCours = false; }, 120);
+        }
+      }, 25);
+    }
+    liste.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) < 2) return;
+      e.preventDefault();
+      var maintenant = Date.now();
+      var memeGeste = maintenant - dernierGeste < 160;
+      dernierGeste = maintenant;
+      if (enCours || memeGeste) return;      /* un seul cran par geste */
+      avancer(e.deltaY > 0 ? 1 : -1);
     }, { passive: false });
 
     liste.addEventListener('keydown', function (e) {
-      var h = hauteurCran();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        var pas = e.key === 'ArrowDown' ? 1 : -1;
-        var cible = Math.round(liste.scrollTop / h) + pas;
-        cible = Math.max(0, Math.min(dernierCran(), cible));
-        liste.scrollTo({ top: cible * h, behavior: 'smooth' });
+        if (enCours) return;
+        avancer(e.key === 'ArrowDown' ? 1 : -1);
       }
     });
     liste.setAttribute('tabindex', '0');
@@ -715,11 +726,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
   /* indicateur lateral, decolle de la liste, avec son animation */
   .f2-indic { animation: f2-indic-apparition .6s ease both; }
-  .f2-indic-fleche { animation: f2-indic-flotte 1.8s ease-in-out infinite; }
-  .f2-indic-fleche:nth-child(3) { animation-delay: .45s; }
   .f2-point { transition: background-color .3s ease, transform .3s ease, height .3s ease; }
   .f2-point-actif { background-color: var(--c-text, #131b2e); height: 18px; }
-  @keyframes f2-indic-flotte { 0%,100% { transform: translateY(0); opacity: .45; } 50% { transform: translateY(-5px); opacity: .95; } }
   @keyframes f2-indic-apparition { from { opacity: 0; transform: translate(6px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
   #f2-liste::-webkit-scrollbar { width: 0; height: 0; }
   .f2-ligne { transition: opacity .3s ease, transform .3s ease, background-color .2s ease; }
