@@ -348,7 +348,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <!-- BEGIN: Main Content Area -->
 <main class="flex-1 w-full flex items-center justify-center px-4 md:px-8 pt-[132px] pb-10">
-  <div class="w-full max-w-[1180px] mx-auto">
+  <div class="w-full max-w-[960px] mx-auto">
 
     <!-- Titre de la page, centré -->
     <div class="flex flex-col items-center gap-3 mb-8">
@@ -358,7 +358,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     </div>
 
     <!-- blocs réduits de 16 % (zoom 0,84 : le rendu est réduit, la mise en page reste juste) -->
-    <div class="avis-blocs grid grid-cols-1 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)] gap-6 items-center"
+    <div class="avis-blocs grid grid-cols-1 lg:grid-cols-[minmax(260px,320px)_minmax(0,1fr)] gap-6 items-center"
          style="zoom: 0.84;">
 
       <!-- Colonne gauche : la jauge -->
@@ -734,8 +734,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       if (window.innerWidth < 1024) { zoneAvis.style.height = ''; return; }
       var premier = elements[0], quatrieme = elements[3];
       var hauteurQuatre = quatrieme.offsetTop + quatrieme.offsetHeight - premier.offsetTop;
-      /* -40 % : le bloc des commentaires etait trop haut, on le raccourcit */
-      zoneAvis.style.height = Math.round(hauteurQuatre * 0.6) + 'px';
+      zoneAvis.style.height = hauteurQuatre + 'px';   /* 4 avis visibles */
     };
     ajuster();
     window.addEventListener('resize', ajuster);
