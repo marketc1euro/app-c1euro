@@ -609,6 +609,17 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <!-- END: Main Content Area -->
 
 <style>
+  /* --- Défilement : la page avis d'origine bloque le corps (overflow:hidden),
+     ce qui rendait le défilement impossible au doigt sur mobile. On rétablit un
+     défilement de page normal, et on rend la liste d'avis tactile. --- */
+  html, body{overflow-y:auto!important; height:auto!important; overscroll-behavior-y:auto;}
+  body{position:relative; touch-action:pan-y;}
+  main{scroll-margin-top:120px;}
+  #reviews-container{touch-action:pan-y;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
+  /* les avis d'origine étaient bridés à 100 px (pour n'en montrer que 3) :
+     on garde une hauteur minimale, mais un commentaire long n'est plus écrasé */
+  .review-item{height:auto;min-height:100px;}
+
   /* --- Jauge : couleurs adaptées au thème --- */
   .avis-anneau-fond{stroke:#e6ebf7;}
   .avis-anneau-progress{stroke:#D4AF37;filter:drop-shadow(0 0 6px rgba(212,175,55,.45));}
