@@ -367,8 +367,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
         <!-- Jauge de notation : anneau qui se dessine, note qui compte -->
         <div class="avis-jauge relative flex items-center justify-center">
           <svg viewBox="0 0 140 140" class="w-[134px] h-[134px] -rotate-90" aria-hidden="true">
-            <circle class="avis-anneau-fond" cx="70" cy="70" r="58" fill="none" stroke-width="24"></circle>
-            <circle class="avis-anneau-progress" cx="70" cy="70" r="58" fill="none" stroke-width="24"
+            <!-- épaisseur = celle d'origine à l'écran (compensée pour la taille réduite de 20 %) -->
+            <circle class="avis-anneau-fond" cx="70" cy="70" r="58" fill="none" stroke-width="15"></circle>
+            <circle class="avis-anneau-progress" cx="70" cy="70" r="58" fill="none" stroke-width="15"
                     stroke-linecap="round"></circle>
           </svg>
           <div class="absolute inset-0 flex flex-col items-center justify-center">
@@ -390,7 +391,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
               <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="text-on-surface font-medium text-sm">5</span>
             </span>
-            <div class="flex-1 h-2.5 bg-surface-container-low rounded-full overflow-hidden relative">
+            <div class="flex-1 h-5 bg-surface-container-low rounded-full overflow-hidden relative">
               <div class="avis-barre-fill h-full rounded-full relative overflow-hidden"
                    data-valeur="60" style="background-color: rgb(76, 175, 80);"></div>
             </div>
@@ -402,7 +403,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
               <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="text-on-surface font-medium text-sm">4</span>
             </span>
-            <div class="flex-1 h-2.5 bg-surface-container-low rounded-full overflow-hidden relative">
+            <div class="flex-1 h-5 bg-surface-container-low rounded-full overflow-hidden relative">
               <div class="avis-barre-fill h-full rounded-full relative overflow-hidden"
                    data-valeur="20" style="background-color: rgb(59, 130, 246);"></div>
             </div>
@@ -414,7 +415,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
               <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="text-on-surface font-medium text-sm">3</span>
             </span>
-            <div class="flex-1 h-2.5 bg-surface-container-low rounded-full overflow-hidden relative">
+            <div class="flex-1 h-5 bg-surface-container-low rounded-full overflow-hidden relative">
               <div class="avis-barre-fill h-full rounded-full relative overflow-hidden"
                    data-valeur="10" style="background-color: rgb(139, 92, 246);"></div>
             </div>
@@ -426,7 +427,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
               <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="text-on-surface font-medium text-sm">2</span>
             </span>
-            <div class="flex-1 h-2.5 bg-surface-container-low rounded-full overflow-hidden relative">
+            <div class="flex-1 h-5 bg-surface-container-low rounded-full overflow-hidden relative">
               <div class="avis-barre-fill h-full rounded-full relative overflow-hidden"
                    data-valeur="5" style="background-color: rgb(236, 72, 153);"></div>
             </div>
@@ -438,7 +439,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
               <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="text-on-surface font-medium text-sm">1</span>
             </span>
-            <div class="flex-1 h-2.5 bg-surface-container-low rounded-full overflow-hidden relative">
+            <div class="flex-1 h-5 bg-surface-container-low rounded-full overflow-hidden relative">
               <div class="avis-barre-fill h-full rounded-full relative overflow-hidden"
                    data-valeur="5" style="background-color: rgb(239, 68, 68);"></div>
             </div>
