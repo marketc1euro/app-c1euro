@@ -357,7 +357,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       <p class="text-on-surface-variant text-sm">Ce que disent les acheteurs de la marketplace</p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)] gap-6 items-start">
+    <!-- blocs réduits de 16 % (zoom 0,84 : le rendu est réduit, la mise en page reste juste) -->
+    <div class="avis-blocs grid grid-cols-1 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)] gap-6 items-start"
+         style="zoom: 0.84;">
 
       <!-- Colonne gauche : la jauge -->
       <section class="bg-white rounded-[20px] shadow-sm p-6 flex flex-col items-center">
@@ -433,7 +435,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       <!-- Colonne droite : les avis, hauteur pleine page -->
       <section class="bg-white p-6 rounded-[20px] shadow-sm flex flex-col gap-6 relative pr-10">
         <h2 class="font-heading font-semibold text-on-surface text-lg shrink-0">Derniers avis</h2>
-        <div class="reviews-scroll overflow-y-auto flex flex-col gap-6 w-full pr-2 min-h-[360px] max-h-[calc(100vh-320px)]"
+        <div class="reviews-scroll overflow-y-auto flex flex-col gap-6 w-full pr-2"
              id="reviews-container" style="scroll-behavior: smooth;">
 
 <!-- Review 1 -->
@@ -596,6 +598,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 scroll-indicator" id="ind-2"></div>
 <div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 scroll-indicator" id="ind-3"></div>
 </div>
+        <div class="avis-defile-hint shrink-0 text-center text-xs font-medium text-on-surface-variant/80">
+          Faites défiler pour voir les autres avis
+        </div>
       </section>
 
     </div>
@@ -632,6 +637,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     animation:avis-anneau-souffle 3.2s ease-in-out 1.7s infinite;}
   .avis-etoile{color:#D4AF37;opacity:0;animation:avis-etoile-pop .55s cubic-bezier(.34,1.56,.64,1) forwards;}
   .avis-barre-fill{width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1);}
+  /* la liste d'avis garde sa hauteur calculée, quelle que soit la taille d'écran */
+  #reviews-container{min-height:0;}
+  .avis-defile-hint{transition:opacity .3s ease;}
   .avis-jauge::after{content:"";position:absolute;width:168px;height:168px;border-radius:9999px;
     animation:avis-pulse-doux 3s ease-out 1.6s infinite;pointer-events:none;}
   /* reflet qui balaie chaque barre en continu */
@@ -688,7 +696,32 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       setTimeout(function () { barre.style.width = cible; }, 200 + i * 130);
     });
 
-    /* 4) pastilles de défilement des avis */
+    /* 4) exactement 4 avis visibles, puis défilement à l'intérieur du bloc.
+       Sur mobile (moins de 1024 px) on ne fige AUCUNE hauteur : la page entière
+       défile, sinon les derniers avis sont inaccessibles au doigt. */
+    var zoneAvis = document.getElementById('reviews-container');
+    var elements = zoneAvis ? zoneAvis.querySelectorAll('.review-item') : [];
+    var ajuster = function () {
+      if (!zoneAvis || elements.length < 5) return;
+      if (window.innerWidth < 1024) { zoneAvis.style.height = ''; return; }
+      var premier = elements[0], quatrieme = elements[3];
+      zoneAvis.style.height = (quatrieme.offsetTop + quatrieme.offsetHeight - premier.offsetTop) + 'px';
+    };
+    ajuster();
+    window.addEventListener('resize', ajuster);
+    window.addEventListener('load', ajuster);
+    /* le bandeau ne s'affiche que s'il reste vraiment des avis à voir */
+    var bandeau = document.querySelector('.avis-defile-hint');
+    if (bandeau && zoneAvis) {
+      var majBandeau = function () {
+        var reste = zoneAvis.scrollHeight - zoneAvis.clientHeight - zoneAvis.scrollTop;
+        bandeau.style.opacity = reste > 8 ? '1' : '0';
+      };
+      zoneAvis.addEventListener('scroll', majBandeau);
+      majBandeau();
+    }
+
+    /* 5) pastilles de défilement des avis */
     var zone = document.getElementById('reviews-container');
     var pastilles = [1, 2, 3].map(function (n) { return document.getElementById('ind-' + n); });
     if (zone && pastilles[0]) {
