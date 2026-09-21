@@ -317,7 +317,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <!-- BEGIN: Main Content Area -->
 <main class="flex-1 w-full h-full flex flex-col items-center px-4 relative justify-center h-screen">
 <!-- Title that stays visible -->
-<h1 class="text-base font-bold text-gray-800 text-center">Recherche avec précision</h1>
+
 <!-- Dynamic Container: Shifts content based on state -->
 <div class="w-full flex flex-col items-center relative max-w-xl" id="search-container">
 <div class="flex flex-col items-center w-full max-w-xl mt-2" id="initial-empty-state"><div class="w-[80px] h-[80px] flex justify-center items-center mb-2 mx-auto bg-transparent rounded-full overflow-hidden"><img alt="Search icon" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNlPf50R5XwUH0Oa0xPSpOoNcTySw1vc9v-vGSGzu_WJOY0Z8CVWXyj3vjfnsMIDE9TZL_U4n9I7HouzDBqr6Sp9T_TYHtYSpimM_bUe1HcepENNwju2E95c-NTJsM8TQTJ8fbubUO0c0qr7FgolRjTCNJeu1DZcB0SmjFBYwqnAd8pLERE99AcVSf4D6cHPTiKJYOgo4Mp1Pi-RA8QLlIjEBet43FSCMxFbql0D4CWfIhiny6YNcCPtYI5spBHr2N2BXgxWXdkB76pQ"/></div>
@@ -329,7 +329,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 <span class="bg-brand-pill-count text-white text-xs font-medium px-3 py-1 rounded-lg">16</span>
 </div>
-</div><div class="relative w-full max-w-md shadow-sm rounded-xl bg-white flex items-center z-20 mb-2" id="search-bar-wrapper"><input autocomplete="off" class="w-full py-3 pl-5 pr-10 rounded-xl border-none focus:ring-2 focus:ring-brand-pill text-base text-gray-700 bg-transparent placeholder-gray-400" id="search-input" placeholder="Recherche" type="text"/><button aria-label="Submit search" class="absolute right-3 text-gray-800 hover:text-brand-pill transition-colors p-1.5"><i class="fa-solid fa-magnifying-glass text-lg"></i></button></div>
+</div><h1 data-purpose="c1euro-titre-recherche" class="text-base font-bold text-gray-800 text-center w-full mb-3">Recherche avec précision</h1>
+<div class="relative w-full max-w-md shadow-sm rounded-xl bg-white flex items-center z-20 mb-2" id="search-bar-wrapper"><input autocomplete="off" class="w-full py-3 pl-5 pr-10 rounded-xl border-none focus:ring-2 focus:ring-brand-pill text-base text-gray-700 bg-transparent placeholder-gray-400" id="search-input" placeholder="Recherche" type="text"/><button aria-label="Submit search" class="absolute right-3 text-gray-800 hover:text-brand-pill transition-colors p-1.5"><i class="fa-solid fa-magnifying-glass text-lg"></i></button></div>
 <a class="text-[#7c7cff] underline font-medium text-sm mt-2 cursor-pointer hover:opacity-80 transition-opacity" data-nav="produits-multi-offre.html" onclick="location.href='produits-multi-offre.html'" href="produits-multi-offre.html" id="view-all-link" style="display: block; text-align: center;">Voir tous les résultats</a>
 <div class="w-full max-w-xl flex-col gap-3 hidden mt-[30px]" id="search-results-state">
 <button class="bg-brand-pill hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center justify-between w-full transition-colors group">
