@@ -274,6 +274,10 @@ html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba
   box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
 html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </style>
+<style data-purpose="recherche-filtre">
+  .recherche-illustration { margin-bottom: .25rem; }
+  #recherche-vide { font-size: .95rem; opacity: .85; }
+</style>
 </head>
 <body class="font-sans text-brand-text w-screen flex flex-col relative overflow-hidden h-screen" data-mode="connect" style="background-color: var(--c-bg-alt, rgb(252, 248, 255));">
 <!-- BEGIN: Top Navigation -->
@@ -320,7 +324,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <!-- Dynamic Container: Shifts content based on state -->
 <div class="w-full flex flex-col items-center relative max-w-xl" id="search-container">
-<div class="flex flex-col items-center w-full max-w-xl mt-2" id="initial-empty-state"><div class="w-[80px] h-[80px] flex justify-center items-center mb-2 mx-auto bg-transparent rounded-full overflow-hidden"><img alt="Search icon" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNlPf50R5XwUH0Oa0xPSpOoNcTySw1vc9v-vGSGzu_WJOY0Z8CVWXyj3vjfnsMIDE9TZL_U4n9I7HouzDBqr6Sp9T_TYHtYSpimM_bUe1HcepENNwju2E95c-NTJsM8TQTJ8fbubUO0c0qr7FgolRjTCNJeu1DZcB0SmjFBYwqnAd8pLERE99AcVSf4D6cHPTiKJYOgo4Mp1Pi-RA8QLlIjEBet43FSCMxFbql0D4CWfIhiny6YNcCPtYI5spBHr2N2BXgxWXdkB76pQ"/></div>
+<div class="flex flex-col items-center w-full max-w-xl mt-2" id="initial-empty-state">
 <p class="text-gray-600 text-center whitespace-nowrap mb-1" style="font-size: 14px; opacity: 1;">Terme spécifique avec le nombre de résultats</p>
 <div class="bg-brand-pill text-white px-4 py-3 rounded-xl flex items-center justify-between w-64 mb-6">
 <div class="flex gap-2">
@@ -329,7 +333,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 <span class="bg-brand-pill-count text-white text-xs font-medium px-3 py-1 rounded-lg">16</span>
 </div>
-</div><h1 data-purpose="c1euro-titre-recherche" class="text-base font-bold text-gray-800 text-center w-full mb-3">Recherche avec précision</h1>
+</div><div class="recherche-illustration w-[80px] h-[80px] flex justify-center items-center mb-2 mx-auto bg-transparent rounded-full overflow-hidden"><img alt="Search icon" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNlPf50R5XwUH0Oa0xPSpOoNcTySw1vc9v-vGSGzu_WJOY0Z8CVWXyj3vjfnsMIDE9TZL_U4n9I7HouzDBqr6Sp9T_TYHtYSpimM_bUe1HcepENNwju2E95c-NTJsM8TQTJ8fbubUO0c0qr7FgolRjTCNJeu1DZcB0SmjFBYwqnAd8pLERE99AcVSf4D6cHPTiKJYOgo4Mp1Pi-RA8QLlIjEBet43FSCMxFbql0D4CWfIhiny6YNcCPtYI5spBHr2N2BXgxWXdkB76pQ"/></div>
+<h1 data-purpose="c1euro-titre-recherche" class="text-base font-bold text-gray-800 text-center w-full mb-3">Recherche avec précision</h1>
 <div class="relative w-full max-w-md shadow-sm rounded-xl bg-white flex items-center z-20 mb-2" id="search-bar-wrapper"><input autocomplete="off" class="w-full py-3 pl-5 pr-10 rounded-xl border-none focus:ring-2 focus:ring-brand-pill text-base text-gray-700 bg-transparent placeholder-gray-400" id="search-input" placeholder="Recherche" type="text"/><button aria-label="Submit search" class="absolute right-3 text-gray-800 hover:text-brand-pill transition-colors p-1.5"><i class="fa-solid fa-magnifying-glass text-lg"></i></button></div>
 <a class="text-[#7c7cff] underline font-medium text-sm mt-2 cursor-pointer hover:opacity-80 transition-opacity" data-nav="produits-multi-offre.html" onclick="location.href='produits-multi-offre.html'" href="produits-multi-offre.html" id="view-all-link" style="display: block; text-align: center;">Voir tous les résultats</a>
 <div class="w-full max-w-xl flex-col hidden mt-[30px]" id="search-results-state" data-purpose="recherche-resultats">
@@ -437,6 +442,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </div>
 </div></div>
+  <p id="recherche-vide" class="hidden text-center text-gray-600 mt-4" style="display:none;">
+    <span id="recherche-vide-texte">Aucun résultat</span>
+  </p>
 </main>
 <!-- END: Main Content Area -->
 <script data-purpose="interaction-logic">
@@ -492,8 +500,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <style data-purpose="recherche-resultats-style">
   /* compteur : blanc, et lisible en sombre (fond indigo plus fonce) */
-  #search-results-state .bg-brand-pill-count { color: #ffffff !important; }
-  html.dark #search-results-state .bg-brand-pill-count { background-color: #4353c9 !important; color: #ffffff !important; }
+  .bg-brand-pill-count { color: #ffffff !important; }
+  html.dark .bg-brand-pill-count { background-color: #4353c9 !important; color: #ffffff !important; }
 
   /* la liste des resultats : 6 visibles, defilement crande sur elle-meme */
   #recherche-liste { position: relative; display: flex; flex-direction: column; gap: .75rem;
@@ -515,33 +523,35 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <script>
   (function () {
-    var panneau = document.getElementById('search-resultats-zone');
     var liste = document.getElementById('recherche-liste');
     var zone = document.getElementById('recherche-points');
+    var champ = document.getElementById('search-input');
+    var vide = document.getElementById('recherche-vide');
     if (!liste) return;
-    var items = [].slice.call(liste.querySelectorAll('.recherche-item'));
+    var tous = [].slice.call(liste.querySelectorAll('.recherche-item'));
+    tous.forEach(function (b) {
+      var s = b.querySelector('span.font-medium') || b.querySelector('span');
+      b.dataset.nom = s ? s.textContent.trim() : '';
+      b.dataset.cle = b.dataset.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    });
 
-    function cran() { return items[0] ? items[0].offsetHeight + 12 : 60; }
-    function dernier() {
-      var max = liste.scrollHeight - liste.clientHeight;
-      return Math.max(0, Math.round(max / cran()));
-    }
+    function visibles() { return tous.filter(function (b) { return b.style.display !== 'none'; }); }
+    function cran() { return tous[0] ? tous[0].offsetHeight + 12 : 60; }
     function ajuster() {
-      if (items.length <= 6) { liste.style.height = ''; return; }
-      var sixieme = items[5];
+      var v = visibles();
+      if (v.length <= 6) { liste.style.height = v.length ? '' : '0px'; if (!v.length) liste.style.height = '0px'; return; }
+      var sixieme = v[5];
       liste.style.height = (sixieme.offsetTop + sixieme.offsetHeight) + 'px';
     }
     function construire() {
       if (!zone) return;
-      var n = dernier() + 1;
-      if (zone.children.length !== n) {
-        zone.innerHTML = '';
-        for (var i = 0; i < n; i++) {
-          var d = document.createElement('span');
-          d.className = 'recherche-point w-2 rounded-full bg-surface-container-highest';
-          d.style.height = '8px';
-          zone.appendChild(d);
-        }
+      var n = Math.max(0, visibles().length - 6 + 1);
+      zone.innerHTML = '';
+      for (var i = 0; i < n; i++) {
+        var d = document.createElement('span');
+        d.className = 'recherche-point w-2 rounded-full bg-surface-container-highest';
+        d.style.height = '8px';
+        zone.appendChild(d);
       }
       maj();
     }
@@ -553,6 +563,10 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
         d.className = 'recherche-point w-2 rounded-full ' + (on ? 'recherche-point-actif' : 'bg-surface-container-highest');
         d.style.height = on ? '20px' : '8px';
       });
+    }
+    function dernier() {
+      var max = liste.scrollHeight - liste.clientHeight;
+      return Math.max(0, Math.round(max / cran()));
     }
     var enCours = false, dernierGeste = 0;
     function avancer(pas) {
@@ -589,22 +603,48 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     });
     liste.setAttribute('tabindex', '0');
     liste.addEventListener('scroll', maj);
-    window.addEventListener('resize', function () { ajuster(); construire(); });
 
-    /* le panneau est masque au depart : on calcule des qu'il s'affiche */
-    var cible = document.getElementById('search-results-state');
-    function quandVisible() {
+    /* --- filtrage en direct : des qu'on tape, la liste se reduit --- */
+    function filtrer() {
+      var texte = (champ && champ.value ? champ.value : '').trim().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      var trouve = 0;
+      tous.forEach(function (b) {
+        var cle = b.dataset.cle || '';
+        var ok = !texte || cle.indexOf(texte) >= 0;
+        b.style.display = ok ? '' : 'none';
+        if (ok) trouve++;
+      });
+      /* ceux qui commencent par la recherche remontent en premier */
+      var ordre = tous.slice().sort(function (a, b) {
+        var da = (a.dataset.cle || '').indexOf(texte), db = (b.dataset.cle || '').indexOf(texte);
+        return da - db;
+      });
+      ordre.forEach(function (b) { liste.appendChild(b); });
+      liste.scrollTop = 0;
+      if (vide) {
+        vide.style.display = trouve ? 'none' : 'block';
+        if (!trouve) {
+          var t = document.getElementById('recherche-vide-texte');
+          if (t) t.textContent = 'Aucun résultat pour « ' + (champ ? champ.value : '') + ' »';
+        }
+      }
       ajuster();
       construire();
     }
+    if (champ) {
+      ['input', 'keyup', 'change', 'search'].forEach(function (ev) { champ.addEventListener(ev, filtrer); });
+    }
+
+    var cible = document.getElementById('search-results-state');
+    function quandVisible() { filtrer(); }
     if (cible && window.MutationObserver) {
       new MutationObserver(quandVisible).observe(cible, { attributes: true, attributeFilter: ['class', 'style'] });
     }
-    if (window.ResizeObserver && items[0]) {
-      new ResizeObserver(function () { ajuster(); construire(); }).observe(items[0]);
-    }
-    setTimeout(quandVisible, 400);
-    window.addEventListener('load', quandVisible);
+    window.addEventListener('resize', filtrer);
+    window.addEventListener('load', filtrer);
+    setTimeout(filtrer, 400);
+    filtrer();
   })();
 </script>
 
