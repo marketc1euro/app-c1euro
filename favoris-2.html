@@ -337,7 +337,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 
 <!-- BEGIN: Main Content Area -->
-<main class="w-full flex items-center justify-center px-4 md:px-8 pt-[118px] pb-10" style="min-height: 100vh;">
+<main class="w-full flex items-start justify-center px-4 md:px-8 pt-[104px] pb-10" style="min-height: 100vh;">
   <div class="w-full max-w-[720px] mx-auto">
 
     <!-- Titre, centré -->
@@ -352,19 +352,11 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       </p>
       <p id="f2-soustitre" class="text-on-surface-variant/80 text-xs"></p>
     </div>
-
-    <!-- Action globale -->
-    <div class="flex items-center justify-center mt-4 mb-5">
-      <button id="f2-tout" class="text-sm font-medium px-5 py-2 rounded-full border border-surface-container-highest bg-surface-container-low hover:bg-surface-container-high transition-colors text-error">
-        Tout supprimer
-      </button>
-    </div>
-
     <!-- Liste : une ligne par produit, 3 visibles, defilement interne -->
-    <div class="relative">
-      <div id="f2-liste" class="flex flex-col gap-2 overflow-y-auto p-3 rounded-[22px] bg-white border border-surface-container-high shadow-sm">
+    <div>
+      <div id="f2-liste" class="flex flex-col gap-2 overflow-y-auto">
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Basket Nike" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -382,7 +374,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="MacBook Pro M2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -400,7 +392,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="XIAOMI Friteuse à Air" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -418,7 +410,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="BASKET NIKE TN" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -436,7 +428,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Casque Bluetooth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -454,7 +446,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Montre connectée" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -472,7 +464,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Sac à dos urbain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -490,7 +482,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
 <article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
+  <div class="w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Enceinte portable" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
   </div>
   <div class="flex flex-col min-w-0 flex-1">
@@ -508,7 +500,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   </div>
 </article>
       </div>
-      <div id="f2-fondu" class="f2-fondu pointer-events-none absolute bottom-0 left-0 right-0 h-14 rounded-b-[22px]" style="opacity: 0; background: linear-gradient(to top, rgba(255,255,255,.96), rgba(255,255,255,0));"></div>
+      <!-- pas de container ni de fondu : les lignes sont directement sur la page -->
     </div>
 
     <!-- Écran vide -->
@@ -555,7 +547,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       var visibles = restantes();
       if (visibles.length <= 3) { liste.style.height = ''; return; }
       var troisieme = visibles[2];
-      liste.style.height = (troisieme.offsetTop + troisieme.offsetHeight + 12) + 'px';
+      liste.style.height = (troisieme.offsetTop + troisieme.offsetHeight) + 'px';
     }
     function majFondu() {
       if (!fondu) return;
@@ -633,6 +625,16 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
     liste.addEventListener('scroll', majFondu);
     window.addEventListener('resize', ajusterHauteur);
+    /* la hauteur doit se recalculer quand la mise en page se stabilise :
+       Tailwind applique ses classes apres le chargement, et les images arrivent
+       ensuite — sans ca, la hauteur restait figee sur un etat intermediaire. */
+    window.addEventListener('load', ajusterHauteur);
+    if (window.ResizeObserver) {
+      var observateur = new ResizeObserver(function () { ajusterHauteur(); });
+      observateur.observe(lignes[0]);
+    }
+    setTimeout(ajusterHauteur, 300);
+    setTimeout(ajusterHauteur, 1200);
     majCompteur();
   })();
 </script>
