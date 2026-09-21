@@ -358,7 +358,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     </div>
 
     <!-- blocs réduits de 16 % (zoom 0,84 : le rendu est réduit, la mise en page reste juste) -->
-    <div class="avis-blocs grid grid-cols-1 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)] gap-6 items-start"
+    <div class="avis-blocs grid grid-cols-1 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)] gap-6 items-center"
          style="zoom: 0.84;">
 
       <!-- Colonne gauche : la jauge -->
@@ -733,7 +733,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       if (!zoneAvis || elements.length < 5) return;
       if (window.innerWidth < 1024) { zoneAvis.style.height = ''; return; }
       var premier = elements[0], quatrieme = elements[3];
-      zoneAvis.style.height = (quatrieme.offsetTop + quatrieme.offsetHeight - premier.offsetTop) + 'px';
+      var hauteurQuatre = quatrieme.offsetTop + quatrieme.offsetHeight - premier.offsetTop;
+      /* -40 % : le bloc des commentaires etait trop haut, on le raccourcit */
+      zoneAvis.style.height = Math.round(hauteurQuatre * 0.6) + 'px';
     };
     ajuster();
     window.addEventListener('resize', ajuster);
