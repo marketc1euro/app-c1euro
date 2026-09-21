@@ -337,8 +337,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 
 <!-- BEGIN: Main Content Area -->
-<main class="w-full flex items-center justify-center px-4 md:px-8 pt-[112px] pb-10" style="min-height: 100vh;">
-  <div id="f2-bloc" class="w-full max-w-[1080px] mx-auto flex flex-col justify-center">
+<main class="w-full flex items-center justify-center px-4 md:px-8 pt-[118px] pb-10" style="min-height: 100vh;">
+  <div class="w-full max-w-[720px] mx-auto">
 
     <!-- Titre, centré -->
     <div class="flex flex-col items-center text-center gap-2">
@@ -350,6 +350,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
         <span id="f2-compteur" class="font-semibold text-on-surface">0</span>
         <span id="f2-mot">articles enregistrés</span>
       </p>
+      <p id="f2-soustitre" class="text-on-surface-variant/80 text-xs"></p>
     </div>
 
     <!-- Action globale -->
@@ -359,152 +360,155 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       </button>
     </div>
 
-    <!-- Grille des favoris -->
-    <div id="f2-grille" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+    <!-- Liste : une ligne par produit, 3 visibles, defilement interne -->
+    <div class="relative">
+      <div id="f2-liste" class="flex flex-col gap-2 overflow-y-auto p-3 rounded-[22px] bg-white border border-surface-container-high shadow-sm">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Basket Nike" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer Basket Nike des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
-      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
-    </button>
   </div>
-  <div class="flex flex-col mt-3 px-1">
+  <div class="flex flex-col min-w-0 flex-1">
     <h3 class="font-semibold text-on-surface text-[15px] truncate">Basket Nike</h3>
-    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Chaussures · 38 à 45</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">129,99 €</span>
-      <button type="button" aria-label="Ajouter Basket Nike" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Chaussures · pointures 38 à 45</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">129,99 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Basket Nike" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Basket Nike des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="MacBook Pro M2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer MacBook Pro M2 des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">MacBook Pro M2</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Électronique · produit haute performance</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">1 299 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter MacBook Pro M2" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer MacBook Pro M2 des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
       <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
     </button>
-  </div>
-  <div class="flex flex-col mt-3 px-1">
-    <h3 class="font-semibold text-on-surface text-[15px] truncate">MacBook Pro M2</h3>
-    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Électronique · haute performance</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">1 299 €</span>
-      <button type="button" aria-label="Ajouter MacBook Pro M2" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="XIAOMI Friteuse à Air" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer XIAOMI Friteuse à Air des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
-      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
-    </button>
   </div>
-  <div class="flex flex-col mt-3 px-1">
+  <div class="flex flex-col min-w-0 flex-1">
     <h3 class="font-semibold text-on-surface text-[15px] truncate">XIAOMI Friteuse à Air</h3>
     <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Maison · cuisson sans huile</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">120 €</span>
-      <button type="button" aria-label="Ajouter XIAOMI Friteuse à Air" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">120 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter XIAOMI Friteuse à Air" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer XIAOMI Friteuse à Air des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="BASKET NIKE TN" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer BASKET NIKE TN des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">BASKET NIKE TN</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Chaussures · modèle à bulle d'air</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">14 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter BASKET NIKE TN" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer BASKET NIKE TN des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
       <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
     </button>
-  </div>
-  <div class="flex flex-col mt-3 px-1">
-    <h3 class="font-semibold text-on-surface text-[15px] truncate">BASKET NIKE TN</h3>
-    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Chaussures · bulle d'air</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">14 €</span>
-      <button type="button" aria-label="Ajouter BASKET NIKE TN" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Casque Bluetooth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer Casque Bluetooth des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
-      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
-    </button>
   </div>
-  <div class="flex flex-col mt-3 px-1">
+  <div class="flex flex-col min-w-0 flex-1">
     <h3 class="font-semibold text-on-surface text-[15px] truncate">Casque Bluetooth</h3>
     <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Audio · réduction de bruit</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">79,99 €</span>
-      <button type="button" aria-label="Ajouter Casque Bluetooth" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">79,99 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Casque Bluetooth" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Casque Bluetooth des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Montre connectée" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer Montre connectée des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
-      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
-    </button>
   </div>
-  <div class="flex flex-col mt-3 px-1">
+  <div class="flex flex-col min-w-0 flex-1">
     <h3 class="font-semibold text-on-surface text-[15px] truncate">Montre connectée</h3>
-    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Connecté · 10 jours</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">149 €</span>
-      <button type="button" aria-label="Ajouter Montre connectée" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Objets connectés · 10 jours d'autonomie</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">149 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Montre connectée" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Montre connectée des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Sac à dos urbain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer Sac à dos urbain des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+  </div>
+  <div class="flex flex-col min-w-0 flex-1">
+    <h3 class="font-semibold text-on-surface text-[15px] truncate">Sac à dos urbain</h3>
+    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Bagagerie · compartiment 15 pouces</p>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">59 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Sac à dos urbain" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Sac à dos urbain des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
       <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
     </button>
-  </div>
-  <div class="flex flex-col mt-3 px-1">
-    <h3 class="font-semibold text-on-surface text-[15px] truncate">Sac à dos urbain</h3>
-    <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Bagagerie · 15 pouces</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">59 €</span>
-      <button type="button" aria-label="Ajouter Sac à dos urbain" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
   </div>
 </article>
-<article class="f2-carte group flex flex-col bg-white rounded-[18px] border border-surface-container-high p-3 shadow-sm cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
-  <div class="relative w-full h-[110px] rounded-[14px] overflow-hidden bg-surface-container-low">
+<article class="f2-ligne group flex items-center gap-4 p-3 rounded-[16px] hover:bg-surface-container-low transition-colors cursor-pointer" data-nav="produit-simple.html" onclick="location.href='produit-simple.html'">
+  <div class="w-[72px] h-[72px] shrink-0 rounded-[16px] overflow-hidden bg-surface-container-low">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Enceinte portable" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLWVlG6bdcd_eWT9V9QKtS_T5SsAKFjHyFri3-xfkewdSxA-mWReH9CNf24GfvfoGquVRqfqOmPv1jwi8IHQ3nAXTdHCWiAYKBQZIK-ltQZ6VI9NSdCHPQKvL_fvCBVDyKFZjmmVdAmnoXIHi1wNbMDkM0dBS08wjS_7B60x7ASA9i2m-S8-UOIwO246_VEXzCpTfH7A9iYyVYN0L9Nq02xV7Yqx5lWF7ZFz8u-O0SIZr8--VtaJWQ9Q" draggable="false">
-    <button type="button" aria-label="Retirer Enceinte portable des favoris" class="f2-corbeille absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
-      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
-    </button>
   </div>
-  <div class="flex flex-col mt-3 px-1">
+  <div class="flex flex-col min-w-0 flex-1">
     <h3 class="font-semibold text-on-surface text-[15px] truncate">Enceinte portable</h3>
     <p class="text-on-surface-variant text-[12px] truncate mt-0.5">Audio · étanche IPX7</p>
-    <div class="flex items-center justify-between mt-3 gap-2">
-      <span class="h-8 px-3 rounded-full flex items-center text-[14px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">89 €</span>
-      <button type="button" aria-label="Ajouter Enceinte portable" class="f2-ajout w-8 h-8 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
-        <span class="material-symbols-outlined text-[18px] text-black">add</span>
-      </button>
-    </div>
+    <span class="mt-2 h-7 px-3 rounded-full inline-flex items-center w-fit text-[13px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap">89 €</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button type="button" aria-label="Ajouter Enceinte portable" class="f2-ajout w-9 h-9 rounded-[12px] bg-[#d3e4fe]/30 border border-[#e2e7ff] flex items-center justify-center hover:bg-[#d0e1fb] transition-colors">
+      <span class="material-symbols-outlined text-[18px] text-black">add</span>
+    </button>
+    <button type="button" aria-label="Retirer Enceinte portable des favoris" class="f2-corbeille w-9 h-9 rounded-[12px] bg-white border border-surface-container-highest flex items-center justify-center shadow-sm hover:bg-[#e2e7ff]">
+      <span class="material-symbols-outlined text-[18px] text-[#444748]">delete</span>
+    </button>
   </div>
 </article>
+      </div>
+      <div id="f2-fondu" class="f2-fondu pointer-events-none absolute bottom-0 left-0 right-0 h-14 rounded-b-[22px]" style="opacity: 0; background: linear-gradient(to top, rgba(255,255,255,.96), rgba(255,255,255,0));"></div>
     </div>
 
     <!-- Écran vide -->
@@ -529,30 +533,45 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <script>
   (function () {
-    var grille = document.getElementById('f2-grille');
+    var liste = document.getElementById('f2-liste');
     var vide = document.getElementById('f2-vide');
-    var bloc = document.getElementById('f2-bloc');
     var compteur = document.getElementById('f2-compteur');
     var motArticle = document.getElementById('f2-mot');
+    var sousTitre = document.getElementById('f2-soustitre');
     var bandeau = document.getElementById('f2-annuler');
     var bandeauTexte = document.getElementById('f2-annuler-texte');
     var boutonTout = document.getElementById('f2-tout');
+    var fondu = document.getElementById('f2-fondu');
     var minuteur = null;
-    if (!grille) return;
+    if (!liste) return;
 
-    var cartes = [].slice.call(grille.querySelectorAll('.f2-carte'));
+    var lignes = [].slice.call(liste.querySelectorAll('.f2-ligne'));
 
     function restantes() {
-      return cartes.filter(function (c) { return !c.classList.contains('f2-retire'); });
+      return lignes.filter(function (l) { return !l.classList.contains('f2-retire'); });
+    }
+    /* exactement 3 lignes visibles : hauteur calculee sur les lignes elles-memes */
+    function ajusterHauteur() {
+      var visibles = restantes();
+      if (visibles.length <= 3) { liste.style.height = ''; return; }
+      var troisieme = visibles[2];
+      liste.style.height = (troisieme.offsetTop + troisieme.offsetHeight + 12) + 'px';
+    }
+    function majFondu() {
+      if (!fondu) return;
+      var reste = liste.scrollHeight - liste.clientHeight - liste.scrollTop;
+      fondu.style.opacity = reste > 10 ? '1' : '0';
     }
     function majCompteur() {
       var n = restantes().length;
       if (compteur) compteur.textContent = n;
       if (motArticle) motArticle.textContent = n === 1 ? 'article enregistré' : 'articles enregistrés';
+      if (sousTitre) sousTitre.textContent = n > 3 ? '3 articles affichés · faites défiler la liste' : '';
       if (vide) vide.style.display = n === 0 ? 'flex' : 'none';
-      if (grille) grille.style.display = n === 0 ? 'none' : '';
+      if (liste) liste.style.display = n === 0 ? 'none' : '';
       if (boutonTout) boutonTout.style.display = n === 0 ? 'none' : '';
-      if (bloc) bloc.classList.toggle('f2-vide-actif', n === 0);
+      ajusterHauteur();
+      majFondu();
     }
     function bandeauAfficher(texte, action) {
       if (!bandeau) return;
@@ -562,26 +581,26 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       clearTimeout(minuteur);
       minuteur = setTimeout(function () { bandeau.classList.add('f2-bandeau-cache'); }, 6000);
     }
-    function masquer(carte, delai) {
-      carte.classList.add('f2-retire');
-      setTimeout(function () { carte.style.display = 'none'; }, delai);
+    function masquer(ligne, delai) {
+      ligne.classList.add('f2-retire');
+      setTimeout(function () { ligne.style.display = 'none'; }, delai);
     }
 
-    cartes.forEach(function (carte) {
-      var titre = carte.querySelector('h3');
-      carte.dataset.nom = titre ? titre.textContent.trim() : 'Article';
+    lignes.forEach(function (ligne) {
+      var titre = ligne.querySelector('h3');
+      ligne.dataset.nom = titre ? titre.textContent.trim() : 'Article';
 
-      var corbeille = carte.querySelector('.f2-corbeille');
+      var corbeille = ligne.querySelector('.f2-corbeille');
       if (corbeille) {
         corbeille.addEventListener('click', function (e) {
           e.preventDefault();
-          e.stopPropagation();          /* sinon la carte s'ouvre au passage */
-          masquer(carte, 320);
+          e.stopPropagation();          /* sinon la fiche produit s'ouvre */
+          masquer(ligne, 300);
           majCompteur();
-          bandeauAfficher('« ' + carte.dataset.nom + ' » retiré des favoris', 'une');
+          bandeauAfficher('« ' + ligne.dataset.nom + ' » retiré des favoris', 'une');
         });
       }
-      var ajout = carte.querySelector('.f2-ajout');
+      var ajout = ligne.querySelector('.f2-ajout');
       if (ajout) ajout.addEventListener('click', function (e) { e.stopPropagation(); });
     });
 
@@ -589,7 +608,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       boutonTout.addEventListener('click', function () {
         var aRetirer = restantes();
         if (!aRetirer.length) return;
-        aRetirer.forEach(function (c) { masquer(c, 320); });
+        aRetirer.forEach(function (l) { masquer(l, 300); });
         majCompteur();
         bandeauAfficher(aRetirer.length + ' article' + (aRetirer.length > 1 ? 's' : '') +
           ' retiré' + (aRetirer.length > 1 ? 's' : '') + ' des favoris', 'toutes');
@@ -600,11 +619,11 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     if (boutonAnnuler && bandeau) {
       boutonAnnuler.addEventListener('click', function () {
         var action = bandeau.dataset.action;
-        cartes.forEach(function (c) {
-          if (action === 'toutes' || c.classList.contains('f2-retire')) {
-            c.style.display = '';
-            void c.offsetWidth;
-            c.classList.remove('f2-retire');
+        lignes.forEach(function (l) {
+          if (action === 'toutes' || l.classList.contains('f2-retire')) {
+            l.style.display = '';
+            void l.offsetWidth;
+            l.classList.remove('f2-retire');
           }
         });
         bandeau.classList.add('f2-bandeau-cache');
@@ -612,6 +631,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       });
     }
 
+    liste.addEventListener('scroll', majFondu);
+    window.addEventListener('resize', ajusterHauteur);
     majCompteur();
   })();
 </script>
@@ -622,15 +643,18 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   html, body { overflow-y: auto; height: auto; }
   body { touch-action: pan-y; }
 
-  .f2-carte { transition: opacity .32s ease, transform .32s ease, box-shadow .3s ease; }
-  .f2-carte:hover { box-shadow: 0 14px 30px -18px rgba(19,27,46,.45); transform: translateY(-3px); }
-  .f2-retire { opacity: 0; transform: scale(.94) translateY(8px); }
-  .f2-corbeille, .f2-ajout { transition: transform .2s ease, background-color .25s ease; }
-  .f2-corbeille:hover, .f2-ajout:hover { transform: scale(1.06); }
+  /* la liste defile sur elle-meme : 3 lignes visibles, le reste au doigt */
+  #f2-liste { position: relative; scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-y; }
+  #f2-liste::-webkit-scrollbar { width: 0; height: 0; }
+  .f2-ligne { transition: opacity .3s ease, transform .3s ease, background-color .2s ease; }
+  .f2-retire { opacity: 0; transform: translateX(-14px); }
+  .f2-ajout, .f2-corbeille { transition: transform .2s ease, background-color .25s ease; }
+  .f2-ajout:hover, .f2-corbeille:hover { transform: scale(1.08); }
   .f2-bandeau { transition: opacity .3s ease, transform .3s ease; }
   .f2-bandeau-cache { opacity: 0; transform: translate(-50%, 12px); pointer-events: none; }
+  .f2-fondu { transition: opacity .3s ease; }
   @media (prefers-reduced-motion: reduce) {
-    .f2-carte, .f2-corbeille, .f2-ajout, .f2-bandeau { transition: none !important; transform: none !important; }
+    .f2-ligne, .f2-ajout, .f2-corbeille, .f2-bandeau { transition: none !important; transform: none !important; }
   }
 </style>
 
