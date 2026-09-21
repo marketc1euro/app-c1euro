@@ -179,14 +179,14 @@
 
   <!-- Reduced icon row: shrinks and disappears when search is active -->
   <div id="icon-row">
-    <button class="w-9 h-9 bg-surface-container-low text-on-surface rounded-[12px] flex items-center justify-center border border-surface-container-highest flex-shrink-0">
+    <button class="w-9 h-9 bg-surface-container-low text-on-surface rounded-[12px] flex items-center justify-center border border-surface-container-highest flex-shrink-0" data-nav="liste-menu.html" onclick="location.href='liste-menu.html'">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
     </button>
-    <button class="w-9 h-9 bg-surface-container-low text-on-surface rounded-[12px] flex items-center justify-center border border-surface-container-highest flex-shrink-0">
+    <button class="w-9 h-9 bg-surface-container-low text-on-surface rounded-[12px] flex items-center justify-center border border-surface-container-highest flex-shrink-0" data-nav="favoris.html" onclick="location.href='favoris.html'">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
     </button>
-    <button class="w-9 h-9 bg-surface-container-low text-on-surface rounded-[12px] flex items-center justify-center border border-surface-container-highest flex-shrink-0" style="animation-duration: 2s; animation-timing-function: ease; animation-iteration-count: infinite; animation-direction: normal; animation-fill-mode: none; animation-play-state: running; animation-name: pulse-ripple; animation-timeline: auto; animation-range: normal; box-shadow: rgba(124, 124, 255, 0.4) 0px 0px 0px 0px;"><span class="material-symbols-outlined text-lg">location_on</span></button>
-    <button class="w-9 h-9 bg-primary text-white rounded-[12px] flex items-center justify-center relative flex-shrink-0 shadow-sm" style="background-color: rgb(26, 35, 126);">
+    <button class="w-9 h-9 bg-surface-container-low text-on-surface rounded-[12px] flex items-center justify-center border border-surface-container-highest flex-shrink-0" style="animation-duration: 2s; animation-timing-function: ease; animation-iteration-count: infinite; animation-direction: normal; animation-fill-mode: none; animation-play-state: running; animation-name: pulse-ripple; animation-timeline: auto; animation-range: normal; box-shadow: rgba(124, 124, 255, 0.4) 0px 0px 0px 0px;" data-nav="mapvideo.html" onclick="location.href='mapvideo.html'"><span class="material-symbols-outlined text-lg">location_on</span></button>
+    <button class="w-9 h-9 bg-primary text-white rounded-[12px] flex items-center justify-center relative flex-shrink-0 shadow-sm" style="background-color: rgb(26, 35, 126);" data-nav="livraison.html" onclick="location.href='livraison.html'">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
       <span class="absolute -top-1 -right-1 bg-error text-white text-[9px] font-bold rounded-[10px] h-4 w-4 flex items-center justify-center shadow-sm">1</span>
     </button>
@@ -202,8 +202,8 @@
 
 <!-- Floating back / close buttons (kept as-is, positioned lower on mobile) -->
 <div class="fixed top-[76px] left-1/2 -translate-x-1/2 w-full max-w-sm px-4 flex items-center z-40 pointer-events-none justify-between mx-auto">
-  <button class="w-[29px] h-[29px] rounded-[10px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:opacity-90" id="btn-back" onclick="window.history.back()" style="background-color: rgb(255, 158, 158);"><span class="material-symbols-outlined text-white" style="font-size: 14px;">arrow_back</span></button>
-  <button class="w-[29px] h-[29px] bg-white rounded-[10px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close"><span class="material-symbols-outlined text-black" style="font-size: 14px;">close</span></button>
+  <button class="w-[29px] h-[29px] rounded-[10px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);" data-nav="retour" onclick="(document.referrer&&document.referrer.indexOf(location.origin)===0)?history.back():location.href='index.html'"><span class="material-symbols-outlined text-white" style="font-size: 14px;">arrow_back</span></button>
+  <button class="w-[29px] h-[29px] bg-white rounded-[10px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black" style="font-size: 14px;">close</span></button>
 </div>
 
 <!-- BEGIN: Main Content Area (login form, unchanged design, mobile spacing) -->
