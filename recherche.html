@@ -324,6 +324,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <!-- Dynamic Container: Shifts content based on state -->
 <div class="w-full flex flex-col items-center relative max-w-xl" id="search-container">
+<h1 data-purpose="c1euro-titre-recherche" class="text-base font-bold text-gray-800 text-center w-full mb-3">Recherche avec précision</h1>
+<div class="recherche-illustration w-[80px] h-[80px] flex justify-center items-center mb-2 mx-auto bg-transparent rounded-full overflow-hidden"><img alt="Search icon" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNlPf50R5XwUH0Oa0xPSpOoNcTySw1vc9v-vGSGzu_WJOY0Z8CVWXyj3vjfnsMIDE9TZL_U4n9I7HouzDBqr6Sp9T_TYHtYSpimM_bUe1HcepENNwju2E95c-NTJsM8TQTJ8fbubUO0c0qr7FgolRjTCNJeu1DZcB0SmjFBYwqnAd8pLERE99AcVSf4D6cHPTiKJYOgo4Mp1Pi-RA8QLlIjEBet43FSCMxFbql0D4CWfIhiny6YNcCPtYI5spBHr2N2BXgxWXdkB76pQ"/></div>
+
 <div class="flex flex-col items-center w-full max-w-xl mt-2" id="initial-empty-state">
 <p class="text-gray-600 text-center whitespace-nowrap mb-1" style="font-size: 14px; opacity: 1;">Terme spécifique avec le nombre de résultats</p>
 <div class="bg-brand-pill text-white px-4 py-3 rounded-xl flex items-center justify-between w-64 mb-6">
@@ -333,8 +336,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 <span class="bg-brand-pill-count text-white text-xs font-medium px-3 py-1 rounded-lg">16</span>
 </div>
-</div><div class="recherche-illustration w-[80px] h-[80px] flex justify-center items-center mb-2 mx-auto bg-transparent rounded-full overflow-hidden"><img alt="Search icon" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNlPf50R5XwUH0Oa0xPSpOoNcTySw1vc9v-vGSGzu_WJOY0Z8CVWXyj3vjfnsMIDE9TZL_U4n9I7HouzDBqr6Sp9T_TYHtYSpimM_bUe1HcepENNwju2E95c-NTJsM8TQTJ8fbubUO0c0qr7FgolRjTCNJeu1DZcB0SmjFBYwqnAd8pLERE99AcVSf4D6cHPTiKJYOgo4Mp1Pi-RA8QLlIjEBet43FSCMxFbql0D4CWfIhiny6YNcCPtYI5spBHr2N2BXgxWXdkB76pQ"/></div>
-<h1 data-purpose="c1euro-titre-recherche" class="text-base font-bold text-gray-800 text-center w-full mb-3">Recherche avec précision</h1>
+</div>
 <div class="relative w-full max-w-md shadow-sm rounded-xl bg-white flex items-center z-20 mb-2" id="search-bar-wrapper"><input autocomplete="off" class="w-full py-3 pl-5 pr-10 rounded-xl border-none focus:ring-2 focus:ring-brand-pill text-base text-gray-700 bg-transparent placeholder-gray-400" id="search-input" placeholder="Recherche" type="text"/><button aria-label="Submit search" class="absolute right-3 text-gray-800 hover:text-brand-pill transition-colors p-1.5"><i class="fa-solid fa-magnifying-glass text-lg"></i></button></div>
 <a class="text-[#7c7cff] underline font-medium text-sm mt-2 cursor-pointer hover:opacity-80 transition-opacity" data-nav="produits-multi-offre.html" onclick="location.href='produits-multi-offre.html'" href="produits-multi-offre.html" id="view-all-link" style="display: block; text-align: center;">Voir tous les résultats</a>
 <div class="w-full max-w-xl flex-col hidden mt-[30px]" id="search-results-state" data-purpose="recherche-resultats">
@@ -645,6 +647,27 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     window.addEventListener('load', filtrer);
     setTimeout(filtrer, 400);
     filtrer();
+  })();
+</script>
+
+<script data-purpose="recherche-ordre">
+  (function () {
+    var titre = document.querySelector('h1[data-purpose="c1euro-titre-recherche"]');
+    var icone = document.querySelector('.recherche-illustration');
+    var panneau = document.getElementById('search-results-state');
+    if (!titre || !icone || !panneau) return;
+    function ordonner() {
+      var motsClesAffiches = panneau.classList.contains('active');
+      if (motsClesAffiches) {
+        /* etat apres clic : illustration au-dessus du titre (etat juge parfait) */
+        titre.parentElement.insertBefore(icone, titre);
+      } else {
+        /* premiere vue : titre en premier, illustration juste en dessous */
+        titre.insertAdjacentElement('afterend', icone);
+      }
+    }
+    new MutationObserver(ordonner).observe(panneau, { attributes: true, attributeFilter: ['class', 'style'] });
+    ordonner();
   })();
 </script>
 
