@@ -384,13 +384,15 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     var libelle = document.createElement('span');
     libelle.className = 'text-[12px] text-on-surface-variant';
     libelle.textContent = 'Chrono';
+    /* gelule du chrono : rouge (couleur d'alerte de l'app) */
     var pastilleChrono = document.createElement('span');
-    pastilleChrono.className = 'demande-chrono h-[31px] px-[13px] rounded-full inline-flex items-center text-[15px] font-semibold text-on-surface bg-[#ffedd5] whitespace-nowrap';
+    pastilleChrono.className = 'demande-chrono h-[31px] px-[13px] rounded-full inline-flex items-center justify-center text-[15px] font-semibold text-white bg-error whitespace-nowrap';
+    /* gelule d'etat, SOUS le chrono : « En attente », puis « Fini » */
     var bouton = document.createElement('button');
     bouton.type = 'button';
-    bouton.className = 'demande-btn-fini h-[34px] px-[18px] rounded-full text-white text-sm font-medium shadow-sm';
-    bouton.style.backgroundColor = 'rgb(39, 60, 117)';
-    bouton.textContent = 'Fini';
+    bouton.className = 'demande-btn-fini h-[31px] px-[15px] rounded-full text-[13px] font-semibold whitespace-nowrap shadow-sm';
+    bouton.style.backgroundColor = '#ffedd5';
+    bouton.textContent = 'En attente';
     droite.appendChild(libelle);
     droite.appendChild(pastilleChrono);
     droite.appendChild(bouton);
@@ -407,8 +409,11 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       return deux(Math.floor(s / 3600)) + ':' + deux(Math.floor((s % 3600) / 60)) + ':' + deux(s % 60);
     }
     function dessinerStatut() {
-      statut.textContent = termine ? 'Terminée' : 'En attente';
-      statut.style.color = termine ? '#4CAF50' : '';
+      /* la gelule d'etat affiche « En attente » ou « Fini » */
+      bouton.textContent = termine ? 'Fini' : 'En attente';
+      bouton.style.backgroundColor = termine ? '#bbf7d0' : '#ffedd5';
+      bouton.style.color = termine ? '#1b5e20' : '';
+      statut.textContent = '';
     }
     function dessiner() {
       pastilleChrono.textContent = formater(secondes);
@@ -428,8 +433,6 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       clearInterval(minuteur);            /* le chrono est fige */
       bouton.disabled = true;
       bouton.setAttribute('aria-disabled', 'true');
-      bouton.style.backgroundColor = '#9aa4b8';
-      bouton.textContent = 'Terminé';
       bouton.setAttribute('aria-label', 'Demande ' + props.nom + ' terminée');
       carte.style.opacity = '.85';
       dessinerStatut();
