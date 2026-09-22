@@ -17,7 +17,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Quicksand', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
           },
           colors: {
             'brand-bg': '#fcf8ff',
@@ -290,7 +290,7 @@ html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba
   box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
 html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><style data-purpose="typographie">body{font-family:'Outfit',sans-serif;}h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style></head>
 
 <body class="font-sans text-brand-text w-screen min-h-screen flex flex-col relative overflow-x-hidden" style="background-color: var(--c-bg-alt, #fcf8ff);">
 
@@ -561,25 +561,22 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     function construirePoints() {
       var zone = document.getElementById('f2-points');
       if (!zone) return;
-      /* l'indicateur n'est qu'un repere de defilement : 3 gélules fixes,
-         pas un point par article (comme la page avis) */
-      if (zone.children.length !== 3) {
-        zone.innerHTML = '';
-        for (var i = 0; i < 3; i++) {
-          var d = document.createElement('span');
-          d.className = 'f2-point w-2 rounded-full bg-surface-container-highest';
-          d.style.height = '8px';
-          zone.appendChild(d);
-        }
+      var n = dernierCran() + 1;
+      if (zone.children.length === n) { majPoints(); return; }
+      zone.innerHTML = '';
+      for (var i = 0; i < n; i++) {
+        var d = document.createElement('span');
+        d.className = 'f2-point w-2 h-2 rounded-full bg-surface-container-highest';
+        d.setAttribute('data-cran', i);
+        zone.appendChild(d);
       }
       majPoints();
     }
     function majPoints() {
       var zone = document.getElementById('f2-points');
       if (!zone) return;
-      var max = liste.scrollHeight - liste.clientHeight;
-      var progression = max > 0 ? liste.scrollTop / max : 0;
-      var actif = Math.max(0, Math.min(2, Math.floor(progression * 3)));
+      var h = hauteurCran();
+      var actif = Math.round(liste.scrollTop / h);
       [].forEach.call(zone.children, function (d, i) {
         var on = i === actif;
         d.className = 'f2-point w-2 rounded-full ' + (on ? 'f2-point-actif' : 'bg-surface-container-highest');
@@ -608,7 +605,13 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     }
     function masquer(ligne, delai) {
       ligne.classList.add('f2-retire');
-      setTimeout(function () { ligne.style.display = 'none'; }, delai);
+      setTimeout(function () {
+        ligne.style.display = 'none';
+        /* on recalcule seulement maintenant : sinon la ligne en cours de
+           disparition comptait encore, la liste grandissait et un 4e article
+           apparaissait */
+        majCompteur();
+      }, delai);
     }
 
     lignes.forEach(function (ligne) {
