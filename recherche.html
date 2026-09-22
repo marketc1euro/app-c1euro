@@ -547,19 +547,23 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     }
     function construire() {
       if (!zone) return;
-      var n = Math.max(0, visibles().length - 6 + 1);
-      zone.innerHTML = '';
-      for (var i = 0; i < n; i++) {
-        var d = document.createElement('span');
-        d.className = 'recherche-point w-2 rounded-full bg-surface-container-highest';
-        d.style.height = '8px';
-        zone.appendChild(d);
+      /* repere de defilement : 3 gelules fixes, pas un point par resultat */
+      if (zone.children.length !== 3) {
+        zone.innerHTML = '';
+        for (var i = 0; i < 3; i++) {
+          var d = document.createElement('span');
+          d.className = 'recherche-point w-2 rounded-full bg-surface-container-highest';
+          d.style.height = '8px';
+          zone.appendChild(d);
+        }
       }
       maj();
     }
     function maj() {
       if (!zone) return;
-      var actif = Math.round(liste.scrollTop / cran());
+      var max = liste.scrollHeight - liste.clientHeight;
+      var progression = max > 0 ? liste.scrollTop / max : 0;
+      var actif = Math.max(0, Math.min(2, Math.floor(progression * 3)));
       [].forEach.call(zone.children, function (d, i) {
         var on = i === actif;
         d.className = 'recherche-point w-2 rounded-full ' + (on ? 'recherche-point-actif' : 'bg-surface-container-highest');
