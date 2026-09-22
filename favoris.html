@@ -543,12 +543,12 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     function restantes() {
       return lignes.filter(function (l) { return !l.classList.contains('f2-retire'); });
     }
-    /* exactement 4 lignes visibles : hauteur calculee sur les lignes elles-memes */
+    /* exactement 3 lignes visibles : hauteur calculee sur les lignes elles-memes */
     function ajusterHauteur() {
       var visibles = restantes();
-      if (visibles.length <= 4) { liste.style.height = ''; return; }
-      var quatrieme = visibles[3];
-      liste.style.height = (quatrieme.offsetTop + quatrieme.offsetHeight) + 'px';
+      if (visibles.length <= 3) { liste.style.height = ''; return; }
+      var troisieme = visibles[2];
+      liste.style.height = (troisieme.offsetTop + troisieme.offsetHeight) + 'px';
     }
     function hauteurCran() {
       return lignes[0] ? lignes[0].offsetHeight + 9 : 143;
