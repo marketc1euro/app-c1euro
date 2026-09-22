@@ -321,7 +321,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </button>
 <button class="w-10 h-10 bg-surface-container-low text-brand-pill rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-brand-pill/30 animate-pulse-ripple" data-nav="mapvideo.html" onclick="location.href='mapvideo.html'"><span class="material-symbols-outlined text-xl text-on-surface">location_on</span></button>
 <div class="h-6 w-px bg-surface-container-highest mx-2"></div>
-<button class="w-10 h-10 bg-primary text-white rounded-[15px] flex items-center justify-center relative hover:bg-primary/90 transition-colors shadow-sm" style="background-color: rgb(26, 35, 126);" data-nav="livraison.html" onclick="location.href='livraison.html'">
+<button class="w-10 h-10 bg-primary text-white rounded-[15px] flex items-center justify-center relative hover:bg-primary/90 transition-colors shadow-sm" style="background-color: rgb(26, 35, 126);" data-nav="demandes.html" onclick="location.href='demandes.html'">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
 <span class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-[500] rounded-[15px] h-5 w-5 flex items-center justify-center shadow-sm">1</span>
 </button>
@@ -335,15 +335,17 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">close</span></button>
 </div>
 
-<!-- Retour / fermer : même positionnement que sur les autres pages -->
-
-
 <main class="w-full max-w-[720px] mx-auto px-4 pt-[96px] md:pt-[110px] flex flex-col items-center">
   <h1 class="font-heading font-bold text-on-surface text-2xl md:text-[28px] text-center">Mes demandes</h1>
-  <div id="demandes-liste" class="w-full flex flex-col gap-[9px] mt-[18px] overflow-hidden" role="list" aria-label="Liste de mes demandes"></div>
+  <div class="relative w-full">
+    <div id="demandes-liste" class="w-full flex flex-col gap-[9px] mt-[18px]" role="list" aria-label="Liste de mes demandes"></div>
+    <div id="demandes-indic" class="hidden md:flex flex-col items-center absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
+      <div id="demandes-points" class="flex flex-col items-center gap-1.5"></div>
+    </div>
+  </div>
 </main>
 
-<script>var DEMANDES = [{"nom": "Basket Nike", "prix": "129,99 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBnrr5Sq4i0Y2mkCEvn-Zmk5sXLyDVt0aIoHRm0VWSAvauVCBlEgyzRtclQYxxbOEQXKUhymPc6b29Am_SvLpVUGaU3SUqgUYt_TkAtWjy_skHIlZuScejq_7pj6laAHMbiE5LTnEt7AIUcRIvI_Y7bI0e9RcKxrYkoLXqegoTtvDoIKzgBvNiUUa7okjFgpoV6EBirY0nBo6nZXaSob5VgWOTfR3S06EwpdT23Hk8lMUXQmwrKsCuXGi6VxMtGWW6ttDPvpoVSbG60vG0", "chrono": 45245, "statut": "en-attente"}, {"nom": "MacBook Pro M2", "prix": "1 299 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDKU6HZ21lDO_HhBQO-aTviV3O7Hfj0YyvVc_HXnZ52aKNohNEz6BZvUn3u3yxEk6rtrFJFgprRR-qFP9qutbxysiWcAyA8bIiTjhpwiES-pMP_mRdTblzQq2ORUlTJbUHA0xWG88eOBZVKDq3edEHQJJ-Wz6cAV5QGNWow5P6TFT3JLFTGNENvqQYdA-GrSOV0WO6sPrvEUqil2NLmI2VSNbVmHtmdi5ii7OlJo6HTNp82_DDQi-Dg1dcSqAUrZdpSwxeVVKch8pOHF5o", "chrono": 11272, "statut": "en-attente"}, {"nom": "XIAOMI Friteuse à Air", "prix": "120 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDTMkDXbQsMH_nMDM7wdKkIolcwUPAF6tkxq0CFBmOIeaZRzlbNoDGzrR4TkRoRQu96A9rQwVQkLVxMJtrxXqum-cRparYHixy3V8rqU7HLOUB9VoDQsz7dNWiIitfvo5cosiWeh0A8t57-DdctXsGQWmAQYG-qnqfQeARHDNFn7yp2OJJXmo_Ih58Cnb2gEzrghNstpoGnoNViebOkJg_pzYgr-kxI72imdsT8GVfrocQIQcTWMoxgBA4G4m3SWGguiv54CTIf3ZvfGIg", "chrono": 2718, "statut": "en-attente"}, {"nom": "BASKET NIKE TN", "prix": "14 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqNCnOj2oVOcnhbJbZmHzqn42IDE0OHt02AEBQPbUqEAGN-kqEji-qxUYSlEotwGM7h573KxG70QI-R2F3NrCpJxjNTcQH4R7BD5-WPfyl8pBIaCNcjCxG1ZdaieCkXJP86NpTyQH6sYFr79-3fM2uZLU-BKw8rkBOZ_2WRmvcOi_cmBs9DJzYhuzLufRhc02uEAVU2D-iDRauSH0ZadLGZQNJCmkhprxtkNi2nLzJUxdmDqfxg6aD_WLkDNGK67dKtnqpRGyH38B7nnA", "chrono": 10780, "statut": "en-attente"}];</script>
+<script>var DEMANDES = [{"nom": "Nike Air Max 1 Tokyo", "prix": "129,99 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDHB8u5h-_xwitkxXXq8OJiBDoCcIcgKaDjgyNpNjaFJNP4vrexou1vXHqeP9YECCZ5f7HNAHaV_xKd3O0j3bzZIZgsvn9Yh9vQ1vngfHEwkpfVG5JhszVp7nqsgYepcG479la0w2vrXEF7mjFumfGyWQ6X5LDtjABqPA7zZcmvT6yU7eoZGdPf0va9iGRG2KiBETxNbGTrIUIxSkpILOIZrjsH99zDS5w6Wv40CnHefqfVD6nnGdUMkzYwheq2-oyiOXQ", "chrono": 45245, "statut": "en-attente"}, {"nom": "Montre connectée", "prix": "149 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqNCnOj2oVOcnhbJbZmHzqn42IDE0OHt02AEBQPbUqEAGN-kqEji-qxUYSlEotwGM7h573KxG70QI-R2F3NrCpJxjNTcQH4R7BD5-WPfyl8pBIaCNcjCxG1ZdaieCkXJP86NpTyQH6sYFr79-3fM2uZLU-BKw8rkBOZ_2WRmvcOi_cmBs9DJzYhuzLufRhc02uEAVU2D-iDRauSH0ZadLGZQNJCmkhprxtkNi2nLzJUxdmDqfxg6aD_WLkDNGK67dKtnqpRGyH38B7nnA", "chrono": 11272, "statut": "en-attente"}, {"nom": "iPhone 15 Pro", "prix": "1 199 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDKU6HZ21lDO_HhBQO-aTviV3O7Hfj0YyvVc_HXnZ52aKNohNEz6BZvUn3u3yxEk6rtrFJFgprRR-qFP9qutbxysiWcAyA8bIiTjhpwiES-pMP_mRdTblzQq2ORUlTJbUHA0xWG88eOBZVKDq3edEHQJJ-Wz6cAV5QGNWow5P6TFT3JLFTGNENvqQYdA-GrSOV0WO6sPrvEUqil2NLmI2VSNbVmHtmdi5ii7OlJo6HTNp82_DDQi-Dg1dcSqAUrZdpSwxeVVKch8pOHF5o", "chrono": 2718, "statut": "en-attente"}, {"nom": "BASKET NIKE TN", "prix": "14 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDTMkDXbQsMH_nMDM7wdKkIolcwUPAF6tkxq0CFBmOIeaZRzlbNoDGzrR4TkRoRQu96A9rQwVQkLVxMJtrxXqum-cRparYHixy3V8rqU7HLOUB9VoDQsz7dNWiIitfvo5cosiWeh0A8t57-DdctXsGQWmAQYG-qnqfQeARHDNFn7yp2OJJXmo_Ih58Cnb2gEzrghNstpoGnoNViebOkJg_pzYgr-kxI72imdsT8GVfrocQIQcTWMoxgBA4G4m3SWGguiv54CTIf3ZvfGIg", "chrono": 10780, "statut": "en-attente"}, {"nom": "Basket Nike", "prix": "119 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k", "chrono": 18753, "statut": "en-attente"}, {"nom": "Casque Bluetooth", "prix": "79,99 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBW3DDItvubzP1eHGNOkjmIUDVSEXqGHBLLpOxAZI49MjwXRmMs2FIgAprOhvKMcshC48aNKfZ-pJREJ4ml8AtOqzytJ_EayDjyajORVdLK_EKEwjU2BZ8UAY7Vo5ThZC8BsWtjQ_zAjq798mnPsj6icXAv9PNwSII7VmLlxNLCq2NlBTmjObTEEmEG3TYlSpb15GuVqX9nNUYPrKDXXhXbMZY5TprqSbgJ68asQBM6MRdsW6ZhSAdvlx9o6M4ihYgXw1AlwY7QdQPU_zY", "chrono": 1629, "statut": "en-attente"}, {"nom": "Veste de printemps", "prix": "89 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD-DspBnlO8WvA8DXjxuahYrt3J0vTvsgFDfm21U-Gv_uoXEZ4GdNQCXgHwwUWUjwYCidapfY_mRQ4oO4R6cLYRITpyLI4g0ZpCZ2jQPhr3I0j85GYnSFUGpZH4ZBCCDpHCpr6RDyZ-gCAt4w6hHsfqo5nkRS3c-krgX3694XxGzf8z80SJYGT9WhflXQWkpBRLg2EUId4J88TXAw5LgjoQeOJdwVQRNR5SOWjzYzLD2BG8ukt1j6gTvi_rW89mCGtWGzD33kNJJ2UtA-o", "chrono": 6482, "statut": "en-attente"}, {"nom": "Tapis pour salon", "prix": "22 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuB1eL4zlqNKtdT5ZhEFO3moi4c1A0TeyzyO1BmYcsUFqlZR1SmWWDX-IfjNpJopyfVxZiG9fa9IVWwDE9fZn7sPBsCJmwFCEhLsYUgBOeYujbPm4JXInrdz2PIynCfX0S2vHAeYmNHAJAyakoOMcDIVvveE_s38USa2s2vjxAea4tHbf11H_j0psp_9I2gV7bpOxHs6O3ZWg7SqMpwmfwnHh9Gd7jFi-ha0gpfBfkFOyAB9t_q2IVDqOl3WoKadnZBzLQoNmrOeyfmkdrc", "chrono": 587, "statut": "en-attente"}];</script>
 <script data-purpose="demandes-composant">
   /* ------------------------------------------------------------------
      Composant reutilisable : DemandeCard
@@ -352,7 +354,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
      ------------------------------------------------------------------ */
   function DemandeCard(props) {
     var carte = document.createElement('article');
-    carte.className = 'flex items-center gap-[18px] p-[13px] rounded-[18px] bg-white';
+    carte.className = 'demande-carte flex items-center gap-[18px] p-[13px] rounded-[18px] bg-white';
     carte.setAttribute('role', 'listitem');
 
     var vignette = document.createElement('div');
@@ -440,10 +442,91 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
   document.addEventListener('DOMContentLoaded', function () {
     var liste = document.getElementById('demandes-liste');
+    var zone = document.getElementById('demandes-points');
     if (!liste) return;
     DEMANDES.forEach(function (d) {
       liste.appendChild(DemandeCard(d));
     });
+
+    var cartes = [].slice.call(liste.querySelectorAll('.demande-carte'));
+    var VISIBLES = 4;
+
+    function cran() { return cartes[0] ? cartes[0].offsetHeight + 9 : 143; }
+    /* exactement 4 cartes visibles */
+    function ajuster() {
+      if (cartes.length <= VISIBLES) { liste.style.height = ''; return; }
+      var quatrieme = cartes[VISIBLES - 1];
+      liste.style.height = (quatrieme.offsetTop + quatrieme.offsetHeight) + 'px';
+    }
+    function dernier() {
+      var max = liste.scrollHeight - liste.clientHeight;
+      return Math.max(0, Math.round(max / cran()));
+    }
+    /* indicateur : 3 gelules fixes, l'active suit la progression */
+    function construire() {
+      if (!zone) return;
+      if (zone.children.length !== 3) {
+        zone.innerHTML = '';
+        for (var i = 0; i < 3; i++) {
+          var d = document.createElement('span');
+          d.className = 'demande-point w-2 rounded-full bg-surface-container-highest';
+          d.style.height = '8px';
+          zone.appendChild(d);
+        }
+      }
+      maj();
+    }
+    function maj() {
+      if (!zone) return;
+      var max = liste.scrollHeight - liste.clientHeight;
+      var progression = max > 0 ? liste.scrollTop / max : 0;
+      var actif = Math.max(0, Math.min(2, Math.floor(progression * 3)));
+      [].forEach.call(zone.children, function (d, i) {
+        var on = i === actif;
+        d.className = 'demande-point w-2 rounded-full ' + (on ? 'demande-point-actif' : 'bg-surface-container-highest');
+        d.style.height = on ? '20px' : '8px';
+      });
+    }
+    var enCours = false, dernierGeste = 0;
+    function avancer(pas) {
+      var h = cran();
+      var cible = Math.round(liste.scrollTop / h) + pas;
+      cible = Math.max(0, Math.min(dernier(), cible));
+      var haut = cible * h;
+      enCours = true;
+      liste.scrollTo({ top: haut, behavior: 'smooth' });
+      var essais = 0;
+      var veille = setInterval(function () {
+        essais++;
+        if (Math.abs(liste.scrollTop - haut) < 2 || essais > 40) {
+          clearInterval(veille);
+          setTimeout(function () { enCours = false; }, 120);
+        }
+      }, 25);
+    }
+    liste.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) < 2) return;
+      e.preventDefault();
+      var maintenant = Date.now();
+      var memeGeste = maintenant - dernierGeste < 160;
+      dernierGeste = maintenant;
+      if (enCours || memeGeste) return;
+      avancer(e.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+    liste.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (enCours) return;
+        avancer(e.key === 'ArrowDown' ? 1 : -1);
+      }
+    });
+    liste.setAttribute('tabindex', '0');
+    liste.addEventListener('scroll', maj);
+    function rafraichir() { ajuster(); construire(); }
+    window.addEventListener('resize', rafraichir);
+    window.addEventListener('load', rafraichir);
+    setTimeout(rafraichir, 300);
+    rafraichir();
   });
 </script>
 
@@ -452,7 +535,13 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   /* pleine page, aucun defilement : rien ne doit depasser */
   html, body { height: 100%; overflow: hidden; }
   body { touch-action: none; }
-  #demandes-liste { max-height: 100%; }
+  /* la liste defile sur elle-meme : 4 cartes visibles, defilement crande */
+  #demandes-liste { position: relative; overflow-y: auto; scroll-snap-type: y mandatory;
+    scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
+  #demandes-liste::-webkit-scrollbar { width: 0; height: 0; }
+  .demande-carte { scroll-snap-align: start; scroll-snap-stop: always; }
+  .demande-point { transition: background-color .3s ease, height .3s ease; }
+  .demande-point-actif { background-color: var(--c-text, #131b2e); }
   .demande-chrono { font-variant-numeric: tabular-nums; letter-spacing: .02em; }
   .demande-btn-fini { transition: opacity .25s ease, transform .2s ease; }
   .demande-btn-fini:hover:not(:disabled) { opacity: .92; transform: translateY(-1px); }
