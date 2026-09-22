@@ -1120,14 +1120,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', function (e) {
       /* on remonte les parents jusqu'a trouver une vignette ronde de produit :
          peu importe la structure du marqueur, l'ouverture marchera pareil */
-      var noeud = e.target, image = null;
-      while (noeud && noeud !== document.body) {
-        if (noeud.querySelector) {
-          var trouve = noeud.querySelector('img.rounded-full');
-          if (trouve) { image = trouve; break; }
-        }
-        noeud = noeud.parentElement;
-      }
+      /* uniquement un marqueur de la carte : un clic ailleurs (dans le vide,
+         sur la carte, sur une pastille de prix) ne fait rien */
+      var marqueur = e.target && e.target.closest
+        ? e.target.closest('.leaflet-marker-icon, .custom-div-icon') : null;
+      if (!marqueur) return;
+      var image = marqueur.querySelector('img');
       if (!image) return;                       /* pastille de prix : on ne touche pas */
       var vignette = document.querySelector('#thumbnail-view img');
       if (vignette) vignette.src = image.src;
