@@ -294,10 +294,45 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <body class="font-sans text-brand-text w-screen h-screen overflow-hidden flex items-center justify-center" style="background-color: var(--c-bg-alt, #fcf8ff);">
 
+<!-- Menu du haut : le même que sur les autres pages -->
+<header class="bg-white shadow-sm fixed top-0 w-full z-50 py-5 px-8 md:px-16 lg:px-32 xl:px-48 flex items-center justify-between gap-8 border-b border-surface-container-low" data-purpose="main-header">
+<!-- Logo area -->
+<div class="flex items-center gap-4"><img alt="C1EURO Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD686S0bEYgeUb9wx66Y4EJUEiSGXj37DTBVcQmNLwwpEKC_FQNUBBwbzOdG8-dclQP6IZUMdD5jahvckQKbwW1V__wUt9YuZyURKdSgqgSmWVXDTe5CpXB4MMqDdq7oH--XV5Se8HpN5KxM_XH3p_v6cXL8hj_cKbV6l-zVHNMV8CZcjK0yfg28iX5fmeN0Wr9smhXJFWTqqGqc7Z60pA0OJYM5V7x0NwsqcgN_qwrmQLW7rPq8NS2cm7EX2OWLTsE5TM"></div>
+<!-- Search Bar -->
+<div class="flex-grow max-w-3xl hidden md:block">
+<div class="relative w-full">
+<input class="w-full bg-surface-container-low border border-surface-container-high rounded-[15px] py-3.5 px-6 pl-12 text-sm focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant/70 text-on-surface font-[500]" id="search-input" placeholder="Recherche, mot clés" type="text" data-nav="recherche.html" onkeydown="if(event.key==='Enter'){location.href='recherche.html'}">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer" data-nav="recherche.html" onclick="location.href='recherche.html'">
+<svg class="h-5 w-5 text-on-surface-variant/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+</div>
+</div>
+</div>
+<!-- Right Icons -->
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="liste-menu.html" onclick="location.href='liste-menu.html'">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="favoris.html" onclick="location.href='favoris.html'">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-brand-pill rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-brand-pill/30 animate-pulse-ripple" data-nav="mapvideo.html" onclick="location.href='mapvideo.html'"><span class="material-symbols-outlined text-xl text-on-surface">location_on</span></button>
+<div class="h-6 w-px bg-surface-container-highest mx-2"></div>
+<button class="w-10 h-10 bg-primary text-white rounded-[15px] flex items-center justify-center relative hover:bg-primary/90 transition-colors shadow-sm" style="background-color: rgb(26, 35, 126);" data-nav="livraison.html" onclick="location.href='livraison.html'">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-[500] rounded-[15px] h-5 w-5 flex items-center justify-center shadow-sm">1</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-surface-container-highest hover:border-primary transition-colors cursor-pointer shadow-sm" data-nav="connexion.html" onclick="location.href='connexion.html'"><img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA"></div>
+</div>
+</header>
+
 <!-- Retour / fermer : même positionnement que sur les autres pages -->
 
 
-<main class="w-full max-w-[720px] mx-auto px-4 flex flex-col items-center">
+<main class="w-full max-w-[720px] mx-auto px-4 pt-[96px] md:pt-[110px] flex flex-col items-center">
   <h1 class="font-heading font-bold text-on-surface text-2xl md:text-[28px] text-center">Mes demandes</h1>
   <div id="demandes-liste" class="w-full flex flex-col gap-[9px] mt-[18px] overflow-hidden" role="list" aria-label="Liste de mes demandes"></div>
 </main>
