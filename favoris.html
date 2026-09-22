@@ -313,7 +313,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </div>
 <!-- Right Icons -->
 <div class="flex items-center gap-3">
-<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="recherche.html" onclick="location.href='recherche.html'">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="liste-menu.html" onclick="location.href='liste-menu.html'">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
 </button>
 <button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="favoris.html" onclick="location.href='favoris.html'">
@@ -732,7 +732,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   #f2-liste::-webkit-scrollbar { width: 0; height: 0; }
   .f2-ligne { transition: opacity .3s ease, transform .3s ease, background-color .2s ease; }
   .f2-retire { opacity: 0; transform: translateX(-14px); }
-  /* survols : gris un peu plus fonce en clair, surface foncee en sombre */
+  /* container tres leger au repos (arrondi), puis survol un peu plus fonce */
+  .f2-ligne { background-color: #f6f7fb; }
+  html.dark .f2-ligne { background-color: #151c26; }
   .f2-ligne:hover { background-color: #e7eaf1; }
   html.dark .f2-ligne:hover { background-color: #1b2331; }
   .f2-ajout:hover { background-color: #cfe0fb; }
