@@ -561,22 +561,25 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     function construirePoints() {
       var zone = document.getElementById('f2-points');
       if (!zone) return;
-      var n = dernierCran() + 1;
-      if (zone.children.length === n) { majPoints(); return; }
-      zone.innerHTML = '';
-      for (var i = 0; i < n; i++) {
-        var d = document.createElement('span');
-        d.className = 'f2-point w-2 h-2 rounded-full bg-surface-container-highest';
-        d.setAttribute('data-cran', i);
-        zone.appendChild(d);
+      /* repere de defilement : 3 gelules FIXES, quel que soit le nombre
+         d'articles (et donc inchange quand on supprime un favori) */
+      if (zone.children.length !== 3) {
+        zone.innerHTML = '';
+        for (var i = 0; i < 3; i++) {
+          var d = document.createElement('span');
+          d.className = 'f2-point w-2 rounded-full bg-surface-container-highest';
+          d.style.height = '8px';
+          zone.appendChild(d);
+        }
       }
       majPoints();
     }
     function majPoints() {
       var zone = document.getElementById('f2-points');
       if (!zone) return;
-      var h = hauteurCran();
-      var actif = Math.round(liste.scrollTop / h);
+      var max = liste.scrollHeight - liste.clientHeight;
+      var progression = max > 0 ? liste.scrollTop / max : 0;
+      var actif = Math.max(0, Math.min(2, Math.floor(progression * 3)));
       [].forEach.call(zone.children, function (d, i) {
         var on = i === actif;
         d.className = 'f2-point w-2 rounded-full ' + (on ? 'f2-point-actif' : 'bg-surface-container-highest');
