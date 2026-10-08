@@ -296,7 +296,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <style data-purpose="contact-web">
   /* les gelules demandees font 60 px d'epaisseur */
-  .contact-gelule { height: 60px; }
+  .contact-gelule { height: 52px; }
   /* les tuiles restent carrees, y compris sur mobile */
   .contact-tuile { width: 100%; aspect-ratio: 1 / 1; }
   .contact-tuile .pastille { width: 42px; height: 42px; }
@@ -309,9 +309,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   }
   .contact-pulse { animation: contact-pulse 2s ease-out infinite; }
   @keyframes contact-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, .55); }
-    70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(39, 60, 117, .55); }
+    70% { box-shadow: 0 0 0 14px rgba(39, 60, 117, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(39, 60, 117, 0); }
   }
   @media (prefers-reduced-motion: reduce) { .contact-pulse { animation: none !important; } }
 </style>
@@ -359,11 +359,11 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
 <main class="w-full max-w-[760px] mx-auto px-4 pt-[92px] md:pt-[100px] flex flex-col items-center">
 
-  <div class="w-full bg-white rounded-[26px] shadow-sm border border-surface-container-high px-6 md:px-10 py-6 flex flex-col items-center">
+  <div class="w-full flex flex-col items-center">
 
     <!-- logo WhatsApp + titre -->
-    <span class="w-[58px] h-[58px] rounded-full flex items-center justify-center shadow-sm" style="background-color: #25D366;">
-      <i class="fa-brands fa-whatsapp text-white" style="font-size: 32px;" aria-hidden="true"></i>
+    <span class="contact-gelule w-[52px] rounded-full flex items-center justify-center shadow-sm" style="background-color: rgb(39, 60, 117);" role="img" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp" style="font-size: 28px; color: #ffffff;" aria-hidden="true"></i>
     </span>
     <h1 class="font-heading font-bold text-on-surface text-[24px] md:text-[28px] text-center mt-3">Contact WhatsApp</h1>
 
@@ -374,9 +374,9 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
     <!-- rôle + rond WhatsApp qui pulse (gélule de 60 px) -->
     <div class="mt-5 w-full flex items-center justify-center gap-4">
-      <span class="contact-gelule px-9 rounded-full inline-flex items-center text-on-surface text-[17px] font-semibold" style="background-color: var(--c-chip, #E2EFFE);">Gérant</span>
-      <span class="contact-gelule w-[60px] rounded-full flex items-center justify-center text-white contact-pulse" style="background-color: #25D366;" role="img" aria-label="Disponible sur WhatsApp">
-        <i class="fa-brands fa-whatsapp" style="font-size: 30px;" aria-hidden="true"></i>
+      <span class="contact-gelule px-12 rounded-full inline-flex items-center text-on-surface text-[17px] font-semibold" style="background-color: var(--c-chip, #E2EFFE);">Gérant</span>
+      <span class="contact-gelule w-[52px] rounded-full flex items-center justify-center text-white contact-pulse" style="background-color: rgb(39, 60, 117);" role="img" aria-label="Disponible sur WhatsApp">
+        <i class="fa-brands fa-whatsapp" style="font-size: 28px;" aria-hidden="true"></i>
       </span>
     </div>
 
@@ -388,7 +388,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 
     <!-- gélule J'ai un problème (60 px) -->
     <button type="button" aria-label="Signaler un problème"
-            class="contact-gelule mt-5 px-9 rounded-full inline-flex items-center border font-semibold text-[16px]" style="border-color: #ba1a1a; color: #ba1a1a; background-color: transparent;">
+            class="contact-gelule mt-5 px-12 rounded-full inline-flex items-center border font-semibold text-[16px]" style="border-color: #ba1a1a; color: #ba1a1a; background-color: transparent;">
       J'ai un problème
     </button>
 
