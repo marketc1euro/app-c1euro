@@ -299,13 +299,13 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   .contact-gelule { height: 52px; }
   /* les tuiles restent carrees, y compris sur mobile */
   .contact-tuile { width: 100%; aspect-ratio: 1 / 1; }
-  .contact-tuile .pastille { width: 42px; height: 42px; }
-  .contact-tuile .icone { font-size: 20px; }
-  .contact-tuile .libelle { font-size: 11px; }
+  .contact-tuile .pastille { width: 30px; height: 30px; }
+  .contact-tuile .icone { font-size: 14px; }
+  .contact-tuile .libelle { font-size: 9px; }
   @media (min-width: 640px) {
-    .contact-tuile .pastille { width: 58px; height: 58px; }
-    .contact-tuile .icone { font-size: 26px; }
-    .contact-tuile .libelle { font-size: 15px; }
+    .contact-tuile .pastille { width: 41px; height: 41px; }
+    .contact-tuile .icone { font-size: 18px; }
+    .contact-tuile .libelle { font-size: 11px; }
   }
   .contact-pulse { animation: contact-pulse 2s ease-out infinite; }
   @keyframes contact-pulse {
@@ -368,7 +368,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     <h1 class="font-heading font-bold text-on-surface text-[24px] md:text-[28px] text-center mt-3">Contact WhatsApp</h1>
 
     <!-- photo ronde du vendeur -->
-    <div class="mt-5 w-[106px] h-[106px] rounded-full overflow-hidden border-[3px] shadow-md" style="border-color: var(--c-card, #ffffff);">
+    <div class="mt-5 w-[85px] h-[85px] rounded-full overflow-hidden border-[3px] shadow-md" style="border-color: var(--c-card, #ffffff);">
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA" alt="Photo de profil du vendeur" class="w-full h-full object-cover rounded-full">
     </div>
 
@@ -393,7 +393,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
     </button>
 
     <!-- les trois carrés d'action -->
-    <div class="mt-6 w-full max-w-[560px] mx-auto grid grid-cols-3 gap-4">
+    <div class="mt-6 w-full max-w-[400px] mx-auto grid grid-cols-3 gap-4">
       <button type="button" aria-label="Contact WhatsApp" class="contact-tuile aspect-square rounded-[22px] flex flex-col items-center justify-center gap-3 text-white shadow-md hover:opacity-95 transition-opacity" style="background-color: rgb(39, 60, 117);">
         <span class="pastille rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,.16);">
           <i class="fa-brands fa-whatsapp icone" style="color: #ffffff;" aria-hidden="true"></i>
