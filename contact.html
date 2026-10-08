@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>C1EURO - Mes demandes</title>
+<title>C1EURO - Contact</title>
 <!-- Include Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts: Quicksand -->
@@ -290,7 +290,7 @@ html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba
   box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
 html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><style data-purpose="typographie">body{font-family:'Outfit',sans-serif;}h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style><style data-purpose="typographie-homogene">body,h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style></head>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><style data-purpose="typographie">body{font-family:'Outfit',sans-serif;}h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style><style data-purpose="typographie-homogene">body,h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></head>
 
 <body class="font-sans text-brand-text w-screen h-screen overflow-hidden flex items-center justify-center" style="background-color: var(--c-bg-alt, #fcf8ff);">
 
@@ -335,238 +335,45 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">close</span></button>
 </div>
 
-<main class="w-full max-w-[720px] mx-auto px-4 pt-[96px] md:pt-[110px] flex flex-col items-center">
-  <h1 class="font-heading font-bold text-on-surface text-2xl md:text-[28px] text-center">Mes demandes</h1>
-  <div class="relative w-full">
-    <div id="demandes-liste" class="w-full flex flex-col gap-[9px] mt-[18px]" role="list" aria-label="Liste de mes demandes"></div>
-    <div id="demandes-indic" class="hidden md:flex flex-col items-center absolute top-1/2 -translate-y-1/2 -right-12" aria-hidden="true">
-      <div id="demandes-points" class="flex flex-col items-center gap-1.5"></div>
-    </div>
+<main class="w-full max-w-[560px] mx-auto px-4 pt-[96px] md:pt-[104px] flex flex-col items-center">
+
+  <!-- 1. logo WhatsApp + titre -->
+  <div class="flex flex-col items-center gap-3">
+    <span class="w-[56px] h-[56px] rounded-full flex items-center justify-center shadow-sm" style="background-color: #25D366;">
+      <i class="fa-brands fa-whatsapp text-white" style="font-size: 30px;" aria-hidden="true"></i>
+    </span>
+    <h1 class="font-heading font-bold text-on-surface text-2xl md:text-[28px] text-center">Contact par WhatsApp</h1>
   </div>
+
+  <!-- 2. photo de profil du vendeur, ronde -->
+  <div class="mt-7 w-[112px] h-[112px] rounded-full overflow-hidden border-[3px] shadow-md" style="border-color: var(--c-card, #ffffff);">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA" alt="Photo de profil du vendeur" class="w-full h-full object-cover rounded-full">
+  </div>
+
+  <!-- 3. rôle + rond WhatsApp qui pulse -->
+  <div class="mt-6 flex items-center justify-center gap-3">
+    <span class="h-[34px] px-[18px] rounded-full inline-flex items-center text-on-surface text-[15px] font-semibold" style="background-color: var(--c-chip, #E2EFFE);">Gérant</span>
+    <span class="relative w-[34px] h-[34px] rounded-full flex items-center justify-center text-white animate-pulse-ripple" style="background-color: #25D366;" role="img" aria-label="Disponible sur WhatsApp">
+      <i class="fa-brands fa-whatsapp text-[20px]" aria-hidden="true"></i>
+    </span>
+  </div>
+
+  <!-- 4. J'ai un problème + gélule -->
+  <div class="mt-8 flex flex-col items-center gap-2">
+    <span class="text-[13px] text-on-surface-variant">J'ai un problème</span>
+    <a href="demandes.html" data-nav="demandes.html" onclick="location.href='demandes.html'"
+       class="h-[34px] px-[18px] rounded-full inline-flex items-center text-on-surface text-[15px] font-semibold cursor-pointer" style="background-color: #ffedd5;">J'ai un problème</a>
+  </div>
+
+  <!-- 5. les trois boutons -->
+  <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+    <button type="button" aria-label="Contacter le vendeur sur WhatsApp"
+            class="h-[44px] px-[22px] rounded-full text-white font-medium shadow-sm hover:opacity-90 transition-opacity" style="background-color: #25D366;">Contact WhatsApp</button>
+    <button type="button" aria-label="Voir ma demande"
+            class="h-[44px] px-[22px] rounded-full text-white font-medium shadow-sm hover:opacity-90 transition-opacity" style="background-color: rgb(39, 60, 117);">Ma demande</button>
+    <button type="button" aria-label="Voir notre arrangement"
+            class="h-[44px] px-[22px] rounded-full bg-surface-container-low border border-surface-container-highest text-on-surface font-medium hover:bg-surface-container-high transition-colors">Notre arrangement</button>
+  </div>
+
 </main>
-
-<script>var DEMANDES = [{"nom": "Nike Air Max 1 Tokyo", "prix": "129,99 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDHB8u5h-_xwitkxXXq8OJiBDoCcIcgKaDjgyNpNjaFJNP4vrexou1vXHqeP9YECCZ5f7HNAHaV_xKd3O0j3bzZIZgsvn9Yh9vQ1vngfHEwkpfVG5JhszVp7nqsgYepcG479la0w2vrXEF7mjFumfGyWQ6X5LDtjABqPA7zZcmvT6yU7eoZGdPf0va9iGRG2KiBETxNbGTrIUIxSkpILOIZrjsH99zDS5w6Wv40CnHefqfVD6nnGdUMkzYwheq2-oyiOXQ", "chrono": 372, "statut": "en-attente"}, {"nom": "Montre connectée", "prix": "149 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqNCnOj2oVOcnhbJbZmHzqn42IDE0OHt02AEBQPbUqEAGN-kqEji-qxUYSlEotwGM7h573KxG70QI-R2F3NrCpJxjNTcQH4R7BD5-WPfyl8pBIaCNcjCxG1ZdaieCkXJP86NpTyQH6sYFr79-3fM2uZLU-BKw8rkBOZ_2WRmvcOi_cmBs9DJzYhuzLufRhc02uEAVU2D-iDRauSH0ZadLGZQNJCmkhprxtkNi2nLzJUxdmDqfxg6aD_WLkDNGK67dKtnqpRGyH38B7nnA", "chrono": 225, "statut": "en-attente"}, {"nom": "iPhone 15 Pro", "prix": "1 199 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDKU6HZ21lDO_HhBQO-aTviV3O7Hfj0YyvVc_HXnZ52aKNohNEz6BZvUn3u3yxEk6rtrFJFgprRR-qFP9qutbxysiWcAyA8bIiTjhpwiES-pMP_mRdTblzQq2ORUlTJbUHA0xWG88eOBZVKDq3edEHQJJ-Wz6cAV5QGNWow5P6TFT3JLFTGNENvqQYdA-GrSOV0WO6sPrvEUqil2NLmI2VSNbVmHtmdi5ii7OlJo6HTNp82_DDQi-Dg1dcSqAUrZdpSwxeVVKch8pOHF5o", "chrono": 510, "statut": "en-attente"}, {"nom": "BASKET NIKE TN", "prix": "14 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDTMkDXbQsMH_nMDM7wdKkIolcwUPAF6tkxq0CFBmOIeaZRzlbNoDGzrR4TkRoRQu96A9rQwVQkLVxMJtrxXqum-cRparYHixy3V8rqU7HLOUB9VoDQsz7dNWiIitfvo5cosiWeh0A8t57-DdctXsGQWmAQYG-qnqfQeARHDNFn7yp2OJJXmo_Ih58Cnb2gEzrghNstpoGnoNViebOkJg_pzYgr-kxI72imdsT8GVfrocQIQcTWMoxgBA4G4m3SWGguiv54CTIf3ZvfGIg", "chrono": 1745, "statut": "en-attente"}, {"nom": "Basket Nike", "prix": "119 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k", "chrono": 740, "statut": "en-attente"}, {"nom": "Casque Bluetooth", "prix": "79,99 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBW3DDItvubzP1eHGNOkjmIUDVSEXqGHBLLpOxAZI49MjwXRmMs2FIgAprOhvKMcshC48aNKfZ-pJREJ4ml8AtOqzytJ_EayDjyajORVdLK_EKEwjU2BZ8UAY7Vo5ThZC8BsWtjQ_zAjq798mnPsj6icXAv9PNwSII7VmLlxNLCq2NlBTmjObTEEmEG3TYlSpb15GuVqX9nNUYPrKDXXhXbMZY5TprqSbgJ68asQBM6MRdsW6ZhSAdvlx9o6M4ihYgXw1AlwY7QdQPU_zY", "chrono": 160, "statut": "en-attente"}, {"nom": "Veste de printemps", "prix": "89 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD-DspBnlO8WvA8DXjxuahYrt3J0vTvsgFDfm21U-Gv_uoXEZ4GdNQCXgHwwUWUjwYCidapfY_mRQ4oO4R6cLYRITpyLI4g0ZpCZ2jQPhr3I0j85GYnSFUGpZH4ZBCCDpHCpr6RDyZ-gCAt4w6hHsfqo5nkRS3c-krgX3694XxGzf8z80SJYGT9WhflXQWkpBRLg2EUId4J88TXAw5LgjoQeOJdwVQRNR5SOWjzYzLD2BG8ukt1j6gTvi_rW89mCGtWGzD33kNJJ2UtA-o", "chrono": 2882, "statut": "en-attente"}, {"nom": "Tapis pour salon", "prix": "22 €", "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuB1eL4zlqNKtdT5ZhEFO3moi4c1A0TeyzyO1BmYcsUFqlZR1SmWWDX-IfjNpJopyfVxZiG9fa9IVWwDE9fZn7sPBsCJmwFCEhLsYUgBOeYujbPm4JXInrdz2PIynCfX0S2vHAeYmNHAJAyakoOMcDIVvveE_s38USa2s2vjxAea4tHbf11H_j0psp_9I2gV7bpOxHs6O3ZWg7SqMpwmfwnHh9Gd7jFi-ha0gpfBfkFOyAB9t_q2IVDqOl3WoKadnZBzLQoNmrOeyfmkdrc", "chrono": 8, "statut": "en-attente"}];</script>
-<script data-purpose="demandes-composant">
-  /* ------------------------------------------------------------------
-     Composant reutilisable : DemandeCard
-     props : nom (texte), prix (texte), image (url), chrono (secondes), statut
-     statut : 'en-attente' | 'terminee'
-     ------------------------------------------------------------------ */
-  function DemandeCard(props) {
-    var carte = document.createElement('article');
-    carte.className = 'demande-carte flex items-center gap-[18px] p-[13px] rounded-[18px] bg-white cursor-pointer';
-    carte.setAttribute('role', 'listitem');
-    /* un clic sur la demande ouvre la page contact */
-    carte.setAttribute('data-nav', 'contact.html');
-    carte.setAttribute('onclick', "location.href='contact.html'");
-
-    var vignette = document.createElement('div');
-    vignette.className = 'w-[96px] h-[96px] shrink-0 rounded-[18px] overflow-hidden bg-surface-container-low flex items-center justify-center';
-    var img = document.createElement('img');
-    img.className = 'w-full h-full object-cover';
-    img.src = props.image;
-    img.alt = props.nom;
-    vignette.appendChild(img);
-
-    var centre = document.createElement('div');
-    centre.className = 'flex flex-col min-w-0 flex-1';
-    var titre = document.createElement('h2');
-    titre.className = 'font-semibold text-on-surface text-[17px] truncate';
-    titre.textContent = props.nom;
-    var pastillePrix = document.createElement('span');
-    pastillePrix.className = 'mt-[9px] h-[31px] px-[13px] rounded-full inline-flex items-center w-fit text-[15px] font-semibold text-on-surface bg-[#E2EFFE] whitespace-nowrap';
-    pastillePrix.textContent = props.prix;
-    var statut = document.createElement('span');
-    statut.className = 'text-[12px] mt-[7px]';
-    centre.appendChild(titre);
-    centre.appendChild(pastillePrix);
-    centre.appendChild(statut);
-
-    var droite = document.createElement('div');
-    droite.className = 'flex flex-col items-center gap-[6px] shrink-0 text-center';
-    var libelle = document.createElement('span');
-    libelle.className = 'text-[12px] text-on-surface-variant';
-    libelle.textContent = 'Chrono';
-    /* gelule du chrono : rouge (couleur d'alerte de l'app) */
-    var pastilleChrono = document.createElement('span');
-    pastilleChrono.className = 'demande-chrono h-[31px] px-[13px] rounded-full inline-flex items-center justify-center text-[15px] font-semibold text-white bg-error whitespace-nowrap';
-    /* gelule d'etat, SOUS le chrono : « En attente », puis « Fini » */
-    var bouton = document.createElement('button');
-    bouton.type = 'button';
-    bouton.className = 'demande-btn-fini h-[31px] px-[15px] rounded-full text-[13px] font-semibold whitespace-nowrap text-white shadow-sm';
-    bouton.style.backgroundColor = 'rgba(120, 130, 150, .55)';   /* gris un peu transparent */
-    bouton.textContent = 'En attente';
-    droite.appendChild(libelle);
-    droite.appendChild(pastilleChrono);
-    droite.appendChild(bouton);
-
-    carte.appendChild(vignette);
-    carte.appendChild(centre);
-    carte.appendChild(droite);
-
-    var secondes = props.chrono;
-    var termine = props.statut === 'terminee';
-
-    function deux(n) { return String(n).padStart(2, '0'); }
-    function formater(s) {
-      return deux(Math.floor(s / 3600)) + ':' + deux(Math.floor((s % 3600) / 60)) + ':' + deux(s % 60);
-    }
-    function dessinerStatut() {
-      /* la gelule d'etat affiche « En attente » ou « Fini » */
-      bouton.textContent = termine ? 'Fini' : 'En attente';
-      bouton.style.backgroundColor = termine ? 'rgba(90, 100, 120, .75)' : 'rgba(120, 130, 150, .55)';
-      bouton.style.color = '#ffffff';
-      statut.textContent = '';
-    }
-    function dessiner() {
-      pastilleChrono.textContent = formater(secondes);
-      pastilleChrono.setAttribute('aria-label', 'Chrono ' + props.nom + ' : ' + formater(secondes));
-    }
-
-    /* le chrono est un compte a rebours : il descend jusqu'a 00:00:00 */
-    var minuteur = setInterval(function () {
-      if (termine) return;
-      secondes--;
-      if (secondes <= 0) {
-        secondes = 0;
-        dessiner();
-        terminer();          /* arrive a zero : la demande est finie */
-        return;
-      }
-      dessiner();
-    }, 1000);
-
-    function terminer() {
-      if (termine) return;
-      termine = true;
-      clearInterval(minuteur);
-      bouton.disabled = true;
-      bouton.setAttribute('aria-disabled', 'true');
-      bouton.setAttribute('aria-label', 'Demande ' + props.nom + ' terminée');
-      carte.style.opacity = '.85';
-      dessinerStatut();
-    }
-
-    bouton.setAttribute('aria-label', 'Marquer la demande ' + props.nom + ' comme terminée');
-    bouton.addEventListener('click', function (e) {
-      e.stopPropagation();      /* sinon le clic ouvrirait la page contact */
-      terminer();
-    });
-
-    dessinerStatut();
-    dessiner();
-    return carte;
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var liste = document.getElementById('demandes-liste');
-    var zone = document.getElementById('demandes-points');
-    if (!liste) return;
-    DEMANDES.forEach(function (d) {
-      liste.appendChild(DemandeCard(d));
-    });
-
-    var cartes = [].slice.call(liste.querySelectorAll('.demande-carte'));
-    var VISIBLES = 4;
-
-    function cran() { return cartes[0] ? cartes[0].offsetHeight + 9 : 143; }
-    /* exactement 4 cartes visibles */
-    function ajuster() {
-      if (cartes.length <= VISIBLES) { liste.style.height = ''; return; }
-      var quatrieme = cartes[VISIBLES - 1];
-      liste.style.height = (quatrieme.offsetTop + quatrieme.offsetHeight) + 'px';
-    }
-    function dernier() {
-      var max = liste.scrollHeight - liste.clientHeight;
-      return Math.max(0, Math.round(max / cran()));
-    }
-    /* indicateur : 3 gelules fixes, l'active suit la progression */
-    function construire() {
-      if (!zone) return;
-      if (zone.children.length !== 3) {
-        zone.innerHTML = '';
-        for (var i = 0; i < 3; i++) {
-          var d = document.createElement('span');
-          d.className = 'demande-point w-2 rounded-full bg-surface-container-highest';
-          d.style.height = '8px';
-          zone.appendChild(d);
-        }
-      }
-      maj();
-    }
-    function maj() {
-      if (!zone) return;
-      var max = liste.scrollHeight - liste.clientHeight;
-      var progression = max > 0 ? liste.scrollTop / max : 0;
-      var actif = Math.max(0, Math.min(2, Math.floor(progression * 3)));
-      [].forEach.call(zone.children, function (d, i) {
-        var on = i === actif;
-        d.className = 'demande-point w-2 rounded-full ' + (on ? 'demande-point-actif' : 'bg-surface-container-highest');
-        d.style.height = on ? '20px' : '8px';
-      });
-    }
-    var enCours = false, dernierGeste = 0;
-    function avancer(pas) {
-      var h = cran();
-      var cible = Math.round(liste.scrollTop / h) + pas;
-      cible = Math.max(0, Math.min(dernier(), cible));
-      var haut = cible * h;
-      enCours = true;
-      liste.scrollTo({ top: haut, behavior: 'smooth' });
-      var essais = 0;
-      var veille = setInterval(function () {
-        essais++;
-        if (Math.abs(liste.scrollTop - haut) < 2 || essais > 40) {
-          clearInterval(veille);
-          setTimeout(function () { enCours = false; }, 120);
-        }
-      }, 25);
-    }
-    liste.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaY) < 2) return;
-      e.preventDefault();
-      var maintenant = Date.now();
-      var memeGeste = maintenant - dernierGeste < 160;
-      dernierGeste = maintenant;
-      if (enCours || memeGeste) return;
-      avancer(e.deltaY > 0 ? 1 : -1);
-    }, { passive: false });
-    liste.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (enCours) return;
-        avancer(e.key === 'ArrowDown' ? 1 : -1);
-      }
-    });
-    liste.setAttribute('tabindex', '0');
-    liste.addEventListener('scroll', maj);
-    function rafraichir() { ajuster(); construire(); }
-    window.addEventListener('resize', rafraichir);
-    window.addEventListener('load', rafraichir);
-    setTimeout(rafraichir, 300);
-    rafraichir();
-  });
-</script>
-
-
-<style data-purpose="demandes-page">
-  /* pleine page, aucun defilement : rien ne doit depasser */
-  html, body { height: 100%; overflow: hidden; }
-  body { touch-action: none; }
-  /* la liste defile sur elle-meme : 4 cartes visibles, defilement crande */
-  #demandes-liste { position: relative; overflow-y: auto; scroll-snap-type: y mandatory;
-    scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
-  #demandes-liste::-webkit-scrollbar { width: 0; height: 0; }
-  .demande-carte { scroll-snap-align: start; scroll-snap-stop: always; }
-  .demande-point { transition: background-color .3s ease, height .3s ease; }
-  .demande-point-actif { background-color: var(--c-text, #131b2e); }
-  .demande-chrono { font-variant-numeric: tabular-nums; letter-spacing: .02em; }
-  .demande-btn-fini { transition: opacity .25s ease, transform .2s ease; }
-  .demande-btn-fini:hover:not(:disabled) { opacity: .92; transform: translateY(-1px); }
-  .demande-btn-fini:disabled { cursor: default; }
-  @media (prefers-reduced-motion: reduce) {
-    .demande-btn-fini { transition: none !important; transform: none !important; }
-  }
-</style>
-
 </body></html>
