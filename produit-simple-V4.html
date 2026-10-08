@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>C1EURO - Basket Nike (V3)</title>
+<title>C1EURO - Basket Nike</title>
 <!-- Include Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts: Quicksand -->
@@ -284,30 +284,30 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 </style>
 <style data-purpose="typographie-homogene">body,h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style></head>
 
-<body class="font-sans text-brand-text w-screen h-screen overflow-hidden"
- style="background-color: var(--c-bg-alt, #fcf8ff);">
+<body class="font-sans text-brand-text w-screen flex flex-col relative h-screen overflow-y-auto overflow-x-hidden" data-mode="connect" style="font-family: 'Outfit', sans-serif; width: 100vw; height: 100vh; margin: 0px; padding: 0px;">
 
-<style data-purpose="produit-v3">
-  /* --- coque plein écran, calée exactement sous le menu du haut --- */
-  /* --v3-haut est mesurée par le script de la page (91 px sur ordinateur, 81 px sur
-     mobile, car le champ de recherche du menu y disparaît). */
-  .v3-app { position: fixed; left: 0; right: 0; bottom: 0; top: var(--v3-haut, 91px); }
+<style data-purpose="produit-v4">
+  /* --- bandes de 120 px d'épaisseur, sur toute la largeur de la page --- */
+  /* la bande du haut commence sous le menu ; --v4-haut est la hauteur réelle de
+     ce menu (91 px sur ordinateur, 81 px sur mobile), mesurée par le script. */
+  .v4-bande { position: fixed; left: 0; right: 0; height: 120px; z-index: 20;
+    background-color: var(--c-chip, #E2EFFE);
+    border-top: 1px solid var(--c-line, #dae2fd); border-bottom: 1px solid var(--c-line, #dae2fd);
+    display: flex; align-items: center; justify-content: center; padding: 0 16px; }
+  .v4-bande-haut { top: var(--v4-haut, 91px); }
+  /* la bande du bas passe au-dessus de la barre « Ajouter », qui ne bouge pas */
+  .v4-bande-bas { bottom: 122px; }
+  /* le contenu de la bande se met toujours au milieu */
+  .v4-bande-contenu { display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 6px; text-align: center; }
+  @media (min-width: 640px) {
+    .v4-bande-contenu { flex-direction: row; gap: 18px; }
+  }
+  /* le contenu de la page ne doit jamais passer sous les bandes */
+  .v4-main { padding-top: calc(var(--v4-haut, 91px) + 140px); padding-bottom: 246px; }
 
-  /* --- containers blancs arrondis des éléments, sans ombre --- */
-  .v3-carte { background-color: var(--c-card, #ffffff); border: 1px solid var(--c-line, #dae2fd);
-    border-radius: 28px; box-shadow: none; }
-
-  /* --- la photo principale : AUCUN container derrière, 20 % de moins qu'avant --- */
-  .v3-photo { width: min(50vh, 496px, 92vw); height: min(50vh, 496px, 92vw); }
-
-  /* --- barres défilantes discrètes --- */
-  .v3-scroll { scrollbar-width: thin; scrollbar-color: var(--c-line-2, #e2e7ff) transparent; }
-  .v3-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
-  .v3-scroll::-webkit-scrollbar-thumb { background-color: var(--c-line-2, #e2e7ff); border-radius: 9999px; }
-  .v3-scroll::-webkit-scrollbar-track { background-color: transparent; }
-
-  /* --- mode clair : contraste par les bordures, aucune ombre sur les containers --- */
-  html:not(.dark) .v3-carte { border-color: rgba(19, 27, 46, .14); }
+  /* --- mode clair : contraste par les bordures, aucune ombre --- */
+  html:not(.dark) .v4-bande { border-color: rgba(19, 27, 46, .14); }
 </style>
 
 <!-- Menu du haut : le même que sur les autres pages -->
@@ -351,85 +351,87 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">close</span></button>
 </div>
 
-<!-- Coque plein écran : photo centrée à gauche, éléments dans des containers à droite -->
-<div class="v3-app flex flex-col px-4 sm:px-6 xl:px-10 pt-3 pb-[122px] overflow-y-auto lg:overflow-hidden v3-scroll">
+<!-- Bande du haut : bande de 120 px sur toute la largeur -->
+<div class="v4-bande v4-bande-haut"
+     aria-label="Basket Nike — 129,99 €">
+  <div class="v4-bande-contenu">
+    <span class="text-3xl font-bold text-gray-900" style="font-weight: 600;">Basket Nike</span>
+    <span class="text-white font-bold py-1.5 px-8 rounded-full" style="background-color: rgb(39, 60, 117);">
+      <span class="text-lg">129,99 €</span>
+    </span>
+  </div>
+</div>
 
-  <!-- les deux blocs sont côte à côte et alignés verticalement l'un avec l'autre -->
-  <div class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(360px,450px)] gap-5 xl:gap-10 lg:items-center lg:overflow-hidden">
-
-    <!-- ============ bloc de gauche : la photo, sans container ============ -->
-    <div class="flex items-center justify-center min-h-0">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k" alt="Basket Nike"
-           class="v3-photo object-contain transition-transform duration-300 ease-out hover:scale-105">
-    </div>
-
-    <!-- ============ bloc de droite : les containers blancs ============ -->
-    <div class="min-h-0 max-h-full flex flex-col gap-3.5 lg:overflow-y-auto v3-scroll lg:pr-1">
-
-      <!-- container 1 : le produit (titre, prix, note, sélection) -->
-      <section class="v3-carte p-5 shrink-0">
-        <h1 class="text-3xl font-bold text-gray-900 mb-2" style="font-weight: 600;">Basket Nike</h1>
-        <div class="flex items-center gap-3 mb-4">
-          <div class="text-on-surface py-1.5 rounded-full font-bold px-8 bg-[#dbeafe]">
-            <span class="text-lg">129,99 €</span>
-          </div>
-          <div class="text-on-surface px-4 py-1.5 rounded-full flex items-center gap-1 font-medium bg-[#ffedd5]"
-               data-nav="avis.html" onclick="location.href='avis.html'">
-            <span class="material-symbols-outlined text-sm fill-1">star</span>
-            <span class="text-sm">3,2/5</span>
-          </div>
-        </div>
-        <button class="mt-2 flex items-center gap-2 py-2 rounded-full border border-transparent bg-yellow-500 text-black text-sm font-medium hover:opacity-90 transition-colors shadow-sm hover:bg-yellow-400 justify-center px-6" style="background-color: rgb(255, 250, 101); font-weight: 500;">
+<main class="w-full flex items-center justify-center relative overflow-visible v4-main" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+<!-- Title that stays visible -->
+<!-- Dynamic Container: Shifts content based on state -->
+<div class="w-full flex flex-col items-center relative max-w-[800px] mx-auto" id="search-container"><div class="flex flex-col md:flex-row justify-center gap-8 md:gap-12 w-full mx-auto p-4 md:p-6 items-center md:items-start" style="font-family: Outfit, sans-serif;">
+<!-- Left Column: Product Image & Quick Actions -->
+<div class="flex flex-col items-center gap-6">
+<div class="w-[250px] md:w-[280px] lg:w-[300px] aspect-square bg-white overflow-hidden flex items-center justify-center shadow-sm border border-surface-container-high" style="border-radius: 18px; aspect-ratio: 1 / 1;"><img alt="Minimalist Sneaker" class="w-full h-full object-contain transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNY8bC-FY3YpH-ZR4dgbthlgxc1gKzOy4BFEQp3trc-8cR2VK8yg9e_1uTSsY7j0djquZtXjf7hwOeHBsQ4yAtO__gcT2SyV7jTwgYU5_bN9MOD58Y0VxIbnpYC9srJ9aqueKwpQP0y6P_V2L_nicCLvADgTVSplPnOBAeu8yepusbTxKAv_v1F5V9ZZ6mC4YMhcvbss3golGt-lXi_qR3pkFikAbZx5b4Q17XpC2kZ1aWaA1vs0wMBj66aGEahQqN3k"></div>
+<button class="mt-2 flex items-center gap-2 py-2 rounded-full border border-transparent bg-yellow-500 text-black text-sm font-medium hover:opacity-90 transition-colors shadow-sm hover:bg-yellow-400 justify-center px-6" style="background-color: rgb(255, 250, 101); font-weight: 500;">
 <span class=""><span class="" style="font-family: inherit; font-size: 0.875rem; letter-spacing: inherit;">Sélectionner</span></span>
 <span class="flex items-center justify-center w-5 h-5 rounded-full bg-black text-white">
 <span class="material-symbols-outlined text-[14px]">check</span>
 </span>
 </button>
-      </section>
-
-      <!-- container 2 : la description -->
-      <section class="v3-carte p-5 shrink-0">
-        <h3 class="font-bold text-gray-900 mb-2 text-base" style="font-weight: 600;">Description :</h3>
-        <div class="relative max-w-md">
-          <p class="text-gray-500 leading-relaxed overflow-hidden text-base" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; font-weight: 400;">Cette basket Nike offre un amorti exceptionnel et un maintien parfait pour vos entraénements quotidiens. Son design épuré s'adapte à toutes vos tenues, alli...&nbsp;&nbsp;<a class="text-primary underline cursor-pointer" href="#">Voir plus</a></p>
-        </div>
-      </section>
-
-      <!-- container 3 : les avis et la galerie -->
-      <section class="v3-carte p-5 shrink-0">
-        <div class="flex gap-4 justify-start">
-          <button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;" data-nav="avis.html" onclick="location.href='avis.html'"><span class="material-symbols-outlined text-xl text-yellow-500">star</span></button>
-          <button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;" data-nav="galerie.html" onclick="location.href='galerie.html'"><span class="material-symbols-outlined text-xl text-black">visibility</span></button>
-        </div>
-      </section>
-
-      <!-- container 4 : les autres photos -->
-      <section class="v3-carte p-5 shrink-0">
-        <div class="flex gap-3">
-          <div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-uQoZYjRYeswMrkj0_LtqVoQvHvVBTUwr2Nid-0zAm2Y3aqKGxKFj88RM9p58PuQAol3kAr53fSTO1ajAWb0cJwutgRq92Z1TqxfRiD-d_D2EVAjLf9RdGf6xEfBs1HxGOtA9tzaShVaZ3QSnaOzXn7xSRPrkkuFlK9KqgGQq6upj_d4rZMJyXE8eMRK6fgRZsoWY560D7bbl-IgE-lacAmLi8tW9ByxDWqieEER0YJridec10132wdo33KIK3DeX7TU"></div>
-          <div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyok8jmasEcQjAq29ohwkeuRpULmh2P3ZGRyqpW15Jv3vJL2jim8GxkvB-nUVeU10fYcbS0KDup9yIHbGe5XMcCaGY7L42vbca14g-iKTaLQDe_-h4QzqzMYankksMfNChWNAaL1jYr0E7bsMOGfSQ5v4Ev0DnYyvVWU4AzDlHcQQZZkdN3RIPbRB6kWMdBPvJJ2hoTPNFUlj0ShGBzuVUWSJbwyejDwfaV0Xw85u0P8nKAtK_NKaZV6KUhdT1Q7yooTE"></div>
-          <div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px; font-weight: 500;">+3</div>
-        </div>
-      </section>
-
-    </div>
+</div>
+<!-- Right Column: Product Details -->
+<div class="flex flex-col flex-1 max-w-xl">
+<div class="mb-6">
+<h1 class="text-3xl font-bold text-gray-900 mb-2" style="font-weight: 600;">Basket Nike</h1>
+<div class="flex items-center gap-3 mb-4">
+  <div class="text-on-surface py-1.5 rounded-full font-bold px-8 bg-[#dbeafe]">
+    <span class="text-lg">129,99 €</span>
+  </div>
+  <div class="text-on-surface px-4 py-1.5 rounded-full flex items-center gap-1 font-medium bg-[#ffedd5]" data-nav="avis.html" onclick="location.href='avis.html'">
+    <span class="material-symbols-outlined text-sm fill-1">star</span>
+    <span class="text-sm">3,2/5</span>
   </div>
 </div>
-
-<!-- Barre d'action du bas : reprise telle quelle de la page d'origine -->
+<div class="mb-6">
+<h3 class="font-bold text-gray-900 mb-2 text-base" style="font-weight: 600;" data-stitch-orig-opacity="1">Description :</h3>
+<div class="relative max-w-md">
+<p class="text-gray-500 leading-relaxed overflow-hidden text-base" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; font-weight: 400;">Cette basket Nike offre un amorti exceptionnel et un maintien parfait pour vos entraénements quotidiens. Son design épuré s'adapte à toutes vos tenues, alli...&nbsp;&nbsp;<a class="text-primary underline cursor-pointer" href="#">Voir plus</a></p>
+</div>
+</div>
+</div>
+<!-- Thumbnail Gallery -->
+<div class="flex gap-4 mb-6 justify-start mt-[-28px]">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;" data-nav="avis.html" onclick="location.href='avis.html'"><span class="material-symbols-outlined text-xl text-yellow-500">star</span></button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest shadow-sm" style="width: 50px; height: 50px;" data-nav="galerie.html" onclick="location.href='galerie.html'"><span class="material-symbols-outlined text-xl text-black">visibility</span></button>
+</div><div class="flex gap-3 mb-8">
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-uQoZYjRYeswMrkj0_LtqVoQvHvVBTUwr2Nid-0zAm2Y3aqKGxKFj88RM9p58PuQAol3kAr53fSTO1ajAWb0cJwutgRq92Z1TqxfRiD-d_D2EVAjLf9RdGf6xEfBs1HxGOtA9tzaShVaZ3QSnaOzXn7xSRPrkkuFlK9KqgGQq6upj_d4rZMJyXE8eMRK6fgRZsoWY560D7bbl-IgE-lacAmLi8tW9ByxDWqieEER0YJridec10132wdo33KIK3DeX7TU"></div>
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px;"><img class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyok8jmasEcQjAq29ohwkeuRpULmh2P3ZGRyqpW15Jv3vJL2jim8GxkvB-nUVeU10fYcbS0KDup9yIHbGe5XMcCaGY7L42vbca14g-iKTaLQDe_-h4QzqzMYankksMfNChWNAaL1jYr0E7bsMOGfSQ5v4Ev0DnYyvVWU4AzDlHcQQZZkdN3RIPbRB6kWMdBPvJJ2hoTPNFUlj0ShGBzuVUWSJbwyejDwfaV0Xw85u0P8nKAtK_NKaZV6KUhdT1Q7yooTE"></div>
+<div class="w-[70px] md:w-[80px] lg:w-[90px] aspect-square overflow-hidden border border-surface-container-high flex items-center justify-center bg-white cursor-pointer hover:bg-gray-50" data-nav="galerie.html" onclick="location.href='galerie.html'" style="border-radius: 18px; font-weight: 500;">+3</div>
+</div>
+</div>
+</div></div>
 <div class="fixed bottom-[16px] left-1/2 -translate-x-1/2 w-full max-w-[737px] rounded-[30px] overflow-hidden bg-white z-30 flex items-center justify-between shadow-lg px-[20px] py-[24px]">
 <button class="h-[42px] bg-surface-container-low flex items-center justify-center hover:bg-surface-dim transition-all border border-surface-container-highest rounded-full text-on-surface" style="width: 100px;" data-nav="conditions.html" onclick="location.href='conditions.html'"><span class="material-symbols-outlined" style="font-size: 18px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;">error</span></button>
 <button class="h-[42px] font-medium flex items-center justify-center transition-opacity border border-surface-container-highest hover:opacity-90 rounded-full" style="background-color: rgb(39, 60, 117); color: white; width: 280px; border-color: rgb(43, 61, 114);">Ajouter</button>
 </div>
+</main>
+
+<!-- Bande du bas : bande de 120 px sur toute la largeur -->
+<div class="v4-bande v4-bande-bas"
+     aria-label="Basket Nike — 129,99 €">
+  <div class="v4-bande-contenu">
+    <span class="text-3xl font-bold text-gray-900" style="font-weight: 600;">Basket Nike</span>
+    <span class="text-white font-bold py-1.5 px-8 rounded-full" style="background-color: rgb(39, 60, 117);">
+      <span class="text-lg">129,99 €</span>
+    </span>
+  </div>
+</div>
 
 <script>
-  // Le menu du haut change de hauteur selon la taille d'écran : on la mesure
-  // au lieu de la supposer, pour que la coque s'arrête exactement en dessous.
+  // La bande du haut doit se placer exactement sous le menu, et ce menu change de
+  // hauteur selon la taille d'écran : on la mesure au lieu de la supposer.
   (function () {
     var menu = document.querySelector('header');
     if (!menu) return;
     function ajuster() {
-      document.documentElement.style.setProperty('--v3-haut', Math.round(menu.getBoundingClientRect().height) + 'px');
+      document.documentElement.style.setProperty('--v4-haut', Math.round(menu.getBoundingClientRect().height) + 'px');
     }
     ajuster();
     window.addEventListener('resize', ajuster);
