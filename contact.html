@@ -295,8 +295,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
 <body class="font-sans text-brand-text w-screen h-screen overflow-hidden flex items-center justify-center" style="background-color: var(--c-bg-alt, #fcf8ff);">
 
 <style data-purpose="contact-web">
-  /* les gelules demandees font 60 px d'epaisseur */
-  .contact-gelule { height: 52px; }
+  /* les gelules font 46 px d'epaisseur ; les rondes restent parfaitement rondes (46 x 46) */
+  .contact-gelule { height: 46px; }
   /* les tuiles restent carrees, y compris sur mobile */
   .contact-tuile { width: 100%; aspect-ratio: 1 / 1; }
   .contact-tuile .pastille { width: 42px; height: 42px; }
@@ -315,15 +315,14 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   }
   @media (prefers-reduced-motion: reduce) { .contact-pulse { animation: none !important; } }
 
-  /* --- contraste renforce en mode CLAIR (le sombre n'est pas touche) --- */
-  html:not(.dark) .contact-tuile { border-color: rgba(19, 27, 46, .16);
-    box-shadow: 0 12px 28px -14px rgba(19, 27, 46, .38); }
-  html:not(.dark) .contact-tuile:hover { border-color: rgba(19, 27, 46, .30); }
-  html:not(.dark) .contact-gelule { border-color: rgba(19, 27, 46, .16); }
-  html:not(.dark) .contact-probleme { border-width: 1.5px;
-    box-shadow: 0 8px 18px -12px rgba(186, 26, 26, .45); }
+  /* --- mode CLAIR : contraste par les BORDS seuls, AUCUNE ombre (demande cliente) --- */
+  /* --- le mode sombre n'est pas touche --- */
+  html:not(.dark) .contact-tuile { border-color: rgba(19, 27, 46, .16); box-shadow: none; }
+  html:not(.dark) .contact-tuile:hover { border-color: rgba(19, 27, 46, .30); box-shadow: none; }
+  html:not(.dark) .contact-gelule { border-color: rgba(19, 27, 46, .16); box-shadow: none; }
+  html:not(.dark) .contact-probleme { border-width: 1.5px; box-shadow: none; }
   html:not(.dark) .contact-mention { color: rgba(19, 27, 46, .78); }
-  html:not(.dark) .contact-photo { box-shadow: 0 14px 30px -14px rgba(19, 27, 46, .45); }
+  html:not(.dark) .contact-photo { box-shadow: none; }
 </style>
 
 <!-- Menu du haut : le même que sur les autres pages -->
@@ -372,8 +371,8 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   <div class="w-full flex flex-col items-center">
 
     <!-- logo WhatsApp + titre -->
-    <span class="contact-gelule w-[52px] rounded-full flex items-center justify-center shadow-sm" style="background-color: rgb(39, 60, 117);" role="img" aria-label="WhatsApp">
-      <i class="fa-brands fa-whatsapp" style="font-size: 28px; color: #ffffff;" aria-hidden="true"></i>
+    <span class="contact-gelule w-[46px] rounded-full flex items-center justify-center shadow-sm" style="background-color: rgb(39, 60, 117);" role="img" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp" style="font-size: 25px; color: #ffffff;" aria-hidden="true"></i>
     </span>
     <h1 class="font-heading font-bold text-on-surface text-[24px] md:text-[28px] text-center mt-3">Contact WhatsApp</h1>
 
@@ -382,11 +381,11 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA" alt="Photo de profil du vendeur" class="w-full h-full object-cover rounded-full">
     </div>
 
-    <!-- rôle + rond WhatsApp qui pulse (gélule de 60 px) -->
+    <!-- rôle + rond WhatsApp qui pulse (gélule ronde de 46 px) -->
     <div class="mt-5 w-full flex items-center justify-center gap-4">
       <span class="contact-gelule px-12 rounded-full inline-flex items-center text-on-surface text-[17px] font-semibold" style="background-color: var(--c-chip, #E2EFFE); border: 1px solid var(--c-line, #dae2fd);">Gérant</span>
-      <span class="contact-gelule w-[52px] rounded-full flex items-center justify-center text-white contact-pulse" style="background-color: rgb(39, 60, 117);" role="img" aria-label="Disponible sur WhatsApp">
-        <i class="fa-brands fa-whatsapp" style="font-size: 28px;" aria-hidden="true"></i>
+      <span class="contact-gelule w-[46px] rounded-full flex items-center justify-center text-white contact-pulse" style="background-color: rgb(39, 60, 117);" role="img" aria-label="Disponible sur WhatsApp">
+        <i class="fa-brands fa-whatsapp" style="font-size: 25px;" aria-hidden="true"></i>
       </span>
     </div>
 
@@ -396,7 +395,7 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       <a href="#" class="underline text-primary">cliquer ici pour télécharger</a>
     </p>
 
-    <!-- gélule J'ai un problème (60 px) -->
+    <!-- gélule J'ai un problème (46 px) -->
     <button type="button" aria-label="Signaler un problème"
             class="contact-gelule contact-probleme mt-5 px-12 rounded-full inline-flex items-center border font-semibold text-[16px]" style="border-color: #ba1a1a; color: #ba1a1a; background-color: rgba(186, 26, 26, .06);">
       J'ai un problème
