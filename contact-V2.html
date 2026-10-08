@@ -1,0 +1,724 @@
+<!DOCTYPE html><html lang="en" style=""><head><script id="c1euro-theme-boot">(function(){try{var t=localStorage.getItem('theme');var r=document.documentElement;if(t==='dark'){r.classList.add('dark');}else{r.classList.remove('dark');}}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>C1EURO - Contact (V2)</title>
+<!-- Include Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Quicksand -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Font Awesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            'brand-bg': '#fcf8ff',
+            'brand-pill': '#7c7cff',
+            'brand-pill-count': '#9e9eff',
+            'brand-text': '#1f2937',
+            'brand-red': '#ff9a9a',
+            "on-secondary-fixed-variant": "#38485d",
+            "outline": "#747878",
+            "surface-bright": "#faf8ff",
+            "primary": "#000000",
+            "primary-fixed": "#e5e2e1",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#444748",
+            "secondary-container": "#d0e1fb",
+            "on-tertiary-container": "#818486",
+            "surface-dim": "#d2d9f4",
+            "outline-variant": "#c4c7c7",
+            "secondary": "#505f76",
+            "on-primary-fixed": "#1c1b1b",
+            "error": "#ba1a1a",
+            "on-surface": "#131b2e",
+            "surface-container-highest": "#dae2fd",
+            "tertiary-fixed": "#e0e3e5",
+            "inverse-on-surface": "#eef0ff",
+            "tertiary-fixed-dim": "#c4c7c9",
+            "on-primary-fixed-variant": "#474746",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-secondary-container": "#54647a",
+            "on-tertiary": "#ffffff",
+            "background": "#faf8ff",
+            "secondary-fixed-dim": "#b7c8e1",
+            "surface": "#faf8ff",
+            "on-primary-container": "#858383",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#d3e4fe",
+            "tertiary": "#000000",
+            "on-secondary-fixed": "#0b1c30",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#c8c6c5",
+            "surface-variant": "#dae2fd",
+            "inverse-surface": "#283044",
+            "on-background": "#131b2e",
+            "surface-tint": "#5f5e5e",
+            "on-tertiary-fixed-variant": "#444749",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container": "#eaedff",
+            "on-tertiary-fixed": "#191c1e",
+            "surface-container-low": "#f2f3ff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e7ff",
+            "primary-container": "#1c1b1b",
+            "tertiary-container": "#191c1e"
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    /* Prevent scrolling on the body */
+    body {
+      overflow: hidden;
+      background-color: var(--c-bg-alt, #fcf8ff); /* Match image background */
+    }
+
+    /* Initial states */
+    #search-results-state {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.3s ease-out;
+      display: none; /* Hidden initially */
+    }
+
+    #search-results-state.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      display: flex;
+    }
+
+    #initial-empty-state {
+      transition: all 0.3s ease-out;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    #initial-empty-state.hidden-state {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      position: absolute; /* Take out of flow when hidden to prevent layout shift */
+      visibility: hidden;
+    }
+    
+    #search-container {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes icon-pulse-ripple {
+      0% { box-shadow: 0 0 0 0 rgba(124, 124, 255, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(124, 124, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(124, 124, 255, 0); }
+    }
+    
+    .animate-pulse-ripple {
+      animation: icon-pulse-ripple 2s infinite;
+    }
+    
+    .cursor-grab {
+      cursor: grab;
+    }
+    
+    .cursor-grabbing {
+      cursor: grabbing !important;
+    }
+  </style>
+<style id="c1euro-theme">
+:root{
+  --c-bg:#faf8ff; --c-card:#ffffff; --c-card-2:#f2f3ff; --c-elev:#e2e7ff;
+  --c-line:#dae2fd; --c-line-2:#e2e7ff;
+  --c-text:#131b2e; --c-text-2:#444748;
+  /* variables dédiées aux couleurs écrites en style inline : la valeur par défaut
+     est la couleur d'origine, au pixel près, pour que le mode clair ne bouge pas */
+  --c-ink:rgb(0,0,0); --c-bg-alt:#fcf8ff; --c-bg-3:#f5f6fa;
+  --c-grey-btn:rgb(206,214,224); --c-grey-2:rgb(241,242,246);
+  --c-chip:rgb(226,239,254); --c-chip-2:rgba(211,228,254,.3); --c-chip-3:rgb(224,242,254);
+  --c-overlay:rgba(255,255,255,.87); --c-overlay-2:rgba(255,255,255,.82);
+  --c-white:#ffffff; --c-green-soft:#bbf7d0;
+}
+html.dark{
+  --c-bg:#0d1117; --c-card:#141a24; --c-card-2:#1a212e; --c-elev:#333d4f;
+  --c-line:#222b3a; --c-line-2:#2a3444;
+  --c-text:#e8ebf3; --c-text-2:#9aa4b8;
+  --c-ink:#e8ebf3; --c-bg-alt:#0d1117; --c-bg-3:#11161f;
+  --c-grey-btn:#2b3346; --c-grey-2:rgba(255,255,255,.06);
+  --c-chip:rgba(255,255,255,.06); --c-chip-2:rgba(255,255,255,.05); --c-chip-3:rgba(255,255,255,.06);
+  --c-overlay:rgba(16,21,30,.92); --c-overlay-2:rgba(16,21,30,.86);
+  --c-white:#141a24; --c-green-soft:rgba(52,211,153,.18);
+}
+
+html.theme-switching, html.theme-switching *{
+  transition:background-color .35s ease, color .35s ease, border-color .35s ease,
+             box-shadow .35s ease !important;
+}
+
+html.dark, html.dark body{background-color:var(--c-bg);}
+html.dark body{color:var(--c-text);}
+/* --- surfaces claires --- */
+html.dark [class~="bg-white"]{background-color:var(--c-card);}
+html.dark [class~="bg-white/90"]{background-color:rgba(20,26,36,.92);}
+html.dark [class~="bg-white/70"]{background-color:rgba(20,26,36,.78);}
+html.dark [class~="bg-white/50"]{background-color:rgba(20,26,36,.55);}
+html.dark [class~="bg-white/20"]{background-color:rgba(255,255,255,.10);}
+html.dark [class~="bg-white/10"]{background-color:rgba(255,255,255,.07);}
+html.dark [class~="bg-white/5"]{background-color:rgba(255,255,255,.04);}
+html.dark [class~="bg-[#fcf8ff]"], html.dark [class~="bg-[#faf8ff]"],
+html.dark [class~="bg-[#f5f6fa]"], html.dark [class~="bg-[#f3f4f6]"],
+html.dark [class~="bg-[#f1f2f6]"]{background-color:var(--c-bg);}
+html.dark [class~="bg-[#f2f3ff]"], html.dark [class~="bg-[#E2EFFE]"],
+html.dark [class~="bg-[#e2effe]"], html.dark [class~="bg-[#dbeafe]"]{background-color:var(--c-card-2);}
+html.dark [class~="bg-[#d0e1fb]"], html.dark [class~="bg-[#d3e4fe]/30"]{background-color:rgba(124,140,255,.16);}
+html.dark [class~="bg-[#ffedd5]"]{background-color:rgba(251,146,60,.18);}
+html.dark [class~="bg-[#d2d9f4]"]{background-color:var(--c-line-2);}
+/* --- tokens du design system --- */
+html.dark [class~="bg-surface"], html.dark [class~="bg-background"]{background-color:var(--c-bg);}
+html.dark [class~="bg-surface-container-lowest"]{background-color:#11161f;}
+html.dark [class~="bg-surface-container-low"]{background-color:var(--c-card);}
+html.dark [class~="bg-surface-container-high"]{background-color:var(--c-card-2);}
+html.dark [class~="bg-surface-container-highest"]{background-color:var(--c-line-2);}
+html.dark [class~="bg-surface-container"]{background-color:#171d28;}
+html.dark [class~="bg-surface-container-low/80"]{background-color:rgba(20,26,36,.8);}
+html.dark [class~="bg-surface-container-high/80"]{background-color:rgba(26,33,46,.8);}
+html.dark [class~="bg-secondary-container"]{background-color:rgba(124,140,255,.18);}
+html.dark [class~="bg-secondary-container/20"]{background-color:rgba(124,140,255,.10);}
+html.dark [class~="bg-primary"]{background-color:#3546c9;}
+html.dark [class~="bg-brand-pill"]{background-color:#5b6bf0;}
+html.dark [class~="bg-brand-pill-count"]{background-color:#7c8cff;color:#0d1117;}
+html.dark [class~="bg-on-surface"]{background-color:#080b11;}
+html.dark [class~="bg-on-surface-variant/70"]{background-color:rgba(154,164,184,.45);}
+html.dark [class~="bg-brand-bg"]{background-color:var(--c-bg);}
+/* --- textes foncés --- */
+html.dark [class~="text-black"], html.dark [class~="text-[#000000]"],
+html.dark [class~="text-[#131b2e]"], html.dark [class~="text-[#1a1a1a]"],
+html.dark [class~="text-gray-900"], html.dark [class~="text-gray-800"]{color:var(--c-text);}
+html.dark [class~="text-[#444748]"], html.dark [class~="text-gray-700"],
+html.dark [class~="text-gray-600"], html.dark [class~="text-gray-500"]{color:var(--c-text-2);}
+html.dark [class~="text-on-surface"]{color:var(--c-text);}
+html.dark [class~="text-on-surface-variant"]{color:var(--c-text-2);}
+html.dark [class~="text-on-surface-variant/70"]{color:rgba(154,164,184,.78);}
+html.dark [class~="text-brand-text"]{color:var(--c-text);}
+html.dark [class~="text-primary"]{color:#9aa7ff;}
+html.dark [class~="text-brand-pill"]{color:#a3aeff;}
+html.dark [class~="text-on-secondary-container"]{color:#cfd7ff;}
+html.dark [class~="text-on-secondary-fixed-variant"]{color:#c3cbe6;}
+html.dark [class~="text-on-secondary-fixed"]{color:var(--c-text);}
+html.dark [class~="text-surface"]{color:var(--c-text);}
+html.dark [class~="placeholder-on-surface-variant/70"]::placeholder{color:rgba(154,164,184,.8);}
+/* --- bordures --- */
+html.dark [class~="border-surface-container-high"]{border-color:var(--c-line);}
+html.dark [class~="border-surface-container-highest"]{border-color:var(--c-line-2);}
+html.dark [class~="border-surface-container-low"]{border-color:#1a222f;}
+html.dark [class~="border-[#e2e7ff]"], html.dark [class~="border-[#dae2fd]"]{border-color:var(--c-line);}
+html.dark [class~="border-gray-100"], html.dark [class~="border-gray-200"]{border-color:#232a38;}
+html.dark [class~="border-black"]{border-color:var(--c-line-2);}
+/* les bordures blanches sont invisibles en clair (blanc sur blanc) mais
+   apparaissent comme des liserés clairs en sombre : on les adapte au fond */
+html.dark [class~="border-white"]{border-color:rgba(255,255,255,.13);}
+html.dark [class~="border-white/50"]{border-color:rgba(255,255,255,.14);}
+html.dark [class~="border-white/30"]{border-color:rgba(255,255,255,.12);}
+html.dark [class~="border-white/20"]{border-color:rgba(255,255,255,.10);}
+html.dark [class~="border-white/15"]{border-color:rgba(255,255,255,.09);}
+html.dark [class~="border-white/10"]{border-color:rgba(255,255,255,.07);}
+html.dark [class~="border-white/5"]{border-color:rgba(255,255,255,.05);}
+html.dark [class~="border-outline-variant"]{border-color:#3a4457;}
+html.dark [class~="border-brand-pill/30"]{border-color:rgba(124,140,255,.45);}
+html.dark [class~="ring-primary"]{--tw-ring-color:#9aa7ff;}
+/* fonds gris et opaques restants */
+html.dark [class~="bg-white/80"]{background-color:rgba(20,26,36,.85);}
+html.dark [class~="bg-white/95"]{background-color:rgba(20,26,36,.95);}
+html.dark [class~="bg-gray-100"]{background-color:#1a212e;}
+html.dark [class~="bg-gray-200"]{background-color:#222939;}
+html.dark [class~="bg-gray-300"]{background-color:#2b3346;}
+html.dark [class~="text-gray-400"]{color:#7d8798;}
+/* styles écrits dans les pages elles-mêmes (galerie, panneaux de la carte) */
+html.dark .gallery-item{background-color:var(--c-card);}
+html.dark #bottom-panel.youtube-active, html.dark #bottom-panel.campaign-active,
+html.dark #bottom-panel.product-active{background-color:var(--c-card);}
+html.dark .play-button-overlay{background-color:rgba(20,26,36,.72);}
+html.dark .play-button-overlay:hover{background-color:rgba(20,26,36,.9);}
+html.dark .play-icon{border-left-color:#e8ebf3;}
+/* carte : fond sombre lisible (les tuiles claires sont inversées), contrôles assortis */
+html.dark .leaflet-container{background-color:#0d1117!important;}
+html.dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.95) contrast(.9);}
+html.dark .leaflet-control-attribution{background:rgba(20,26,36,.85)!important;color:#9aa4b8!important;}
+html.dark .leaflet-control-attribution a{color:#9aa7ff!important;}
+html.dark .leaflet-bar a{background-color:#141a24!important;color:#e8ebf3!important;border-color:#222b3a!important;}
+html.dark .leaflet-bar a:hover{background-color:#1a212e!important;}
+/* accents colorés : on garde la teinte, en version translucide, avec du texte clair */
+html.dark [style*="rgb(255, 158, 158)"]{background-color:rgba(255,158,158,.20)!important;}
+html.dark [style*="rgb(243, 156, 18)"]{background-color:rgba(243,156,18,.22)!important;}
+html.dark [style*="rgb(255, 250, 101)"]{background-color:rgba(255,250,101,.20)!important;}
+html.dark [style*="rgb(231, 127, 103)"]{background-color:rgba(231,127,103,.22)!important;}
+html.dark [style*="rgb(64, 64, 122)"]{background-color:rgba(120,130,255,.22)!important;}
+html.dark [style*="rgb(59, 130, 246)"]{background-color:rgba(59,130,246,.25)!important;}
+html.dark [style*="rgb(139, 92, 246)"]{background-color:rgba(139,92,246,.25)!important;}
+html.dark [style*="rgb(236, 72, 153)"]{background-color:rgba(236,72,153,.25)!important;}
+html.dark [style*="rgb(239, 68, 68)"]{background-color:rgba(239,68,68,.25)!important;}
+html.dark [class~="bg-[#D4AF37]"]{background-color:rgba(212,175,55,.24);}
+html.dark [class~="bg-[#B2FF59]"]{background-color:rgba(178,255,89,.20);}
+html.dark [class~="bg-[#00a8e8]"]{background-color:rgba(0,168,232,.25);}
+html.dark [class~="bg-[#ff6b6b]"]{background-color:rgba(255,107,107,.25);}
+html.dark [class~="bg-[#7f9f5a]"]{background-color:rgba(127,159,90,.25);}
+html.dark [class~="bg-[#d97b84]"]{background-color:rgba(217,123,132,.28);}
+/* champs de saisie : le blanc est le fond par défaut du navigateur */
+html.dark input, html.dark textarea, html.dark select{
+  background-color:var(--c-card); color:var(--c-text); border-color:var(--c-line);
+}
+html.dark input::placeholder, html.dark textarea::placeholder{color:rgba(154,164,184,.8);}
+/* logo : éclairci pour rester lisible sur fond sombre */
+html.dark img[alt="C1EURO Logo"], html.dark img[alt="C1EURO Icon"]{filter:brightness(1.55) saturate(1.05);}
+
+/* --- nouvel interrupteur de thème (pied de page) --- */
+.theme-switch{border-radius:9999px!important;}
+.theme-switch .theme-track{border-radius:9999px!important;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.02));}
+.theme-knob{border-radius:9999px!important;transition:transform .55s cubic-bezier(.34,1.56,.64,1), background-color .45s ease, color .45s ease;}
+html.dark .theme-knob{transform:translateX(42px);background:#0d1117;color:#e8ebf3;}
+html.dark .theme-switch{border-color:rgba(124,140,255,.45);background-color:rgba(124,140,255,.16);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.45), 0 0 0 1px rgba(124,140,255,.22), 0 10px 34px -12px rgba(124,140,255,.75);}
+html.dark .theme-hint{color:rgba(255,255,255,.75);}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><style data-purpose="typographie">body{font-family:'Outfit',sans-serif;}h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style><style data-purpose="typographie-homogene">body,h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',sans-serif;}</style><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></head>
+
+<body class="font-sans text-brand-text w-screen h-screen overflow-hidden"
+ style="background-color: var(--c-bg-alt, #fcf8ff);">
+
+<style data-purpose="contact-v2">
+  /* --- coque d'application plein écran, calée EXACTEMENT sous le menu du haut --- */
+  /* --v2-haut = hauteur réelle du menu (91 px sur ordinateur, 81 px sur mobile car
+     le champ de recherche y disparaît) : le script de la page la mesure. */
+  /* La coque est en position FIXE : pas de marge, donc aucun défilement de page
+     possible (une marge sur la racine créerait justement ce défilement). */
+  .v2-app { position: fixed; left: 0; right: 0; bottom: 0; top: var(--v2-haut, 91px);
+  .v2-panel { background-color: var(--c-card, #ffffff); border: 1px solid var(--c-line, #dae2fd);
+    box-shadow: none; }
+  .v2-fond { background-color: var(--c-chip, #E2EFFE); }
+  .v2-titre { font-size: 11px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
+    color: var(--c-text-2, #444748); }
+
+  /* --- gélules : 46 px d'épaisseur, comme la page contact --- */
+  .v2-gelule { height: 46px; }
+  .v2-action { transition: border-color .2s ease, opacity .2s ease; }
+  .v2-action:hover { opacity: .92; }
+  .v2-action:not(.v2-action-principale):hover { border-color: rgba(19, 27, 46, .28); }
+  .v2-carre { transition: opacity .2s ease, border-color .2s ease; }
+  .v2-carre:hover { opacity: .93; }
+  .v2-carre:not(:first-child):hover { border-color: rgba(19, 27, 46, .28); }
+
+  /* --- fil de discussion --- */
+  .v2-ligne { display: flex; flex-direction: column; align-items: flex-start; }
+  .v2-droite { align-items: flex-end; }
+  .v2-bulle { max-width: 82%; border-radius: 18px; padding: 10px 14px; font-size: 14px; line-height: 1.45;
+    word-break: break-word; }
+  .v2-recue { background-color: var(--c-chip, #E2EFFE); color: var(--c-text, #131b2e);
+    border-bottom-left-radius: 6px; }
+  .v2-envoyee { background-color: rgb(39, 60, 117); color: #ffffff; border-bottom-right-radius: 6px; }
+  html.dark .v2-envoyee { background-color: #33468f; }
+  .v2-meta { display: flex; align-items: center; gap: 4px; margin: 5px 4px 0; }
+  .v2-heure { font-size: 11px; color: var(--c-text-2, #444748); }
+  .v2-tick { color: #34b7f1; }
+  .v2-jour { align-self: center; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 9999px;
+    background-color: var(--c-chip, #E2EFFE); color: var(--c-text-2, #444748); }
+
+  /* --- statut « en ligne » qui pulse (opacité + échelle : aucune ombre) --- */
+  .v2-online { position: relative; width: 11px; height: 11px; border-radius: 9999px;
+    background-color: #22c55e; border: 2px solid var(--c-card, #ffffff); }
+  .v2-online::after { content: ''; position: absolute; inset: -2px; border-radius: 9999px;
+    background-color: #22c55e; animation: v2-halo 2.2s ease-out infinite; }
+  @keyframes v2-halo { 0% { transform: scale(1); opacity: .55; } 70% { transform: scale(2.4); opacity: 0; }
+    100% { transform: scale(2.4); opacity: 0; } }
+
+  /* --- « en train d'écrire… » --- */
+  .v2-points span { display: inline-block; width: 6px; height: 6px; margin-right: 3px; border-radius: 9999px;
+    background-color: currentColor; animation: v2-point 1.3s infinite ease-in-out; }
+  .v2-points span:nth-child(2) { animation-delay: .18s; }
+  .v2-points span:nth-child(3) { animation-delay: .36s; margin-right: 0; }
+  @keyframes v2-point { 0%, 60%, 100% { transform: translateY(0); opacity: .45; }
+    30% { transform: translateY(-4px); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-online::after, .v2-points span { animation: none !important; }
+  }
+
+  /* --- barres défilantes discrètes --- */
+  .v2-scroll { scrollbar-width: thin; scrollbar-color: var(--c-line-2, #e2e7ff) transparent; }
+  .v2-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+  .v2-scroll::-webkit-scrollbar-thumb { background-color: var(--c-line-2, #e2e7ff); border-radius: 9999px; }
+  .v2-scroll::-webkit-scrollbar-track { background-color: transparent; }
+  .v2-noscroll { scrollbar-width: none; }
+  .v2-noscroll::-webkit-scrollbar { display: none; }
+
+  /* --- mode CLAIR : contraste par les bordures, aucune ombre --- */
+  html:not(.dark) .v2-panel { border-color: rgba(19, 27, 46, .14); }
+  html:not(.dark) .v2-action:not(.v2-action-principale) { border-color: rgba(19, 27, 46, .12); }
+  html:not(.dark) .v2-carre:not(:first-child) { border-color: rgba(19, 27, 46, .12); }
+  html:not(.dark) .v2-heure { color: rgba(19, 27, 46, .62); }
+  html:not(.dark) .v2-probleme { border-width: 1.5px; }
+  /* le champ de saisie reste lisible une fois vide */
+  .v2-champ::placeholder { color: var(--c-text-2, #444748); opacity: .75; }
+</style>
+
+<h1 class="sr-only">Contact WhatsApp — C1EURO</h1>
+
+<!-- Menu du haut : le même que sur les autres pages -->
+<header class="bg-white shadow-sm fixed top-0 w-full z-50 py-5 px-8 md:px-16 lg:px-32 xl:px-48 flex items-center justify-between gap-8 border-b border-surface-container-low" data-purpose="main-header">
+<!-- Logo area -->
+<div class="flex items-center gap-4"><img alt="C1EURO Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD686S0bEYgeUb9wx66Y4EJUEiSGXj37DTBVcQmNLwwpEKC_FQNUBBwbzOdG8-dclQP6IZUMdD5jahvckQKbwW1V__wUt9YuZyURKdSgqgSmWVXDTe5CpXB4MMqDdq7oH--XV5Se8HpN5KxM_XH3p_v6cXL8hj_cKbV6l-zVHNMV8CZcjK0yfg28iX5fmeN0Wr9smhXJFWTqqGqc7Z60pA0OJYM5V7x0NwsqcgN_qwrmQLW7rPq8NS2cm7EX2OWLTsE5TM"></div>
+<!-- Search Bar -->
+<div class="flex-grow max-w-3xl hidden md:block">
+<div class="relative w-full">
+<input class="w-full bg-surface-container-low border border-surface-container-high rounded-[15px] py-3.5 px-6 pl-12 text-sm focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant/70 text-on-surface font-[500]" id="search-input" placeholder="Recherche, mot clés" type="text" data-nav="recherche.html" onkeydown="if(event.key==='Enter'){location.href='recherche.html'}">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer" data-nav="recherche.html" onclick="location.href='recherche.html'">
+<svg class="h-5 w-5 text-on-surface-variant/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+</div>
+</div>
+</div>
+<!-- Right Icons -->
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="liste-menu.html" onclick="location.href='liste-menu.html'">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-on-surface rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-surface-container-highest" data-nav="favoris.html" onclick="location.href='favoris.html'">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="w-10 h-10 bg-surface-container-low text-brand-pill rounded-[15px] flex items-center justify-center hover:bg-surface-container-high transition-colors border border-brand-pill/30 animate-pulse-ripple" data-nav="mapvideo.html" onclick="location.href='mapvideo.html'"><span class="material-symbols-outlined text-xl text-on-surface">location_on</span></button>
+<div class="h-6 w-px bg-surface-container-highest mx-2"></div>
+<button class="w-10 h-10 bg-primary text-white rounded-[15px] flex items-center justify-center relative hover:bg-primary/90 transition-colors shadow-sm" style="background-color: rgb(26, 35, 126);" data-nav="demandes.html" onclick="location.href='demandes.html'">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-[500] rounded-[15px] h-5 w-5 flex items-center justify-center shadow-sm">1</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-surface-container-highest hover:border-primary transition-colors cursor-pointer shadow-sm" data-nav="connexion.html" onclick="location.href='connexion.html'"><img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA"></div>
+</div>
+</header>
+
+<!-- Retour / fermer : même positionnement que sur les autres pages -->
+<div class="fixed top-[120px] left-1/2 -translate-x-1/2 w-full max-w-xl px-4 flex items-center z-40 pointer-events-none justify-between mx-auto">
+<button class="w-10 h-10 rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:opacity-90" id="btn-back" style="background-color: rgb(255, 158, 158);" data-nav="retour" onclick="(document.referrer&&document.referrer.indexOf(location.origin)===0)?history.back():location.href='index.html'"><span class="material-symbols-outlined text-white text-xl">arrow_back</span></button>
+<button class="w-10 h-10 bg-white rounded-[15px] flex items-center justify-center shadow-sm pointer-events-auto transition-all hover:bg-gray-50" id="btn-close" data-nav="index.html" onclick="location.href='index.html'"><span class="material-symbols-outlined text-black text-xl">close</span></button>
+</div>
+
+<!-- Coque de l'application : plein écran, calée sous le menu -->
+<div class="v2-app w-full flex flex-col px-4 sm:px-6 xl:px-10 pt-[14px] pb-4 xl:pb-6">
+
+  <!-- barre de contexte (écrans larges uniquement : elle ne croise jamais les boutons flottants) -->
+  <div class="hidden xl:flex items-center justify-between gap-6 h-[64px] shrink-0">
+    <div class="min-w-0">
+      <p class="font-heading font-bold text-on-surface text-[22px] leading-tight">Contact WhatsApp</p>
+      <p class="text-[13px] text-on-surface-variant">Une question ? Le gérant répond directement.</p>
+    </div>
+    <div class="flex items-center gap-2.5 shrink-0">
+      <span class="v2-gelule rounded-full px-4 inline-flex items-center gap-2 bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[13px] font-semibold">
+        <span class="material-symbols-outlined text-[17px] text-on-surface-variant" aria-hidden="true">schedule</span>
+        Répond en ~5 min
+      </span>
+      <span class="v2-gelule rounded-full px-4 inline-flex items-center gap-2 bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[13px] font-semibold">
+        <span class="v2-online" aria-hidden="true"></span>
+        En ligne
+      </span>
+    </div>
+  </div>
+
+  <!-- deux colonnes sur ordinateur, une seule sur mobile -->
+  <div class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-4 xl:gap-6">
+
+    <!-- ============ colonne de gauche : profil et actions (ordinateur) ============ -->
+    <aside class="hidden lg:flex flex-col gap-3 min-h-0 overflow-y-auto v2-scroll pr-1">
+
+      <!-- carte du vendeur -->
+      <div class="v2-panel rounded-[26px] p-5">
+        <div class="flex items-center gap-4">
+          <div class="relative shrink-0">
+            <div class="w-[96px] h-[96px] rounded-full overflow-hidden border-[3px]" style="border-color: var(--c-card, #ffffff);">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA" alt="Photo de profil du vendeur" class="w-full h-full object-cover rounded-full">
+            </div>
+            <span class="v2-online absolute bottom-1.5 right-1.5" role="img" aria-label="En ligne"></span>
+          </div>
+          <div class="min-w-0">
+            <p class="font-heading font-bold text-on-surface text-[19px] leading-tight truncate">Gérant C1EURO</p>
+            <p class="text-[13px] text-on-surface-variant mt-1">Boutique vérifiée</p>
+            <div class="flex items-center gap-1.5 mt-2">
+              <span class="material-symbols-outlined text-[16px]" style="color: #f59e0b;" aria-hidden="true">star</span>
+              <span class="text-[13px] font-semibold text-on-surface">4,8</span>
+              <span class="text-[12px] text-on-surface-variant">· 126 avis</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t flex items-center justify-between" style="border-color: var(--c-line, #dae2fd);">
+          <span class="text-[12px] text-on-surface-variant">Temps de réponse moyen</span>
+          <span class="text-[13px] font-bold text-on-surface">5 min</span>
+        </div>
+      </div>
+
+      <!-- actions -->
+      <div class="v2-panel rounded-[26px] p-4">
+        <p class="v2-titre mb-3">Actions</p>
+        <div class="flex flex-col gap-2.5">
+        <button type="button" class="v2-gelule v2-action v2-action-principale rounded-full flex items-center gap-3 px-3 w-full text-left" style="background-color: rgb(39, 60, 117);">
+          <span class="w-[30px] h-[30px] rounded-full flex items-center justify-center shrink-0" style="background-color: rgba(255,255,255,.18);">
+            <i class="fa-brands fa-whatsapp text-[15px]" style="color: #ffffff;" aria-hidden="true"></i>
+          </span>
+          <span class="flex-1 text-[14px] font-semibold truncate" style="color: #ffffff;">Contacter sur WhatsApp</span>
+        </button>
+        <button type="button" class="v2-gelule v2-action rounded-full flex items-center gap-3 px-3 w-full text-left bg-[#E2EFFE] border border-surface-container-highest text-on-surface">
+          <span class="w-[30px] h-[30px] rounded-full flex items-center justify-center shrink-0" style="background-color: var(--c-card, #ffffff);">
+            <i class="fa-solid fa-phone text-[15px]" aria-hidden="true"></i>
+          </span>
+          <span class="flex-1 text-[14px] font-semibold truncate">Appeler le gérant</span>
+        </button>
+        <button type="button" class="v2-gelule v2-action rounded-full flex items-center gap-3 px-3 w-full text-left bg-[#E2EFFE] border border-surface-container-highest text-on-surface" data-nav="demandes.html" onclick="location.href='demandes.html'">
+          <span class="w-[30px] h-[30px] rounded-full flex items-center justify-center shrink-0" style="background-color: var(--c-card, #ffffff);">
+            <i class="fa-solid fa-receipt text-[15px]" aria-hidden="true"></i>
+          </span>
+          <span class="flex-1 text-[14px] font-semibold truncate">Suivre ma demande</span>
+        <span class="material-symbols-outlined text-on-surface-variant/70 text-[18px]" aria-hidden="true">chevron_right</span>
+        </button>
+        <button type="button" class="v2-gelule v2-action rounded-full flex items-center gap-3 px-3 w-full text-left bg-[#E2EFFE] border border-surface-container-highest text-on-surface" data-nav="contact.html" onclick="location.href='contact.html'">
+          <span class="w-[30px] h-[30px] rounded-full flex items-center justify-center shrink-0" style="background-color: var(--c-card, #ffffff);">
+            <i class="fa-solid fa-handshake text-[15px]" aria-hidden="true"></i>
+          </span>
+          <span class="flex-1 text-[14px] font-semibold truncate">Notre arrangement</span>
+        <span class="material-symbols-outlined text-on-surface-variant/70 text-[18px]" aria-hidden="true">chevron_right</span>
+        </button>
+        </div>
+      </div>
+
+      <!-- raccourcis carrés -->
+      <div class="v2-panel rounded-[26px] p-4">
+        <p class="v2-titre mb-3">Raccourcis</p>
+        <div class="grid grid-cols-3 gap-3">
+          <button type="button" aria-label="WhatsApp" class="v2-carre rounded-[20px] w-full aspect-square flex flex-col items-center justify-center gap-2 text-white" style="background-color: rgb(39, 60, 117);">
+            <span class="w-[38px] h-[38px] rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,.16);">
+              <i class="fa-brands fa-whatsapp text-[18px]" style="color: #ffffff;" aria-hidden="true"></i>
+            </span>
+            <span class="text-[11px] font-semibold leading-tight text-center px-1" style="color: #ffffff;;">WhatsApp</span>
+          </button>
+          <button type="button" aria-label="Ma demande" class="v2-carre rounded-[20px] w-full aspect-square flex flex-col items-center justify-center gap-2 bg-[#E2EFFE] border border-surface-container-highest text-on-surface">
+            <span class="w-[38px] h-[38px] rounded-full flex items-center justify-center" style="background-color: var(--c-card, #ffffff);">
+              <i class="fa-solid fa-receipt text-[18px]" style="color: rgb(39, 60, 117);" aria-hidden="true"></i>
+            </span>
+            <span class="text-[11px] font-semibold leading-tight text-center px-1" style="color: var(--c-text, #131b2e);;">Ma demande</span>
+          </button>
+          <button type="button" aria-label="Arrangement" class="v2-carre rounded-[20px] w-full aspect-square flex flex-col items-center justify-center gap-2 bg-[#E2EFFE] border border-surface-container-highest text-on-surface">
+            <span class="w-[38px] h-[38px] rounded-full flex items-center justify-center" style="background-color: var(--c-card, #ffffff);">
+              <i class="fa-solid fa-handshake text-[18px]" style="color: rgb(39, 60, 117);" aria-hidden="true"></i>
+            </span>
+            <span class="text-[11px] font-semibold leading-tight text-center px-1" style="color: var(--c-text, #131b2e);;">Arrangement</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- problème + mention -->
+      <button type="button" aria-label="Signaler un problème"
+              class="v2-gelule v2-probleme rounded-full px-4 inline-flex items-center justify-center gap-2 border font-semibold text-[14px] shrink-0"
+              style="border-color: #ba1a1a; color: #ba1a1a; background-color: rgba(186, 26, 26, .06);">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">report</span>
+        J'ai un problème
+      </button>
+      <p class="text-center text-[13px] text-on-surface-variant pb-1">
+        Je n'ai pas WhatsApp —
+        <a href="#" class="underline text-primary">cliquer ici pour télécharger</a>
+      </p>
+    </aside>
+
+    <!-- ============ conversation ============ -->
+    <section class="v2-panel rounded-[26px] flex flex-col min-h-0 overflow-hidden" aria-label="Conversation avec le gérant">
+
+      <!-- entête de conversation -->
+      <div class="flex items-center gap-3 px-4 sm:px-5 py-3 border-b shrink-0" style="border-color: var(--c-line, #dae2fd);">
+        <div class="relative shrink-0">
+          <div class="w-[44px] h-[44px] rounded-full overflow-hidden">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9W2rX6WROjSH69c4dq6b2eKYrwiGPkgNTfwlglmgPoqNg5ykFDZ5cf87YuDJGTVYKhZyqIRGFD76D-D2xQ5LMpKI24gcQE7B7WvZjQvluYVFdjVtREJ6O6-g_lIRPjmnzdV6enMAGfnT8hp-XB0ssG-XwObDssZDotqu1SuH59yOqGXIuKL9tosPk70qI0jk-2eqfFVMTnaZy2OkecCki2Lk19jqSwr6kVPEO0_kBZz9j0KC4_2htA" alt="" class="w-full h-full object-cover rounded-full">
+          </div>
+          <span class="v2-online absolute bottom-0 right-0" role="img" aria-label="En ligne"></span>
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="font-semibold text-on-surface text-[15px] truncate">Gérant C1EURO</p>
+          <p class="text-[12px] text-on-surface-variant truncate">En ligne · répond en ~5 min</p>
+        </div>
+        <button type="button" aria-label="Appeler le gérant" class="v2-gelule w-[46px] rounded-full flex items-center justify-center bg-[#E2EFFE] border border-surface-container-highest text-on-surface hover:opacity-90 transition-opacity shrink-0">
+          <span class="material-symbols-outlined text-[20px]" aria-hidden="true">call</span>
+        </button>
+        <button type="button" aria-label="Ouvrir WhatsApp" class="v2-gelule w-[46px] rounded-full flex items-center justify-center text-white shrink-0" style="background-color: rgb(39, 60, 117);">
+          <i class="fa-brands fa-whatsapp text-[20px]" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- barre d'actions (mobile et tablette) -->
+      <div class="lg:hidden flex items-center gap-2 px-4 py-3 border-b overflow-x-auto v2-noscroll shrink-0" style="border-color: var(--c-line, #dae2fd);">
+        <button type="button" class="v2-gelule rounded-full px-4 inline-flex items-center gap-2 text-white text-[13px] font-semibold shrink-0" style="background-color: rgb(39, 60, 117);">
+          <i class="fa-brands fa-whatsapp text-[15px]" aria-hidden="true"></i>WhatsApp
+        </button>
+        <button type="button" class="v2-gelule rounded-full px-4 inline-flex items-center gap-2 bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[13px] font-semibold shrink-0">
+          <span class="material-symbols-outlined text-[17px]" aria-hidden="true">call</span>Appeler
+        </button>
+        <button type="button" data-nav="demandes.html" onclick="location.href='demandes.html'" class="v2-gelule rounded-full px-4 inline-flex items-center gap-2 bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[13px] font-semibold shrink-0">
+          <span class="material-symbols-outlined text-[17px]" aria-hidden="true">receipt_long</span>Ma demande
+        </button>
+        <button type="button" aria-label="Signaler un problème" class="v2-gelule rounded-full px-4 inline-flex items-center gap-2 border font-semibold text-[13px] shrink-0"
+                style="border-color: #ba1a1a; color: #ba1a1a; background-color: rgba(186, 26, 26, .06);">
+          <span class="material-symbols-outlined text-[17px]" aria-hidden="true">report</span>Problème
+        </button>
+      </div>
+
+      <!-- fil de discussion -->
+      <div id="v2-fil" class="flex-1 min-h-0 overflow-y-auto v2-scroll px-4 sm:px-6 py-5 flex flex-col gap-3" aria-live="polite">
+        <span class="v2-jour">Aujourd'hui</span>
+        <div class="v2-ligne v2-gauche">
+          <div class="v2-bulle v2-recue">Bonjour 👋 Je suis le gérant de la boutique C1EURO. Une question sur un article ?</div>
+          <div class="v2-meta"><span class="v2-heure">09:12</span></div>
+        </div>
+        <div class="v2-ligne v2-droite">
+          <div class="v2-bulle v2-envoyee">Bonjour, la Basket Nike à 129,99 € est toujours disponible en 43 ?</div>
+          <div class="v2-meta"><span class="material-symbols-outlined text-[15px] v2-tick" aria-hidden="true">done_all</span><span class="v2-heure">09:14</span></div>
+        </div>
+        <div class="v2-ligne v2-gauche">
+          <div class="v2-bulle v2-recue">Oui, il m'en reste 2 paires. Je vous en réserve une ?</div>
+          <div class="v2-meta"><span class="v2-heure">09:15</span></div>
+        </div>
+        <div class="v2-ligne v2-droite">
+          <div class="v2-bulle v2-envoyee">Parfait, je prends. Merci !</div>
+          <div class="v2-meta"><span class="material-symbols-outlined text-[15px] v2-tick" aria-hidden="true">done_all</span><span class="v2-heure">09:16</span></div>
+        </div>
+        <div class="v2-ligne v2-gauche">
+          <div class="v2-bulle v2-recue">C'est noté ✅ Vous recevrez le suivi dans « Mes demandes ».</div>
+          <div class="v2-meta"><span class="v2-heure">09:16</span></div>
+        </div>
+        <div id="v2-ecrit" class="v2-ligne v2-gauche hidden">
+          <div class="v2-bulle v2-recue v2-points text-on-surface-variant" role="status" aria-label="Le gérant est en train d'écrire">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- réponses rapides -->
+      <div class="flex items-center gap-2 px-4 sm:px-6 py-2.5 border-t overflow-x-auto v2-noscroll shrink-0" style="border-color: var(--c-line, #dae2fd);">
+        <button type="button" data-remplir="Disponibilité ?" class="v2-gelule rounded-full px-3.5 inline-flex items-center bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[12.5px] font-semibold shrink-0 hover:opacity-90 transition-opacity">Disponibilité ?</button>
+        <button type="button" data-remplir="Délai de livraison ?" class="v2-gelule rounded-full px-3.5 inline-flex items-center bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[12.5px] font-semibold shrink-0 hover:opacity-90 transition-opacity">Délai de livraison ?</button>
+        <button type="button" data-remplir="Photo réelle ?" class="v2-gelule rounded-full px-3.5 inline-flex items-center bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[12.5px] font-semibold shrink-0 hover:opacity-90 transition-opacity">Photo réelle ?</button>
+        <button type="button" data-remplir="Négocier le prix ?" class="v2-gelule rounded-full px-3.5 inline-flex items-center bg-[#E2EFFE] border border-surface-container-highest text-on-surface text-[12.5px] font-semibold shrink-0 hover:opacity-90 transition-opacity">Négocier le prix ?</button>
+      </div>
+
+      <!-- champ de saisie -->
+      <form id="v2-form" class="flex items-center gap-2 px-4 sm:px-6 py-3 border-t shrink-0" style="border-color: var(--c-line, #dae2fd);">
+        <label class="sr-only" for="v2-champ">Votre message</label>
+        <input id="v2-champ" type="text" autocomplete="off" placeholder="Écrivez votre message…"
+               class="v2-gelule v2-champ flex-1 min-w-0 rounded-full px-5 text-[14px] bg-[#E2EFFE] border border-surface-container-highest text-on-surface outline-none focus:border-primary transition-colors">
+        <button type="submit" aria-label="Envoyer le message" class="v2-gelule w-[46px] rounded-full flex items-center justify-center text-white shrink-0 hover:opacity-90 transition-opacity" style="background-color: rgb(39, 60, 117);">
+          <span class="material-symbols-outlined text-[20px]" aria-hidden="true">send</span>
+        </button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<!-- Démo locale : aucune donnée n'est envoyée (maquette). -->
+<script>
+  // La coque doit s'arrêter exactement sous le menu du haut, et ce menu change de
+  // hauteur selon la taille d'écran : on mesure au lieu de supposer.
+  (function () {
+    var menu = document.querySelector('header');
+    if (!menu) return;
+    function ajuster() {
+      document.documentElement.style.setProperty('--v2-haut', Math.round(menu.getBoundingClientRect().height) + 'px');
+    }
+    ajuster();
+    window.addEventListener('resize', ajuster);
+    window.addEventListener('load', ajuster);
+    setTimeout(ajuster, 300);
+    if (window.ResizeObserver) { new ResizeObserver(ajuster).observe(menu); }
+  })();
+
+  (function () {
+    var fil = document.getElementById('v2-fil');
+    var form = document.getElementById('v2-form');
+    var champ = document.getElementById('v2-champ');
+    var ecrit = document.getElementById('v2-ecrit');
+    if (!fil || !form || !champ || !ecrit) return;
+
+    function heure() {
+      var d = new Date();
+      return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    }
+    function descendre() { fil.scrollTop = fil.scrollHeight; }
+
+    function ligne(sens, contenuHtml) {
+      var bloc = document.createElement('div');
+      bloc.className = 'v2-ligne ' + (sens === 'envoyee' ? 'v2-droite' : 'v2-gauche');
+      var bulle = document.createElement('div');
+      bulle.className = 'v2-bulle ' + (sens === 'envoyee' ? 'v2-envoyee' : 'v2-recue');
+      bulle.textContent = contenuHtml;
+      var meta = document.createElement('div');
+      meta.className = 'v2-meta';
+      if (sens === 'envoyee') {
+        var tick = document.createElement('span');
+        tick.className = 'material-symbols-outlined text-[15px] v2-tick';
+        tick.setAttribute('aria-hidden', 'true');
+        tick.textContent = 'done_all';
+        meta.appendChild(tick);
+      }
+      var h = document.createElement('span');
+      h.className = 'v2-heure';
+      h.textContent = heure();
+      meta.appendChild(h);
+      bloc.appendChild(bulle);
+      bloc.appendChild(meta);
+      return bloc;
+    }
+
+    // réponse du gérant, choisie selon le mot employé (démo) :
+    function reponse(texte) {
+      var t = texte.toLowerCase();
+      if (t.indexOf('prix') > -1 || t.indexOf('€') > -1)
+        return "Le prix affiché est le prix final, frais de port offerts dès 50 € d'achat.";
+      if (t.indexOf('livraison') > -1 || t.indexOf('delai') > -1 || t.indexOf('délai') > -1)
+        return 'Expédition sous 24 h, réception en 2 à 4 jours ouvrés, suivi dans « Mes demandes ».';
+      if (t.indexOf('dispo') > -1)
+        return 'Oui, disponible. Dites-moi la taille ou le modèle et je vous réserve l\'article.';
+      if (t.indexOf('photo') > -1)
+        return 'Je vous envoie une photo réelle de l\'article dans un instant.';
+      return 'Bien reçu ✅ Je regarde ça et je vous réponds tout de suite.';
+    }
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var texte = champ.value.trim();
+      if (!texte) return;
+      fil.insertBefore(ligne('envoyee', texte), ecrit);
+      champ.value = '';
+      descendre();
+      setTimeout(function () { ecrit.classList.remove('hidden'); descendre(); }, 400);
+      setTimeout(function () {
+        ecrit.classList.add('hidden');
+        fil.insertBefore(ligne('recue', reponse(texte)), ecrit);
+        descendre();
+      }, 1700);
+    });
+
+    // réponses rapides : elles pré-remplissent le champ
+    var chips = document.querySelectorAll('[data-remplir]');
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].addEventListener('click', function () {
+        champ.value = this.getAttribute('data-remplir');
+        champ.focus();
+      });
+    }
+
+    descendre();
+  })();
+</script>
+</body></html>
