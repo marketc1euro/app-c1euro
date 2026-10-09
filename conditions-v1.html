@@ -376,106 +376,30 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
             <span class="text-on-surface-variant text-xs mt-1">engagements</span>
           </div>
         </div>
-        <div class="flex items-center justify-center gap-1 mt-2 avis-etoiles" aria-label="Engagements de la boutique">
+        <div class="flex items-center justify-center gap-1 mt-2 avis-etoiles" aria-label="Les 3 points importants">
           <span class="material-symbols-outlined avis-etoile text-2xl" style="font-variation-settings: 'FILL' 1; color: #4CAF50; animation-delay: 0ms">verified</span>          <span class="material-symbols-outlined avis-etoile text-2xl" style="font-variation-settings: 'FILL' 1; color: #4CAF50; animation-delay: 120ms">verified</span>          <span class="material-symbols-outlined avis-etoile text-2xl" style="font-variation-settings: 'FILL' 1; color: #4CAF50; animation-delay: 240ms">verified</span>
         </div>
-        <p class="text-center text-on-surface-variant text-sm mt-3">
-          <span class="avis-nb-avis font-semibold text-on-surface">3</span> engagements tenus
-        </p>
+        <p class="text-center font-heading font-semibold text-on-surface text-[15px] mt-3">Les 3 points importants</p>
 
-        <div class="w-full mt-7 pt-6 border-t border-surface-container-low flex flex-col gap-3">
-          <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1 w-6 shrink-0">
-              <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-            </span>
-            <span class="flex-1 text-on-surface font-medium text-sm">Livraison colissimo</span>
-            <span class="text-on-surface-variant text-xs font-medium shrink-0">24 h</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1 w-6 shrink-0">
-              <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-            </span>
-            <span class="flex-1 text-on-surface font-medium text-sm">Retour gratuit</span>
-            <span class="text-on-surface-variant text-xs font-medium shrink-0">14 j</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1 w-6 shrink-0">
-              <span class="material-symbols-outlined text-[#4CAF50] text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-            </span>
-            <span class="flex-1 text-on-surface font-medium text-sm">Produits neufs</span>
-            <span class="text-on-surface-variant text-xs font-medium shrink-0">100 %</span>
-          </div>
+        <div class="w-full mt-6 pt-5 border-t border-surface-container-low flex flex-col gap-2.5">
+          <span class="cond-gelule-rouge w-full rounded-full px-4 text-[14px] font-bold">Livraison colissimo</span>
+          <span class="cond-gelule-rouge w-full rounded-full px-4 text-[14px] font-bold">Retour gratuit</span>
+          <span class="cond-gelule-rouge w-full rounded-full px-4 text-[14px] font-bold">Produits neufs</span>
         </div>
       </section>
 
-      <!-- Colonne droite : les conditions, hauteur pleine page -->
-      <section class="bg-white p-6 rounded-[20px] shadow-sm flex flex-col gap-6 relative pr-10">
-        <h2 class="font-heading font-semibold text-on-surface text-lg shrink-0">Les conditions, point par point</h2>
-        <div class="reviews-scroll overflow-y-auto flex flex-col gap-6 w-full pr-2"
+      <!-- Colonne droite : la phrase importante, en un seul texte -->
+      <section class="cond-carte-texte bg-white p-6 rounded-[20px] shadow-sm flex flex-col gap-5 relative pr-10">
+        <h2 class="font-heading font-semibold text-on-surface text-lg shrink-0">La phrase importante</h2>
+        <div class="cond-texte reviews-scroll overflow-y-auto flex-1 min-h-0 w-full pr-3"
              id="reviews-container" style="scroll-behavior: smooth;">
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">local_shipping</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">Livraison colissimo</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">Expédition sous 24 h ouvrées, réception en 2 à 4 jours. Le numéro de suivi est disponible dans « Mes demandes ».</p>
-</div>
-</div>
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">keyboard_return</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">Retour gratuit</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">14 jours après réception pour changer d'avis : le retour est offert, l'article doit revenir dans son emballage d'origine.</p>
-</div>
-</div>
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">verified</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">Produits neufs</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">Tous les articles sont neufs et vérifiés avant expédition. La garantie légale de conformité s'applique à chaque commande.</p>
-</div>
-</div>
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">campaign</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">La phrase importante</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">XIAOMI Friteuse à Air : L'appareil parfait pour cuisiner des repas sains et croustillants avec très peu ou pas d'huile. Profitez de ses nombreuses fonctionnalités pour varier les plaisirs au quotidien.</p>
-</div>
-</div>
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">lock</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">Paiement sécurisé</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">Paiement protégé : vos coordonnées bancaires ne sont jamais transmises au vendeur. (Texte à remplacer par le vôtre.)</p>
-</div>
-</div>
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">shield_person</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">Données personnelles</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">Vos informations servent uniquement au traitement de la commande et ne sont jamais revendues. (Texte à remplacer par le vôtre.)</p>
-</div>
-</div>
-<div class="flex gap-4 review-item shrink-0 border-b border-surface-container-low pb-4">
-<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">mail</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider">Nous contacter</h4>
-<p class="text-on-surface-variant/70 text-sm mt-1">Une question sur ces conditions ? Écrivez directement au gérant depuis la page Contact. <a class="text-primary underline" href="contact.html">Ouvrir la page</a></p>
-</div>
-</div>
+          <p>XIAOMI Friteuse à Air : L'appareil parfait pour cuisiner des repas sains et croustillants avec très peu ou pas d'huile. Profitez de ses nombreuses fonctionnalités pour varier les plaisirs au quotidien.</p>
+          <p>Livraison colissimo — expédition sous 24 h ouvrées, réception en 2 à 4 jours. Le numéro de suivi est disponible dans « Mes demandes ».</p>
+          <p>Retour gratuit — 14 jours après réception pour changer d'avis : le retour est offert, l'article doit revenir dans son emballage d'origine.</p>
+          <p>Produits neufs — tous les articles sont neufs et vérifiés avant expédition. La garantie légale de conformité s'applique à chaque commande.</p>
+          <p>Paiement sécurisé — vos coordonnées bancaires ne sont jamais transmises au vendeur. (Texte à remplacer par le vôtre.)</p>
+          <p>Données personnelles — vos informations servent uniquement au traitement de la commande et ne sont jamais revendues. (Texte à remplacer par le vôtre.)</p>
+          <p>Nous contacter — une question sur ces conditions ? <a class="text-primary underline" href="contact.html">Écrivez au gérant</a> depuis la page Contact.</p>
         </div>
 <div class="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 pointer-events-none">
 <div class="w-1.5 h-1.5 rounded-full bg-primary transition-all duration-300 scroll-indicator" id="ind-1"></div>
@@ -549,6 +473,21 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
   }
 </style>
 
+<style data-purpose="conditions-texte">
+  /* --- le texte du grand bloc : 16 px, epais et bien espace (c'est la phrase importante) --- */
+  .cond-texte { font-size: 16px; font-weight: 500; line-height: 2; letter-spacing: .01em;
+    color: var(--c-text-2, #444748); }
+  .cond-texte p + p { margin-top: 1.5em; }
+  .cond-texte p:first-child { color: var(--c-text, #131b2e); }
+  html.dark .cond-texte { color: #9aa4b8; }
+  html.dark .cond-texte p:first-child { color: #e8ebf3; }
+  /* --- les 3 points importants, en gelules rouges --- */
+  .cond-gelule-rouge { height: 46px; background-color: #ba1a1a; color: #ffffff;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background-color .2s ease; }
+  .cond-gelule-rouge:hover { background-color: #a31616; }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -582,19 +521,24 @@ html.dark .theme-hint{color:rgba(255,255,255,.75);}
       }
     }
 
-    /* 3) 4 entrées visibles, puis défilement à l'intérieur du bloc (comme les avis).
+    /* 3) le grand bloc prend toute la hauteur disponible : le texte défile dedans.
        Sur mobile (moins de 1024 px) on ne fige aucune hauteur : la page défile. */
     var zone = document.getElementById('reviews-container');
-    var elements = zone ? zone.querySelectorAll('.review-item') : [];
+    var carte = document.querySelector('.cond-carte-texte');
+    var grille = document.querySelector('.avis-blocs');
     var ajuster = function () {
-      if (!zone || elements.length < 5) return;
-      if (window.innerWidth < 1024) { zone.style.height = ''; return; }
-      var premier = elements[0], quatrieme = elements[3];
-      zone.style.height = (quatrieme.offsetTop + quatrieme.offsetHeight - premier.offsetTop) + 'px';
+      if (!zone || !carte || !grille) return;
+      if (window.innerWidth < 1024) { carte.style.height = ''; return; }
+      /* le haut de la grille ne dépend pas de la hauteur des cartes : c'est stable */
+      var dispo = window.innerHeight - grille.getBoundingClientRect().top - 46;
+      /* la grille est réduite par un zoom : on convertit en pixels de mise en page */
+      var zoom = carte.offsetHeight ? (carte.getBoundingClientRect().height / carte.offsetHeight) : 1;
+      carte.style.height = Math.max(340, Math.round(dispo / (zoom || 1))) + 'px';
     };
     ajuster();
     window.addEventListener('resize', ajuster);
     window.addEventListener('load', ajuster);
+    setTimeout(ajuster, 250);
 
     /* le bandeau ne s'affiche que s'il reste vraiment du texte à voir */
     var bandeau = document.querySelector('.avis-defile-hint');
